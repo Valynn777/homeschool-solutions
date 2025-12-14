@@ -172,12 +172,26 @@
                     <h2 style="color: var(--color-accent); margin-bottom: 1rem; text-align: center;">Schedule Your Appointment</h2>
                     <p style="text-align: center; margin-bottom: 1.5rem; color: var(--color-text-muted);">Select a convenient date and time for your parent support session. All curriculum design work is based solely on information you provide—no direct contact with your child.</p>
 
+                    <!-- Terms of Service Agreement -->
+                    <div style="background-color: rgba(196, 153, 179, 0.1); border: 2px solid var(--color-primary); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                        <label style="display: flex; align-items: flex-start; cursor: pointer; font-size: 1rem;">
+                            <input type="checkbox" id="termsCheckbox" style="margin-right: 0.75rem; margin-top: 0.25rem; width: 18px; height: 18px; cursor: pointer;" onchange="toggleCalendar()">
+                            <span>I have read and agree to the <a href="terms.html" target="_blank" style="color: var(--color-primary); text-decoration: underline;">Terms of Service</a> *</span>
+                        </label>
+                    </div>
+
                     <!-- Calendly Inline Widget Begin -->
-                    <div class="calendly-inline-widget" data-url="https://calendly.com/faithfulwayhomeschoolsolutions" style="min-width:320px;height:700px;"></div>
+                    <div id="calendlyContainer" style="opacity: 0.3; pointer-events: none; min-width:320px;height:700px; position: relative;">
+                        <div class="calendly-inline-widget" data-url="https://calendly.com/faithfulwayhomeschoolsolutions?hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div>
+                        <div id="calendlyOverlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.7); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: #666; text-align: center; padding: 2rem;">
+                            Please agree to the Terms of Service above to schedule an appointment
+                        </div>
+                    </div>
                     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
                     <!-- Calendly Inline Widget End -->
 
                     <div style="margin-top: 1.5rem; padding: 1rem; background-color: rgba(196, 153, 179, 0.1); border-radius: 4px; font-size: 0.9rem; color: var(--color-text-muted); text-align: center;">
+                        <p style="margin-bottom: 0.5rem;"><strong>After booking:</strong> You'll be redirected to complete a brief intake form to help us prepare for your session.</p>
                         <p><strong>Questions before booking?</strong> Visit our <a href="contact.html" style="color: var(--color-accent);">Contact page</a> to send us a message.</p>
                     </div>
                 </div>
@@ -197,5 +211,22 @@
     </footer>
 
     <script src="js/scripts.js"></script>
+    <script>
+        function toggleCalendar() {
+            const checkbox = document.getElementById('termsCheckbox');
+            const container = document.getElementById('calendlyContainer');
+            const overlay = document.getElementById('calendlyOverlay');
+
+            if (checkbox.checked) {
+                container.style.opacity = '1';
+                container.style.pointerEvents = 'auto';
+                overlay.style.display = 'none';
+            } else {
+                container.style.opacity = '0.3';
+                container.style.pointerEvents = 'none';
+                overlay.style.display = 'flex';
+            }
+        }
+    </script>
 </body>
 </html>
