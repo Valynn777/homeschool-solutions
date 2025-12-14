@@ -48,17 +48,13 @@
 
                         <div class="info-item">
                             <h4>Ready to Schedule?</h4>
-                            <p>If you're ready to book a consultation, visit our <a href="services.html" class="text-link">Services page</a> to complete the intake form.</p>
+                            <p>If you're ready to book a consultation, visit our <a href="services.html" class="text-link">Services page</a> to select a convenient time on our calendar.</p>
                         </div>
 
-                        <div class="info-item">
-                            <h4>Live Chat (Optional)</h4>
-                            <p class="note">Note: Live chat integration can be added here using services like Tidio, Crisp, or Chatra. Simply add their embed code before the closing &lt;/body&gt; tag.</p>
-                        </div>
                     </div>
 
                     <div class="contact-form-container">
-                        <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+                        <form id="contactForm" action="https://formspree.io/f/movgbpwv" method="POST" class="contact-form">
                             <div class="form-group">
                                 <label for="name">Your Name *</label>
                                 <input type="text" id="name" name="name" required placeholder="Enter your name">
@@ -83,15 +79,6 @@
                         </form>
 
                         <div id="formStatus" class="form-status" style="display: none;"></div>
-
-                        <div class="form-note">
-                            <p><strong>Setup Instructions:</strong></p>
-                            <ul>
-                                <li>Replace <code>YOUR_FORM_ID</code> in the form action with your Formspree form ID</li>
-                                <li>Or use Cloudflare Workers for a serverless email solution</li>
-                                <li>The form will work with any email service that accepts POST requests</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -110,10 +97,5 @@
     </footer>
 
     <script src="js/scripts.js"></script>
-    <!--
-    Optional: Add live chat service embed code here
-    Example for Tidio:
-    <script src="//code.tidio.co/YOUR_TIDIO_KEY.js" async></script>
-    -->
 </body>
 </html>

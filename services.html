@@ -167,135 +167,18 @@
                     <a href="sliding-scale.html" class="btn btn-secondary">Apply for Sliding Scale Pricing</a>
                 </div>
 
-                <!-- BOOKING CALENDAR SECTION -->
-                <!--
-                    CALENDLY SETUP INSTRUCTIONS:
-                    1. Sign up for free at https://calendly.com
-                    2. Create an event type (e.g., "Parent Support Session")
-                    3. Copy your Calendly link (it will look like: https://calendly.com/your-username/event-name)
-                    4. Replace PASTE-YOUR-CALENDLY-LINK-HERE below with your actual link
-                    5. Remove these comment lines and the setup note below when done
-                -->
+                <!-- CALENDLY BOOKING SECTION -->
                 <div class="booking-calendar-section" style="background-color: var(--color-bg-card); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; border: 1px solid var(--color-border);">
-                    <h3 style="color: var(--color-accent); margin-bottom: 1rem; text-align: center;">Schedule Your Appointment</h3>
-                    <p style="text-align: center; margin-bottom: 1.5rem; color: var(--color-text-muted);">Select a convenient date and time for your parent support session</p>
+                    <h2 style="color: var(--color-accent); margin-bottom: 1rem; text-align: center;">Schedule Your Appointment</h2>
+                    <p style="text-align: center; margin-bottom: 1.5rem; color: var(--color-text-muted);">Select a convenient date and time for your parent support session. All curriculum design work is based solely on information you provide—no direct contact with your child.</p>
 
                     <!-- Calendly Inline Widget Begin -->
-                    <div class="calendly-inline-widget" data-url="PASTE-YOUR-CALENDLY-LINK-HERE" style="min-width:320px;height:630px;"></div>
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/faithfulwayhomeschoolsolutions" style="min-width:320px;height:700px;"></div>
                     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
                     <!-- Calendly Inline Widget End -->
 
-                    <div style="margin-top: 1rem; padding: 1rem; background-color: rgba(196, 153, 179, 0.1); border-radius: 4px; font-size: 0.9rem; color: var(--color-text-muted);">
-                        <p><strong>Setup Required:</strong> To activate calendar booking, sign up for a free account at <a href="https://calendly.com" target="_blank" style="color: var(--color-accent);">Calendly.com</a> and paste your Calendly link in the code above (see HTML comments for instructions).</p>
-                        <p style="margin-top: 0.5rem;"><strong>Alternative:</strong> You can also use the intake form below to request an appointment, and we'll contact you within 24-48 hours to schedule.</p>
-                    </div>
-                </div>
-
-                <div class="intake-form-container">
-                    <form id="intakeForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="intake-form">
-                        <!-- Hidden field to send copy to client -->
-                        <input type="hidden" name="_cc" value="">
-
-                        <h3>Client Information</h3>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="clientName">Your Name *</label>
-                                <input type="text" id="clientName" name="clientName" required placeholder="Full Name">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="clientEmail">Email Address *</label>
-                                <input type="email" id="clientEmail" name="clientEmail" required placeholder="your@email.com">
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="clientPhone">Phone Number *</label>
-                                <input type="tel" id="clientPhone" name="clientPhone" required placeholder="(555) 123-4567">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="timezone">Time Zone</label>
-                                <select id="timezone" name="timezone">
-                                    <option value="">Select your timezone</option>
-                                    <option value="EST">Eastern (EST)</option>
-                                    <option value="CST">Central (CST)</option>
-                                    <option value="MST">Mountain (MST)</option>
-                                    <option value="PST">Pacific (PST)</option>
-                                    <option value="AKST">Alaska (AKST)</option>
-                                    <option value="HST">Hawaii (HST)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <h3>Service Request</h3>
-
-                        <div class="form-group">
-                            <label for="serviceType">Service Requested *</label>
-                            <select id="serviceType" name="serviceType" required>
-                                <option value="">Select a service</option>
-                                <option value="initial">Initial Parent Support Session ($75 / 60 min)</option>
-                                <option value="ongoing">Ongoing Parent Support Package ($200 / month)</option>
-                                <option value="curriculum">Curriculum Design Session ($100 / 90 min)</option>
-                                <option value="checkin">Quick Parent Check-In ($40 / 30 min)</option>
-                                <option value="slidingscale">Sliding Scale Pricing (apply separately)</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="preferredDate">Preferred Date/Time</label>
-                            <input type="text" id="preferredDate" name="preferredDate" placeholder="e.g., Tuesday mornings, weekdays after 2pm">
-                            <small>We'll work with you to find a time that fits your schedule.</small>
-                        </div>
-
-                        <h3>Tell Us About Your Homeschool</h3>
-
-                        <div class="form-group">
-                            <label for="children">Number and Ages of Children</label>
-                            <input type="text" id="children" name="children" placeholder="e.g., 3 children (ages 8, 10, 12)">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="experience">Homeschool Experience</label>
-                            <select id="experience" name="experience">
-                                <option value="">How long have you been homeschooling?</option>
-                                <option value="new">Just starting / Planning to start</option>
-                                <option value="1-2">1-2 years</option>
-                                <option value="3-5">3-5 years</option>
-                                <option value="5+">5+ years</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="additionalNotes">What would you like help with? *</label>
-                            <textarea id="additionalNotes" name="additionalNotes" required rows="5" placeholder="Share your main questions, concerns, or goals for our parent support session..."></textarea>
-                        </div>
-
-                        <div class="form-group checkbox-group">
-                            <label>
-                                <input type="checkbox" name="emailConsent" required>
-                                I agree to receive email communications about my parent support session and services. *
-                            </label>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-large">Submit Request</button>
-                    </form>
-
-                    <div id="intakeFormStatus" class="form-status" style="display: none;"></div>
-
-                    <div class="form-note">
-                        <p><strong>What Happens Next?</strong></p>
-                        <ol>
-                            <li>You'll receive an email confirmation at the address you provided</li>
-                            <li>We'll reach out within 24-48 hours to schedule your parent support session</li>
-                            <li>You'll receive a calendar invitation with video call details</li>
-                            <li>Payment instructions will be included in your confirmation email</li>
-                            <li>All curriculum design work is based solely on information you provide - no direct contact with your child</li>
-                        </ol>
-
-                        <p class="setup-note"><strong>Setup Note:</strong> Replace <code>YOUR_FORM_ID</code> with your Formspree form ID. Formspree will automatically send a copy to the client and forward the submission to you. You can also use Cloudflare Workers or other serverless email solutions.</p>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background-color: rgba(196, 153, 179, 0.1); border-radius: 4px; font-size: 0.9rem; color: var(--color-text-muted); text-align: center;">
+                        <p><strong>Questions before booking?</strong> Visit our <a href="contact.html" style="color: var(--color-accent);">Contact page</a> to send us a message.</p>
                     </div>
                 </div>
             </div>
