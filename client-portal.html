@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Client portal for Faithful Way Homeschool Solutions">
+    <title>Client Portal - Faithful Way Homeschool Solutions</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .login-container {
+            max-width: 450px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background: var(--color-bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-container h2 {
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        .form-group input {
+            padding: 0.75rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            color: var(--color-text);
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(166, 125, 153, 0.2);
+        }
+
+        .login-btn {
+            padding: 0.875rem;
+            background: linear-gradient(135deg, #a67d99, #c499b3);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(166, 125, 153, 0.4);
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgb(239, 68, 68);
+            color: rgb(239, 68, 68);
+            padding: 0.75rem;
+            border-radius: 8px;
+            display: none;
+            text-align: center;
+        }
+
+        .portal-container {
+            display: none;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .portal-header {
+            background: linear-gradient(135deg, rgba(166, 125, 153, 0.2), rgba(196, 153, 179, 0.2));
+            border: 2px solid var(--color-accent);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .portal-header h1 {
+            color: var(--color-accent-bright);
+            margin: 0;
+        }
+
+        .logout-btn {
+            padding: 0.5rem 1.5rem;
+            background: rgba(196, 153, 179, 0.3);
+            border: 1px solid var(--color-accent);
+            color: var(--color-text);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .portal-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .portal-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 4px 12px rgba(166, 125, 153, 0.3);
+        }
+
+        .portal-card h3 {
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .portal-card .icon {
+            font-size: 1.5rem;
+        }
+
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .file-list li {
+            background: rgba(196, 153, 179, 0.1);
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-list a {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .file-list a:hover {
+            text-decoration: underline;
+        }
+
+        .download-btn {
+            padding: 0.4rem 1rem;
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-btn:hover {
+            background: var(--color-accent-bright);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
+
+        .questionnaire-summary {
+            background: rgba(196, 153, 179, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-accent);
+        }
+
+        .questionnaire-summary .summary-item {
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .questionnaire-summary .summary-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .questionnaire-summary strong {
+            color: var(--color-accent);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .status-badge.in-progress {
+            background: rgba(59, 130, 246, 0.2);
+            color: rgb(59, 130, 246);
+        }
+
+        .status-badge.completed {
+            background: rgba(34, 197, 94, 0.2);
+            color: rgb(34, 197, 94);
+        }
+
+        .status-badge.pending {
+            background: rgba(251, 191, 36, 0.2);
+            color: rgb(251, 191, 36);
+        }
+
+        .help-text {
+            background: rgba(196, 153, 179, 0.15);
+            border-left: 4px solid var(--color-accent);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="images/logo.png" alt="Faithful Way Homeschool Solutions Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="tools/tools.html">Tools</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Login Section -->
+        <section id="loginSection" class="login-container">
+            <h2>Client Portal Login</h2>
+            <p style="text-align: center; color: var(--color-text-muted); margin-bottom: 1.5rem;">
+                Access your curriculum materials and resources
+            </p>
+
+            <form class="login-form" onsubmit="login(event)">
+                <div class="form-group">
+                    <label for="clientEmail">Email Address</label>
+                    <input type="email" id="clientEmail" name="clientEmail" required placeholder="your@email.com" autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="clientPassword">Password</label>
+                    <input type="password" id="clientPassword" name="clientPassword" required placeholder="Enter your password" autocomplete="current-password">
+                </div>
+
+                <div id="errorMessage" class="error-message">
+                    Invalid email or password. Please try again.
+                </div>
+
+                <button type="submit" class="login-btn">Access Portal</button>
+            </form>
+
+            <div class="help-text">
+                <strong>Need help?</strong> If you haven't received your login credentials or need to reset your password, please <a href="contact.html" style="color: var(--color-accent); text-decoration: underline;">contact us</a>.
+            </div>
+        </section>
+
+        <!-- Portal Content (Hidden until login) -->
+        <section id="portalContent" class="portal-container">
+            <div class="portal-header">
+                <div>
+                    <h1>Welcome, <span id="clientName">Client</span>!</h1>
+                    <p style="color: var(--color-text-muted); margin: 0.5rem 0 0 0;">Your personalized curriculum resources</p>
+                </div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+
+            <div class="portal-grid">
+                <!-- Your Curriculum Projects -->
+                <div class="portal-card">
+                    <h3><span class="icon">📚</span> Your Curriculum Projects</h3>
+                    <div id="projectsList"></div>
+                </div>
+
+                <!-- Completed Materials -->
+                <div class="portal-card">
+                    <h3><span class="icon">✅</span> Completed Materials</h3>
+                    <ul class="file-list" id="completedFiles"></ul>
+                </div>
+
+                <!-- Resources & Guides -->
+                <div class="portal-card">
+                    <h3><span class="icon">📖</span> Resources & Guides</h3>
+                    <ul class="file-list" id="resourcesList">
+                        <li id="curriculumGuideItem" style="display: none;">
+                            <span>Curriculum Development Guide</span>
+                            <a href="CURRICULUM_DEVELOPMENT_GUIDE.md" download class="download-btn">Download</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Your Questionnaire Responses -->
+            <div class="portal-card">
+                <h3><span class="icon">📋</span> Your Curriculum Preferences</h3>
+                <div id="questionnaireData" class="questionnaire-summary"></div>
+            </div>
+
+            <!-- Messages & Updates -->
+            <div class="portal-card">
+                <h3><span class="icon">💬</span> Messages & Updates</h3>
+                <div id="messagesList"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Faithful Way Homeschool Solutions. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+    <script>
+        // Client data structure
+        // In production, this would come from a backend database
+        // For now, this is a simple demonstration
+        const clientData = {
+            // Example client - you'll add real client data here
+            'client@example.com': {
+                password: 'demo123', // In production, use hashed passwords
+                name: 'Sarah Johnson',
+                projects: [
+                    {
+                        title: 'Creation Science Unit Study (Grade 4)',
+                        status: 'in-progress',
+                        description: '6-week young-earth science curriculum',
+                        updatedDate: '2025-01-15'
+                    },
+                    {
+                        title: 'Biblical History Textbook',
+                        status: 'pending',
+                        description: 'Full year curriculum for 6th grade',
+                        updatedDate: '2025-01-10'
+                    }
+                ],
+                completedFiles: [
+                    {
+                        name: 'Sample Lesson - Water Cycle',
+                        filename: 'Portfolio/Lesson_1_Water_Cycle.html',
+                        uploadDate: '2025-01-12'
+                    }
+                ],
+                hasAccess: {
+                    curriculumGuide: true // Set to true when client purchases curriculum design
+                },
+                questionnaire: {
+                    'Grade Level': '4th Grade',
+                    'Subjects': 'Science, Bible Studies',
+                    'Curriculum Type': 'Unit Study',
+                    'Template Style': 'Classic Educational',
+                    'Interactivity Level': 'Level 2: Basic Interactive',
+                    'Budget Tier': 'Standard Tier'
+                },
+                messages: [
+                    {
+                        date: '2025-01-15',
+                        from: 'Faithful Way HS',
+                        message: 'Your Creation Science unit is progressing well! First draft of Week 1 will be ready for review by Jan 20.'
+                    }
+                ]
+            }
+        };
+
+        // Login function
+        function login(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('clientEmail').value.trim().toLowerCase();
+            const password = document.getElementById('clientPassword').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Check credentials
+            if (clientData[email] && clientData[email].password === password) {
+                // Store login session
+                sessionStorage.setItem('loggedInClient', email);
+
+                // Hide login, show portal
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('portalContent').style.display = 'block';
+
+                // Load client data
+                loadClientPortal(email);
+
+                // Reset form
+                document.getElementById('clientEmail').value = '';
+                document.getElementById('clientPassword').value = '';
+                errorMessage.style.display = 'none';
+            } else {
+                // Show error
+                errorMessage.style.display = 'block';
+            }
+        }
+
+        // Load client portal data
+        function loadClientPortal(email) {
+            const client = clientData[email];
+
+            // Set client name
+            document.getElementById('clientName').textContent = client.name;
+
+            // Load projects
+            const projectsList = document.getElementById('projectsList');
+            if (client.projects && client.projects.length > 0) {
+                let projectsHTML = '';
+                client.projects.forEach(project => {
+                    const statusClass = project.status.replace('-', '');
+                    projectsHTML += `
+                        <div class="questionnaire-summary" style="margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                <strong>${project.title}</strong>
+                                <span class="status-badge ${statusClass}">${project.status.replace('-', ' ').toUpperCase()}</span>
+                            </div>
+                            <p style="margin: 0.5rem 0; color: var(--color-text-muted); font-size: 0.9rem;">${project.description}</p>
+                            <p style="margin: 0; color: var(--color-text-muted); font-size: 0.85rem;">Last updated: ${project.updatedDate}</p>
+                        </div>
+                    `;
+                });
+                projectsList.innerHTML = projectsHTML;
+            } else {
+                projectsList.innerHTML = '<div class="empty-state">No active projects yet</div>';
+            }
+
+            // Load completed files
+            const completedFiles = document.getElementById('completedFiles');
+            if (client.completedFiles && client.completedFiles.length > 0) {
+                let filesHTML = '';
+                client.completedFiles.forEach(file => {
+                    filesHTML += `
+                        <li>
+                            <div>
+                                <div style="font-weight: 500;">${file.name}</div>
+                                <div style="font-size: 0.85rem; color: var(--color-text-muted);">Uploaded: ${file.uploadDate}</div>
+                            </div>
+                            <a href="${file.filename}" target="_blank" class="download-btn">View</a>
+                        </li>
+                    `;
+                });
+                completedFiles.innerHTML = filesHTML;
+            } else {
+                completedFiles.innerHTML = '<li class="empty-state">No completed materials yet</li>';
+            }
+
+            // Show/hide curriculum guide based on access
+            if (client.hasAccess && client.hasAccess.curriculumGuide) {
+                document.getElementById('curriculumGuideItem').style.display = 'flex';
+            }
+
+            // Load questionnaire data
+            const questionnaireData = document.getElementById('questionnaireData');
+            if (client.questionnaire) {
+                let questionnaireHTML = '';
+                Object.entries(client.questionnaire).forEach(([key, value]) => {
+                    questionnaireHTML += `
+                        <div class="summary-item">
+                            <strong>${key}:</strong> ${value}
+                        </div>
+                    `;
+                });
+                questionnaireData.innerHTML = questionnaireHTML;
+            } else {
+                questionnaireData.innerHTML = '<div class="empty-state">No questionnaire data saved yet. <a href="curriculum-questionnaire.html" style="color: var(--color-accent);">Complete the questionnaire →</a></div>';
+            }
+
+            // Load messages
+            const messagesList = document.getElementById('messagesList');
+            if (client.messages && client.messages.length > 0) {
+                let messagesHTML = '';
+                client.messages.forEach(msg => {
+                    messagesHTML += `
+                        <div class="questionnaire-summary" style="margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <strong>${msg.from}</strong>
+                                <span style="font-size: 0.85rem; color: var(--color-text-muted);">${msg.date}</span>
+                            </div>
+                            <p style="margin: 0; line-height: 1.6;">${msg.message}</p>
+                        </div>
+                    `;
+                });
+                messagesList.innerHTML = messagesHTML;
+            } else {
+                messagesList.innerHTML = '<div class="empty-state">No new messages</div>';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            sessionStorage.removeItem('loggedInClient');
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('portalContent').style.display = 'none';
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Check if already logged in
+        window.onload = function() {
+            const loggedInClient = sessionStorage.getItem('loggedInClient');
+            if (loggedInClient && clientData[loggedInClient]) {
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('portalContent').style.display = 'block';
+                loadClientPortal(loggedInClient);
+            }
+        };
+    </script>
+</body>
+</html>

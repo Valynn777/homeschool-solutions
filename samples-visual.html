@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View sample homeschool consultation reports and evaluation materials from Faithful Way Homeschool Solutions.">
+    <title>Sample Reports - Faithful Way Homeschool Solutions</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Additional styles for visual samples */
+        .samples-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .sample-image-card {
+            background-color: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .sample-image-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 0 25px var(--color-glow);
+            transform: translateY(-5px);
+        }
+
+        .sample-image-container {
+            position: relative;
+            background-color: var(--color-bg-dark);
+            overflow: auto;
+            max-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-md);
+        }
+
+        .sample-image-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 450px;
+            border-radius: 8px;
+        }
+
+        .sample-image-info {
+            padding: var(--spacing-lg);
+        }
+
+        .sample-image-info h3 {
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .sample-image-info p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .sample-type-badge {
+            display: inline-block;
+            background-color: rgba(196, 153, 179, 0.2);
+            border: 1px solid var(--color-accent);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--border-radius);
+            font-size: 0.85rem;
+            color: var(--color-accent);
+            margin-top: var(--spacing-sm);
+        }
+
+        .sample-footer-text {
+            margin-top: var(--spacing-md);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--color-border);
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        .samples-type-section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .samples-type-section h2 {
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .section-description {
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.05rem;
+        }
+
+        .no-image {
+            text-align: center;
+            padding: var(--spacing-xl);
+            color: var(--color-text-muted);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="images/logo.png" alt="Faithful Way Homeschool Solutions Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="tools/tools.html">Tools</a></li>
+                    <li><a href="samples-visual.html" class="active">Samples</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="glow">Sample Reports & Formats</h1>
+                <p class="subtitle">See examples of our consultation materials and customized support documents</p>
+            </div>
+        </section>
+
+        <section class="samples-intro">
+            <div class="container">
+                <div class="content-card">
+                    <h2>Our Consultation Samples</h2>
+                    <p>These samples show the type of practical support and customized materials provided through Faithful Way Homeschool Solutions. Each consultation is customized to your family's unique needs and circumstances.</p>
+
+                    <div class="sample-family-info">
+                        <h3>Sample Design Formats</h3>
+                        <ul>
+                            <li>Support summaries with clean, professional formatting</li>
+                            <li>Lesson pages with and without images</li>
+                            <li>Customizable layout options for different learning styles</li>
+                            <li>Color-coordinated designs to match your preferences</li>
+                        </ul>
+                    </div>
+
+                    <p class="disclaimer">These are design templates and format examples. Your actual consultation materials will be personalized for your family's specific situation, grade levels, subjects, and goals.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="individual-samples">
+            <div class="container">
+                <!-- Support Summary Samples -->
+                <div class="samples-type-section">
+                    <h2>📋 Support Summary Formats</h2>
+                    <p class="section-description">Professional one-page support summaries designed to provide practical guidance without overwhelming detail. Perfect for ongoing progress check-ins and encouragement.</p>
+                    
+                    <div class="samples-gallery" id="summaryGallery">
+                        <!-- Images will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Lesson Samples with Images -->
+                <div class="samples-type-section">
+                    <h2>📚 Lesson Pages with Images</h2>
+                    <p class="section-description">Structured lesson pages that incorporate visual learning materials. Great for combining reading, discussion, and visual-based learning activities.</p>
+                    
+                    <div class="samples-gallery" id="lessonImageGallery">
+                        <!-- Images will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Pace Style Lessons -->
+                <div class="samples-type-section">
+                    <h2>⏱️ Pace-Style Lessons</h2>
+                    <p class="section-description">Linear lesson format for structured daily learning progression. Clean layout that guides students through each activity in order.</p>
+                    
+                    <div class="samples-gallery" id="paceGallery">
+                        <!-- Images will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="samples-cta">
+            <div class="container">
+                <div class="cta-card">
+                    <h2>Ready to Get Started?</h2>
+                    <p>These are just examples of what's possible. Your customized materials will be tailored specifically for your family's needs, learning styles, and goals.</p>
+                    <div class="cta-buttons">
+                        <a href="services.html" class="btn btn-primary btn-large">Schedule a Consultation</a>
+                        <a href="contact.html" class="btn btn-secondary btn-large">Ask a Question</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Faithful Way Homeschool Solutions. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="samples-visual.html">Samples</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample image data
+        const sampleImages = {
+            summary: [
+                {
+                    name: 'Support Summary page 1.png',
+                    title: 'Support Summary - Page 1',
+                    description: 'Initial consultation summary providing family overview and initial assessments.'
+                },
+                {
+                    name: 'Support Summary page 2.png',
+                    title: 'Support Summary - Page 2',
+                    description: 'Continued summary with recommendations and next steps for ongoing support.'
+                }
+            ],
+            lessonImage: [
+                {
+                    name: 'Sample lesson with images 1.PNG',
+                    title: 'Lesson with Images - Format 1',
+                    description: 'Structured lesson combining text, visuals, and learning activities side-by-side.'
+                },
+                {
+                    name: 'Sample lesson with images 2.PNG',
+                    title: 'Lesson with Images - Format 2',
+                    description: 'Alternative layout for image-based lessons with activities and discussion prompts.'
+                },
+                {
+                    name: 'Sample lesson with images 4.PNG',
+                    title: 'Lesson with Images - Format 3',
+                    description: 'Versatile lesson format adaptable for various subject matter and age groups.'
+                },
+                {
+                    name: 'Sample lesson with images 5.PNG',
+                    title: 'Lesson with Images - Format 4',
+                    description: 'Comprehensive lesson page incorporating multiple learning modalities.'
+                }
+            ],
+            pace: [
+                {
+                    name: 'Sample pace style lesson.PNG',
+                    title: 'Pace-Style Lesson Format',
+                    description: 'Step-by-step linear lesson format for structured daily learning progression.'
+                }
+            ]
+        };
+
+        function createSampleCard(filename, title, description) {
+            const card = document.createElement('div');
+            card.className = 'sample-image-card';
+            card.innerHTML = `
+                <div class="sample-image-container">
+                    <img src="images/samples/${filename}" alt="${title}" loading="lazy">
+                </div>
+                <div class="sample-image-info">
+                    <h3>📄 ${title}</h3>
+                    <p>${description}</p>
+                    <span class="sample-type-badge">Sample Format</span>
+                    <div class="sample-footer-text">
+                        Click or hover to view in more detail
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        function loadSampleGallery(galleryId, samples) {
+            const gallery = document.getElementById(galleryId);
+            if (gallery) {
+                samples.forEach(sample => {
+                    const card = createSampleCard(sample.name, sample.title, sample.description);
+                    gallery.appendChild(card);
+                });
+            }
+        }
+
+        // Load all galleries
+        loadSampleGallery('summaryGallery', sampleImages.summary);
+        loadSampleGallery('lessonImageGallery', sampleImages.lessonImage);
+        loadSampleGallery('paceGallery', sampleImages.pace);
+    </script>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing Tutor - Fun & Easy Writing Helper!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Segoe UI', cursive;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 20px;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .top-bar-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .progress-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .progress-label {
+            font-size: 12px;
+            margin-bottom: 4px;
+            opacity: 0.9;
+        }
+
+        .progress-bar-container {
+            background: rgba(255,255,255,0.3);
+            border-radius: 20px;
+            height: 22px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #34d399, #10b981);
+            height: 100%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 11px;
+            width: 0%;
+        }
+
+        .points-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .points-display {
+            background: rgba(255,255,255,0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .achievements-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .achievements-btn:hover {
+            background: white;
+            color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .main-content {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            bottom: 90px;
+            display: flex;
+            padding: 10px;
+            gap: 10px;
+        }
+
+        .chat-section {
+            flex: 1;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.tutor {
+            display: flex;
+            gap: 10px;
+        }
+
+        .message.user {
+            display: flex;
+            gap: 10px;
+            flex-direction: row-reverse;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .tutor .avatar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .user .avatar {
+            background: #34d399;
+        }
+
+        .message-content {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            max-width: 75%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .user .message-content {
+            background: #34d399;
+            color: white;
+        }
+
+        .message-content strong {
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .user .message-content strong {
+            color: white;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .option-btn {
+            padding: 12px 24px;
+            border: 3px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 15px;
+            font-weight: bold;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        .option-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .option-btn.small {
+            padding: 8px 16px;
+            font-size: 13px;
+            border-width: 2px;
+        }
+
+        .editor-section {
+            width: 50%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .editor-header {
+            background: #2d3748;
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .editor-tabs {
+            display: flex;
+            background: #4a5568;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px 15px;
+            color: white;
+            cursor: pointer;
+            border-bottom: 4px solid transparent;
+            transition: all 0.3s;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .tab.active {
+            background: #f8f9fa;
+            color: #2d3748;
+            border-bottom-color: #667eea;
+        }
+
+        .editor-content {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .editor-panel {
+            display: none;
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .editor-panel.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #notesArea, #draftArea {
+            width: 100%;
+            flex: 1;
+            padding: 18px;
+            border: 3px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Georgia', serif;
+            font-size: 16px;
+            line-height: 2;
+            resize: none;
+            outline: none;
+        }
+
+        #notesArea:focus, #draftArea:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .template-display {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .template-section {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid #667eea;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .template-section h3 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .template-section h4 {
+            color: #f59e0b;
+            margin: 12px 0 8px 0;
+            font-size: 15px;
+        }
+
+        .template-section p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        .bottom-toolbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 4px solid #667eea;
+            padding: 12px 20px;
+            z-index: 1000;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+        }
+
+        .toolbar-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .toolbar-btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        .help-btn {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .help-btn:hover {
+            background: #d97706;
+            transform: scale(1.08);
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, #34d399, #10b981);
+            color: white;
+        }
+
+        .next-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 4px 12px rgba(52, 211, 153, 0.4);
+        }
+
+        .next-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .template-btn {
+            background: #8b5cf6;
+            color: white;
+        }
+
+        .template-btn:hover {
+            background: #7c3aed;
+            transform: scale(1.08);
+        }
+
+        .current-step {
+            flex: 1;
+            text-align: center;
+            font-weight: bold;
+            color: #667eea;
+            font-size: 15px;
+        }
+
+        .help-panel {
+            position: fixed;
+            right: -420px;
+            top: 70px;
+            bottom: 90px;
+            width: 400px;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+            transition: right 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+            padding: 20px;
+            border-left: 5px solid #f59e0b;
+        }
+
+        .help-panel.show {
+            right: 0;
+        }
+
+        .help-panel h3 {
+            color: #f59e0b;
+            margin-bottom: 18px;
+            font-size: 20px;
+        }
+
+        .help-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #f59e0b;
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .help-item {
+            background: #fff3cd;
+            padding: 14px;
+            margin-bottom: 14px;
+            border-radius: 10px;
+            border-left: 5px solid #f59e0b;
+        }
+
+        .help-item h4 {
+            color: #f59e0b;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .help-item p {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .achievement-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+            z-index: 2000;
+            text-align: center;
+            min-width: 320px;
+        }
+
+        .achievement-popup.show {
+            animation: popIn 0.5s ease forwards;
+        }
+
+        @keyframes popIn {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .achievement-emoji {
+            font-size: 65px;
+            margin-bottom: 12px;
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .achievement-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .achievement-points {
+            font-size: 18px;
+            color: #34d399;
+            font-weight: bold;
+        }
+
+        .celebration {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            font-size: 110px;
+            pointer-events: none;
+            animation: celebrate 1.2s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes celebrate {
+            0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(4) rotate(720deg); opacity: 0; }
+        }
+
+        .word-count {
+            background: #2d3748;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .analysis-box {
+            background: #f8f9fa;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .analysis-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+            background: white;
+        }
+
+        .analysis-item.success {
+            border-left-color: #34d399;
+            background: #f0fdf4;
+        }
+
+        .analysis-item.warning {
+            border-left-color: #f59e0b;
+            background: #fffbeb;
+        }
+
+        .analysis-item.error {
+            border-left-color: #ef4444;
+            background: #fef2f2;
+        }
+
+        @media (max-width: 1200px) {
+            .main-content {
+                flex-direction: column;
+            }
+            .editor-section {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="progress-section">
+                <div class="progress-label" id="progressLabel">Step 1 of 6: Get Started!</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar">0%</div>
+                </div>
+            </div>
+            <div class="points-section">
+                <div class="points-display">⭐ <span id="pointsDisplay">0</span> points</div>
+                <button class="achievements-btn" onclick="showAchievements()">🏆 Achievements</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="chat-section">
+            <div class="chat-messages" id="chatMessages"></div>
+        </div>
+        
+        <div class="editor-section">
+            <div class="editor-header">
+                <h2>📝 Your Writing Space</h2>
+                <div style="display: flex; gap: 10px;">
+                    <div class="word-count" id="wordCount">Words: 0</div>
+                    <button onclick="exportToPDF()" style="background: #34d399; color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px;">
+                        📥 Download
+                    </button>
+                </div>
+            </div>
+            <div class="editor-tabs">
+                <div class="tab active" onclick="switchTab('notes', event)">📋 Notes</div>
+                <div class="tab" onclick="switchTab('draft', event)">✍️ Draft</div>
+                <div class="tab" onclick="switchTab('template', event)">📑 Template</div>
+            </div>
+            <div class="editor-content">
+                <div class="editor-panel active" id="notesPanel">
+                    <textarea id="notesArea" placeholder="✏️ Write your ideas and notes here! No pressure - just brainstorm! 💭"></textarea>
+                </div>
+                <div class="editor-panel" id="draftPanel">
+                    <textarea id="draftArea" placeholder="✍️ Write your paper here in the Draft tab! Take your time and do your best! 🌟"></textarea>
+                </div>
+                <div class="editor-panel" id="templatePanel">
+                    <div id="templateContent" class="template-display">
+                        <p style="text-align: center; color: #999; padding: 40px; font-size: 16px;">
+                            📋 Your writing template will appear here!<br><br>Pick a topic to get started! 🚀
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-toolbar">
+        <div class="toolbar-content">
+            <button class="toolbar-btn help-btn" onclick="toggleHelp()">
+                ❓ Help
+            </button>
+            <div class="current-step" id="currentStep">
+                Let's get started! 🎉
+            </div>
+            <button class="toolbar-btn template-btn" onclick="showTemplateTab()">
+                📑 Template
+            </button>
+            <button class="toolbar-btn next-btn" id="nextBtn" onclick="nextStep()" disabled>
+                Next Step ➡️
+            </button>
+        </div>
+    </div>
+
+    <div class="help-panel" id="helpPanel">
+        <button class="help-close" onclick="toggleHelp()">×</button>
+        <h3>❓ Need Help?</h3>
+        <div id="helpContent">
+            <div class="help-item">
+                <h4>🤔 Feeling stuck?</h4>
+                <p>That's totally okay! Take a deep breath. Click any button to make a choice - there are NO wrong answers! 😊</p>
+            </div>
+            <div class="help-item">
+                <h4>✍️ How to write</h4>
+                <p>We'll go step-by-step together! You'll fill in sections one at a time, and I'll guide you through each part! 🎯</p>
+            </div>
+            <div class="help-item">
+                <h4>📑 The template</h4>
+                <p>The template shows EXACTLY what to write in each section! It's like having a map! 🗺️</p>
+            </div>
+            <div class="help-item">
+                <h4>⭐ Earn rewards!</h4>
+                <p>Every time you finish a step, you earn points and unlock cool achievements! Keep going! 🎮</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        const state = {
+            step: 'initial',
+            category: null,
+            topic: null,
+            formatType: null,
+            points: 0,
+            achievements: [],
+            currentStepNum: 1,
+            totalSteps: 6,
+            nextStepAction: null,
+            writingStarted: false,
+            lastWordCount: 0,
+            checkInTimer: null,
+            currentSection: 0,
+            templateType: null,
+            sectionDrafts: {},
+            guidedMode: true
+        };
+
+        const achievements = {
+            'first_choice': { name: 'Decision Maker', emoji: '🎯', points: 10 },
+            'topic_selected': { name: 'Topic Explorer', emoji: '🗺️', points: 15 },
+            'first_words': { name: 'First Words', emoji: '✍️', points: 20 },
+            'writing_progress': { name: 'Making Progress', emoji: '📈', points: 25 },
+            'writing_started': { name: 'Getting Started', emoji: '🚀', points: 30 },
+            'paper_complete': { name: 'Writing Champion!', emoji: '🏆', points: 50 }
+        };
+
+        const topics = {
+            'Creative Story': [
+                '🪖 A soldier returns from World War II',
+                '🎮 Fantasy adventure in a video game world',
+                '⏰ Time travel to World War I',
+                '🤖 A video game character becomes real',
+                '🔍 A wartime mystery',
+                '✨ My own idea!'
+            ],
+            'Research Paper': [
+                '💡 How WWII changed technology',
+                '🕹️ Video games from Pong to today',
+                '⚔️ Military strategy in WWI',
+                '🎯 Why people love video games',
+                '👩‍✈️ Women in the World Wars',
+                '✨ My own topic!'
+            ],
+            'Essay': [
+                '📊 WWI vs WWII - What\'s different?',
+                '🎮 Do violent games affect kids?',
+                '🎖️ Leadership in WWII',
+                '🎓 Can games teach us?',
+                '✨ My own idea!'
+            ]
+        };
+
+        const sentenceStarters = {
+            introduction: [
+                "Have you ever wondered...",
+                "Imagine a world where...",
+                "Throughout history...",
+                "In today's world...",
+                "Many people believe that..."
+            ],
+            body: [
+                "First, it's important to understand that...",
+                "Research shows that...",
+                "For example...",
+                "Another key point is...",
+                "According to experts..."
+            ],
+            conclusion: [
+                "In conclusion...",
+                "Overall, we can see that...",
+                "Looking at all the evidence...",
+                "This shows us that...",
+                "Ultimately..."
+            ],
+            creative: [
+                "The day started like any other, until...",
+                "I never expected to find...",
+                "In the distance, I could see...",
+                "Everything changed when...",
+                "The air was thick with..."
+            ]
+        };
+
+        const templates = {
+            'creative': {
+                sections: [
+                    {
+                        title: 'Part 1: Beginning (Opening/Hook)',
+                        guide: '2-4 sentences to grab attention!',
+                        description: 'Start with something interesting that makes readers want to know more!',
+                        starters: [
+                            'The day started like any other, until...',
+                            'Everything changed when...',
+                            'I never expected to find...',
+                            'The air was thick with...',
+                            'In the distance, I could see...'
+                        ],
+                        samples: [
+                            'The letter arrived on a rainy Tuesday morning, just as Sarah was hanging the laundry. She didn\'t recognize the handwriting.',
+                            'The explosion shook the ground beneath my feet. When the dust settled, nothing would ever be the same.',
+                            'Marcus pressed the button, and the game world flickered. Suddenly, he wasn\'t holding a controller anymore.'
+                        ],
+                        prompts: [
+                            { label: 'Character name', placeholder: 'Who is your main character?' },
+                            { label: 'Setting', placeholder: 'Where/when does this happen?' },
+                            { label: 'Hook/Problem', placeholder: 'What interesting thing happens?' }
+                        ]
+                    },
+                    {
+                        title: 'Part 2: Middle (Main Story)',
+                        guide: '3-6 sentences developing the story!',
+                        description: 'Build your story with action, dialogue, and description!',
+                        starters: [
+                            'As [character] tried to...',
+                            'The situation grew worse when...',
+                            'Despite the danger...',
+                            'With trembling hands...',
+                            'Time was running out, and...'
+                        ],
+                        samples: [
+                            'Sarah\'s heart pounded as she opened the envelope. Inside was a photograph from the war - her grandfather, standing with a group of soldiers she\'d never seen before.',
+                            'The game character stepped through the portal. Marcus felt the cold rush of virtual wind become real air. This wasn\'t supposed to be possible.',
+                            'He knew he had to make a choice. Stay and fight, or run and save himself. Neither option felt right.'
+                        ],
+                        prompts: [
+                            { label: 'Main problem/conflict', placeholder: 'What challenge does the character face?' },
+                            { label: 'Character\'s feelings', placeholder: 'How do they feel? (scared, brave, confused?)' },
+                            { label: 'Action taken', placeholder: 'What does the character do?' },
+                            { label: 'Description', placeholder: 'What do they see, hear, smell, or feel?' }
+                        ]
+                    },
+                    {
+                        title: 'Part 3: End (Conclusion)',
+                        guide: '2-4 sentences wrapping up the story!',
+                        description: 'Resolve the story and show what the character learned or how things changed!',
+                        starters: [
+                            'In the end...',
+                            'As the dust settled...',
+                            'Finally, [character] understood that...',
+                            'Though it was over...',
+                            'Looking back now...'
+                        ],
+                        samples: [
+                            'She folded the letter carefully. Some battles, she knew, never truly end. But at least now she understood why her grandfather never spoke of the war.',
+                            'Marcus returned to the real world, controller in hand. The game looked different now. He had learned that courage isn\'t about being unafraid - it\'s about being afraid and doing it anyway.',
+                            'The sun rose on a different world. Things would never be the same, but maybe that was okay. Maybe change was exactly what they needed.'
+                        ],
+                        prompts: [
+                            { label: 'Resolution', placeholder: 'How does the problem get solved?' },
+                            { label: 'Lesson/Realization', placeholder: 'What did the character learn?' }
+                        ]
+                    }
+                ]
+            },
+            
+            'essay': {
+                sections: [
+                    {
+                        title: 'Part 1: Introduction Paragraph',
+                        guide: '4-6 sentences total',
+                        description: 'Hook readers, explain your topic, and state your main point (thesis)!',
+                        starters: [
+                            'Have you ever wondered...',
+                            'Imagine a world where...',
+                            'Many people believe that...',
+                            'In today\'s world...',
+                            'Throughout history...'
+                        ],
+                        samples: [
+                            'Do video games rot your brain? Many people think so. However, video games are a billion-dollar industry played by millions. Recent research shows surprising benefits. This essay will show that video games can actually improve problem-solving skills and hand-eye coordination.',
+                            'War changes everything it touches. World War II transformed not just nations, but the entire world. From 1939 to 1945, the conflict reshaped politics, technology, and society. This essay will examine how WWII accelerated technological innovation in ways we still benefit from today.',
+                            'Picture a child spending hours on a screen. Parents worry. Teachers complain. But what if gaming isn\'t all bad? This essay argues that video games, when used properly, can be powerful educational tools.'
+                        ],
+                        prompts: [
+                            { label: 'Hook (1 sentence)', placeholder: 'Start with a question, fact, or bold statement' },
+                            { label: 'Background (2-3 sentences)', placeholder: 'Explain what your topic is about' },
+                            { label: 'Thesis (1-2 sentences)', placeholder: 'State your main argument/point' }
+                        ]
+                    },
+                    {
+                        title: 'Part 2: Body Paragraph 1',
+                        guide: '5-7 sentences for your first main point',
+                        description: 'Make your first point with evidence and explanation!',
+                        starters: [
+                            'First, it\'s important to understand that...',
+                            'To begin with...',
+                            'One major reason is...',
+                            'The first key point is...',
+                            'Initially...'
+                        ],
+                        samples: [
+                            'First, video games improve problem-solving abilities. For example, strategy games like Civilization require players to plan ahead and make complex decisions. Players must manage resources, predict outcomes, and adapt to changing situations. This shows that gaming exercises critical thinking skills in ways similar to chess or puzzles.',
+                            'To begin with, WWII drove rapid advances in computing technology. The need to break enemy codes led to the creation of early computers like Colossus and ENIAC. These machines could perform calculations thousands of times faster than humans. This breakthrough laid the foundation for modern computers we use every day.',
+                            'One major benefit of gaming is improved hand-eye coordination. Research from the University of Toronto found that gamers have 25% faster reaction times than non-gamers. Action games especially require split-second timing and precise movements. These skills transfer to real-world activities like driving and sports.'
+                        ],
+                        prompts: [
+                            { label: 'Topic sentence', placeholder: 'State your first main point' },
+                            { label: 'Evidence/Example', placeholder: 'Give a fact, study, or specific example' },
+                            { label: 'Explanation (2-3 sentences)', placeholder: 'Explain WHY this matters and HOW it proves your point' }
+                        ]
+                    },
+                    {
+                        title: 'Part 3: Body Paragraph 2',
+                        guide: '5-7 sentences for your second main point',
+                        description: 'Make your second point with different evidence!',
+                        starters: [
+                            'Another important point is...',
+                            'Additionally...',
+                            'Furthermore...',
+                            'A second reason is...',
+                            'Beyond that...'
+                        ],
+                        samples: [
+                            'Another important benefit is social skill development. Multiplayer games require teamwork and communication. Players must coordinate strategies, negotiate roles, and work toward common goals. Research shows that 70% of gamers play with friends, building real relationships through virtual worlds. This proves that gaming can be a social, collaborative activity.',
+                            'Additionally, medical technology advanced dramatically during the war. The urgent need to treat wounded soldiers led to innovations in blood transfusion, antibiotics, and surgical techniques. Penicillin production increased by 20 times between 1943 and 1945. These medical breakthroughs saved millions of lives both during and after the war.',
+                            'Furthermore, gaming teaches valuable lessons about persistence. When players fail a level, they try again with new strategies. This builds resilience and growth mindset. A study by Stanford found that students who play educational games are 15% more likely to persist through difficult problems. The game environment creates a safe space to fail and learn.'
+                        ],
+                        prompts: [
+                            { label: 'Topic sentence', placeholder: 'State your second main point' },
+                            { label: 'Evidence/Example', placeholder: 'Give different evidence than paragraph 1' },
+                            { label: 'Explanation (2-3 sentences)', placeholder: 'Explain the significance and connection to thesis' }
+                        ]
+                    },
+                    {
+                        title: 'Part 4: Conclusion Paragraph',
+                        guide: '4-5 sentences wrapping up',
+                        description: 'Restate your thesis, summarize points, and end with impact!',
+                        starters: [
+                            'In conclusion...',
+                            'Overall, the evidence shows...',
+                            'Looking at all these factors...',
+                            'Ultimately...',
+                            'To sum up...'
+                        ],
+                        samples: [
+                            'In conclusion, video games offer real cognitive and social benefits. They improve problem-solving, coordination, and persistence. While gaming should be balanced with other activities, dismissing all games as harmful ignores the research. Perhaps it\'s time we viewed games as tools for learning rather than just entertainment.',
+                            'Overall, World War II\'s impact on technology cannot be overstated. From computers to medicine, the war accelerated innovations by decades. These advances transformed civilian life after 1945. Understanding this history helps us see both the terrible cost of war and the human capacity for innovation under pressure.',
+                            'Ultimately, video games are neither purely good nor purely bad. The research reveals significant benefits when games are used thoughtfully. As technology continues evolving, education should adapt by incorporating gaming elements. The question isn\'t whether games affect us, but how we can harness that power for learning.'
+                        ],
+                        prompts: [
+                            { label: 'Restate thesis', placeholder: 'Say your main point in NEW words' },
+                            { label: 'Summary', placeholder: 'Briefly mention your key points' },
+                            { label: 'Final thought', placeholder: 'End with something powerful or thought-provoking' }
+                        ]
+                    }
+                ]
+            },
+            
+            'research': {
+                sections: [
+                    {
+                        title: 'Part 1: Introduction',
+                        guide: '5-7 sentences introducing your research',
+                        description: 'Hook readers, provide background, and present your thesis!',
+                        starters: [
+                            'Throughout history...',
+                            'One of the most significant events...',
+                            'Researchers have long studied...',
+                            'Few topics generate as much debate as...',
+                            'In examining...'
+                        ],
+                        samples: [
+                            'World War II changed the world forever. From 1939 to 1945, nations fought across every continent. The war affected politics, technology, and society in profound ways. Historians continue to study its lasting impact. This paper examines how WWII accelerated technological development, leading to innovations we use daily.',
+                            'The evolution of video games represents a fascinating chapter in technological history. From simple dots on a screen in 1972 to immersive virtual worlds today, gaming has transformed entertainment. Each generation brought new innovations in graphics, gameplay, and storytelling. This research paper explores how video game technology evolved from Pong to modern gaming systems.',
+                            'Leadership during wartime faces unique challenges. Military leaders must make life-or-death decisions under extreme pressure. World War II produced some of history\'s most studied commanders. This paper analyzes the leadership styles of key WWII generals and their impact on military outcomes.'
+                        ],
+                        prompts: [
+                            { label: 'Hook (1-2 sentences)', placeholder: 'Start with an interesting fact or question' },
+                            { label: 'Background (3-4 sentences)', placeholder: 'Give context and explain why topic matters' },
+                            { label: 'Thesis (1-2 sentences)', placeholder: 'State what your research will prove/examine' }
+                        ]
+                    },
+                    {
+                        title: 'Part 2: Body Paragraph 1',
+                        guide: '6-8 sentences with research and citations',
+                        description: 'Present your first major point with evidence from sources!',
+                        starters: [
+                            'Research indicates that...',
+                            'According to [source]...',
+                            'Evidence suggests...',
+                            'Historical records show...',
+                            'Studies have found...'
+                        ],
+                        samples: [
+                            'Research indicates that WWII dramatically accelerated computer development. According to Johnson (2018), the need to break enemy codes drove innovation in computing. The British Colossus machine, built in 1943, could process information 5,000 times faster than human code breakers. Smith (2020) notes that these wartime computers laid the foundation for modern computing. This demonstrates how military necessity drove technological breakthrough. The impact extended far beyond the war itself.',
+                            'Evidence suggests that early video games emerged from military and academic research. Higinbotham created "Tennis for Two" in 1958 at a government laboratory (Kent, 2001). The first commercial game, "Computer Space," appeared in 1971 but failed commercially. Then came "Pong" in 1972, which became the breakthrough success (Donovan, 2010). According to Kent (2001), Pong\'s simplicity made it accessible to everyone. This marked the beginning of the video game industry.',
+                            'Historical records show that General Eisenhower\'s leadership style emphasized collaboration. Smith (2019) describes how he united Allied forces despite national rivalries. Unlike more autocratic commanders, Eisenhower built consensus among British and American generals. His diplomatic skills proved as important as military strategy (Johnson, 2017). This approach helped maintain the Allied coalition throughout the war.'
+                        ],
+                        prompts: [
+                            { label: 'Topic sentence', placeholder: 'State your first main point' },
+                            { label: 'Evidence with citation', placeholder: 'According to [Author, Year], [fact or quote]' },
+                            { label: 'More evidence (2-3 sentences)', placeholder: 'Add more supporting research' },
+                            { label: 'Analysis (2-3 sentences)', placeholder: 'Explain what this evidence means and why it matters' }
+                        ]
+                    },
+                    {
+                        title: 'Part 3: Body Paragraph 2',
+                        guide: '6-8 sentences with different evidence',
+                        description: 'Present your second major point with citations!',
+                        starters: [
+                            'Additionally, research shows...',
+                            'Further evidence comes from...',
+                            'Another significant finding...',
+                            'Scholars have also noted...',
+                            'Beyond that, studies reveal...'
+                        ],
+                        samples: [
+                            'Additionally, research shows that radar technology advanced rapidly during WWII. According to Brown (2019), radar gave Allied forces a critical advantage in detecting enemy aircraft. The technology improved throughout the war, becoming smaller and more accurate. Peterson (2021) explains how radar principles later enabled satellite communications. This military technology transformed civilian life after 1945. Today, radar appears in everything from weather forecasting to airport safety.',
+                            'Further evidence comes from the 1980s arcade boom. Donovan (2010) reports that by 1982, arcades earned more than pop music and movies combined. Games like Pac-Man and Donkey Kong became cultural phenomena. However, the market crashed in 1983 due to oversaturation (Kent, 2001). According to Williams (2015), this crisis forced the industry to innovate. Nintendo\'s careful quality control revived gaming in 1985. This period shaped how games are developed and marketed today.',
+                            'Further evidence shows that General Patton represented a contrasting leadership style. Unlike Eisenhower, Patton led through aggressive action and personal bravery (Miller, 2018). He believed in leading from the front and demanding excellence. Thompson (2020) notes that his Third Army moved faster and farther than any in history. However, his confrontational personality caused diplomatic problems. This contrast illustrates that effective leadership takes many forms.'
+                        ],
+                        prompts: [
+                            { label: 'Topic sentence', placeholder: 'State your second main point' },
+                            { label: 'Evidence with citation', placeholder: 'According to [Author, Year], [fact or quote]' },
+                            { label: 'More evidence (2-3 sentences)', placeholder: 'Add supporting research with citations' },
+                            { label: 'Analysis (2-3 sentences)', placeholder: 'Explain significance and connection to thesis' }
+                        ]
+                    },
+                    {
+                        title: 'Part 4: Body Paragraph 3 (Optional)',
+                        guide: '6-8 sentences if you have a third point',
+                        description: 'Add a third point if your topic needs it!',
+                        starters: [
+                            'Finally, the evidence reveals...',
+                            'A third important finding...',
+                            'Moreover, research demonstrates...',
+                            'Lastly, studies indicate...',
+                            'Most significantly...'
+                        ],
+                        samples: [
+                            'Finally, the evidence reveals that medical innovations saved countless lives. Brown (2019) explains that penicillin production increased twentyfold during the war. Blood transfusion techniques improved dramatically (Wilson, 2020). According to Martinez (2021), these advances reduced mortality rates by 50%. The military\'s urgent need drove rapid medical progress. These innovations continued benefiting civilians long after 1945.',
+                            'Most significantly, modern gaming technology creates immersive virtual worlds. Graphics processing advanced from 2D sprites to photorealistic 3D environments (Stevens, 2019). According to Digital Trends (2022), today\'s consoles process 10 teraflops of data per second. Virtual reality adds another dimension of immersion. This progression shows how far gaming has come from Pong\'s simple tennis simulation.',
+                            'Most significantly, both leaders adapted their styles to changing circumstances. Eisenhower grew more decisive as D-Day approached (Smith, 2019). Patton learned to control his temper after being reprimanded. According to Thompson (2020), successful generals combined multiple leadership approaches. This flexibility distinguished great commanders from merely good ones.'
+                        ],
+                        prompts: [
+                            { label: 'Topic sentence', placeholder: 'State your third point (if you have one)' },
+                            { label: 'Evidence with citations', placeholder: 'Support with research from multiple sources' },
+                            { label: 'Analysis', placeholder: 'Explain and connect to your thesis' }
+                        ]
+                    },
+                    {
+                        title: 'Part 5: Conclusion',
+                        guide: '5-6 sentences summarizing your research',
+                        description: 'Restate thesis, summarize findings, explain significance!',
+                        starters: [
+                            'In conclusion, this research demonstrates...',
+                            'As this paper has shown...',
+                            'The evidence clearly indicates...',
+                            'This analysis reveals...',
+                            'Overall, the research supports...'
+                        ],
+                        samples: [
+                            'In conclusion, this research demonstrates that WWII fundamentally transformed technology. As shown, wartime necessity accelerated development of computers, radar, and medical innovations. These advances shaped the post-war world in profound ways. Understanding this history helps us see both the cost of war and human innovation under pressure. The technologies developed between 1939 and 1945 continue impacting our lives today.',
+                            'As this paper has shown, video game technology evolved dramatically over five decades. From simple dots to immersive virtual worlds, each generation brought revolutionary advances. The industry survived crashes and transformed entertainment forever. This history reveals the power of iterative innovation and creative problem-solving. Today\'s gaming technology continues pushing the boundaries of what\'s possible.',
+                            'This analysis reveals that effective leadership takes many forms. Both Eisenhower and Patton succeeded through different approaches - one through diplomacy, one through aggression. Understanding various leadership styles helps us appreciate military history\'s complexity. No single approach guarantees success. The best leaders adapt their methods to circumstances and challenges.'
+                        ],
+                        prompts: [
+                            { label: 'Restate thesis', placeholder: 'Say your main argument in NEW words' },
+                            { label: 'Summary (2-3 sentences)', placeholder: 'Briefly recap your key findings' },
+                            { label: 'Significance (1-2 sentences)', placeholder: 'Why does this research matter?' },
+                            { label: 'Final thought', placeholder: 'End with broader implications or future questions' }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        window.onload = function() {
+            addTutorMessage("👋 <strong>Hey there! Welcome to Writing Tutor!</strong><br><br>I'm super excited to help you write something awesome! 🎉", false);
+            
+            setTimeout(() => {
+                addTutorMessage("We'll go step-by-step together, and you'll earn points and achievements along the way! 🏆<br><br>Ready to get started?", false);
+                
+                setTimeout(() => {
+                    showCategorySelection();
+                }, 1000);
+            }, 1200);
+
+            document.getElementById('draftArea').addEventListener('input', handleDraftInput);
+            document.getElementById('notesArea').addEventListener('input', updateWordCount);
+        };
+
+        function handleDraftInput() {
+            updateWordCount();
+            
+            const wordCount = document.getElementById('draftArea').value.split(/\s+/).filter(w => w.length > 0).length;
+            
+            if (wordCount > 0 && !state.achievements.includes('first_words')) {
+                awardAchievement('first_words');
+            }
+            
+            if (wordCount >= 50 && !state.achievements.includes('writing_progress')) {
+                awardAchievement('writing_progress');
+                setTimeout(() => {
+                    addTutorMessage("🎉 <strong>Great progress!</strong> You're doing awesome! Keep going! 💪", false);
+                }, 500);
+            }
+            
+            // Check-in system
+            if (state.writingStarted) {
+                const currentCount = wordCount;
+                if (currentCount > state.lastWordCount + 25) {
+                    state.lastWordCount = currentCount;
+                    clearTimeout(state.checkInTimer);
+                    state.checkInTimer = setTimeout(() => {
+                        provideEncouragement(currentCount);
+                    }, 30000);
+                }
+            }
+        }
+
+        function provideEncouragement(wordCount) {
+            const template = templates[state.templateType];
+            const section = state.currentSection !== undefined && template ? 
+                          template.sections[state.currentSection] : null;
+            
+            let message = `💪 You've written ${wordCount} words! That's fantastic progress!`;
+            
+            if (section) {
+                message = `✨ Great work on <strong>${section.title}</strong>! You've written ${wordCount} words so far! 🌟`;
+            }
+            
+            addTutorMessage(message + "<br><br>Keep going! Need any help?", true, [
+                { text: '💡 Sentence starter', action: 'provideSentenceStarter()', small: true },
+                { text: '📑 Show template', action: 'showTemplateTab()', small: true },
+                { text: '✅ I\'m good!', action: 'dismissEncouragement()' }
+            ]);
+        }
+
+        function dismissEncouragement() {
+            addUserMessage("I'm good!");
+            setTimeout(() => {
+                addTutorMessage("👍 Awesome! Keep writing! You're doing great! 🌟", false);
+            }, 300);
+        }
+
+        function updateProgress(step, stepName) {
+            state.currentStepNum = step;
+            const percentage = (step / state.totalSteps) * 100;
+            
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('progressBar').textContent = Math.round(percentage) + '%';
+            document.getElementById('progressLabel').textContent = `Step ${step} of ${state.totalSteps}: ${stepName}`;
+            document.getElementById('currentStep').textContent = stepName;
+        }
+
+        function awardAchievement(achievementId) {
+            if (state.achievements.includes(achievementId)) return;
+            
+            const achievement = achievements[achievementId];
+            state.achievements.push(achievementId);
+            state.points += achievement.points;
+            
+            document.getElementById('pointsDisplay').textContent = state.points;
+            
+            showAchievementPopup(achievement);
+            showCelebration(achievement.emoji);
+        }
+
+        function showAchievementPopup(achievement) {
+            const popup = document.createElement('div');
+            popup.className = 'achievement-popup show';
+            popup.innerHTML = `
+                <div class="achievement-emoji">${achievement.emoji}</div>
+                <div class="achievement-name">${achievement.name}</div>
+                <div class="achievement-points">+${achievement.points} points!</div>
+            `;
+            
+            document.body.appendChild(popup);
+            
+            setTimeout(() => {
+                popup.style.opacity = '0';
+                popup.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                setTimeout(() => popup.remove(), 300);
+            }, 2500);
+        }
+
+        function showCelebration(emoji) {
+            const celebration = document.createElement('div');
+            celebration.className = 'celebration';
+            celebration.textContent = emoji;
+            document.body.appendChild(celebration);
+            
+            setTimeout(() => celebration.remove(), 1200);
+        }
+
+        function showAchievements() {
+            let message = '<strong>🏆 Your Achievements</strong><br><br>';
+            
+            if (state.achievements.length === 0) {
+                message += '✨ Keep going! Complete tasks to earn achievements!<br><br>You got this! 💪';
+            } else {
+                state.achievements.forEach(id => {
+                    const ach = achievements[id];
+                    message += `${ach.emoji} <strong>${ach.name}</strong> - ${ach.points} points<br>`;
+                });
+                message += `<br>🌟 <strong>Total: ${state.points} points!</strong><br><br>Amazing work! 🎉`;
+            }
+            
+            addTutorMessage(message, false);
+        }
+
+        function toggleHelp() {
+            const helpPanel = document.getElementById('helpPanel');
+            const isShowing = helpPanel.classList.contains('show');
+            
+            if (!isShowing) {
+                updateHelpContent();
+            }
+            
+            helpPanel.classList.toggle('show');
+        }
+
+        function updateHelpContent() {
+            const helpContent = document.getElementById('helpContent');
+            
+            if (state.writingStarted && state.templateType) {
+                const template = templates[state.templateType];
+                const section = template.sections[state.currentSection];
+                
+                helpContent.innerHTML = `
+                    <div class="help-item">
+                        <h4>📍 Where you are</h4>
+                        <p>You're working on <strong>${section.title}</strong> (Section ${state.currentSection + 1} of ${template.sections.length})</p>
+                    </div>
+                    <div class="help-item">
+                        <h4>📏 What to write</h4>
+                        <p><strong>${section.guide}</strong><br><br>${section.description}</p>
+                    </div>
+                    <div class="help-item">
+                        <h4>💡 Need ideas?</h4>
+                        <p>Click the "Sentence Starters" button in the Template tab! These help you begin sentences in your own words! 🎨</p>
+                    </div>
+                    <div class="help-item">
+                        <h4>📝 Stuck on structure?</h4>
+                        <p>Click "Example Sentences" to see HOW to write this section. Remember: use them as guides, not to copy! Write about YOUR topic! 💪</p>
+                    </div>
+                    <div class="help-item">
+                        <h4>✍️ Fill in the template</h4>
+                        <p>Type your ideas in the yellow boxes on the Template tab. When ready, click "Add to My Draft" to move it to your paper! 📋</p>
+                    </div>
+                    <div class="help-item">
+                        <h4>🤝 You're doing great!</h4>
+                        <p>Writing is hard work! It's OKAY to use the helpers - that's what they're for! Every writer needs support sometimes! 🌟</p>
+                    </div>
+                `;
+            } else {
+                helpContent.innerHTML = `
+                    <div class="help-item">
+                        <h4>🤔 Feeling stuck?</h4>
+                        <p>That's totally okay! Take a deep breath. Click any button to make a choice - there are NO wrong answers! 😊</p>
+                    </div>
+                    <div class="help-item">
+                        <h4>✍️ How to write</h4>
+                        <p>We'll go step-by-step together! You'll fill in sections one at a time, and I'll guide you through each part! 🎯</p>
+                    </div>
+                    <div class="help-item">
+                        <h4>📑 The template</h4>
+                        <p>The template shows EXACTLY what to write in each section! It's like having a map! 🗺️</p>
+                    </div>
+                    <div class="help-item">
+                        <h4>⭐ Earn rewards!</h4>
+                        <p>Every time you finish a step, you earn points and unlock cool achievements! Keep going! 🎮</p>
+                    </div>
+                `;
+            }
+        }
+
+        function showTemplateTab() {
+            switchTab('template', { target: document.querySelectorAll('.tab')[2] });
+        }
+
+        function switchTab(tab, event) {
+            const tabs = document.querySelectorAll('.tab');
+            const panels = document.querySelectorAll('.editor-panel');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            panels.forEach(p => p.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tab + 'Panel').classList.add('active');
+        }
+
+        function updateWordCount() {
+            const text = document.getElementById('draftArea').value;
+            const words = text.split(/\s+/).filter(w => w.length > 0).length;
+            document.getElementById('wordCount').textContent = `Words: ${words}`;
+        }
+
+        function setNextStep(action, buttonText = 'Next Step ➡️', enable = true) {
+            state.nextStepAction = action;
+            const nextBtn = document.getElementById('nextBtn');
+            nextBtn.textContent = buttonText;
+            nextBtn.disabled = !enable;
+        }
+
+        function nextStep() {
+            if (state.nextStepAction) {
+                eval(state.nextStepAction);
+            }
+        }
+
+        function addTutorMessage(message, showButtons = false, buttons = []) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message tutor';
+            
+            let buttonHTML = '';
+            if (showButtons && buttons.length > 0) {
+                buttonHTML = '<div class="button-group">';
+                buttons.forEach(btn => {
+                    buttonHTML += `<button class="option-btn ${btn.small ? 'small' : ''}" onclick="${btn.action}">${btn.text}</button>`;
+                });
+                buttonHTML += '</div>';
+            }
+            
+            messageDiv.innerHTML = `
+                <div class="avatar">🎓</div>
+                <div class="message-content">${message}${buttonHTML}</div>
+            `;
+            
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function addUserMessage(message) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user';
+            
+            messageDiv.innerHTML = `
+                <div class="avatar">😊</div>
+                <div class="message-content">${message}</div>
+            `;
+            
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function showCategorySelection() {
+            updateProgress(1, 'Pick what to write! 🎨');
+            
+            const categories = Object.keys(topics);
+            const buttons = categories.map((cat, index) => ({
+                text: cat,
+                action: `selectCategory(${index})`
+            }));
+            buttons.push({
+                text: '✨ My Own Idea!',
+                action: `selectCategory(${categories.length})`
+            });
+            
+            addTutorMessage('<strong>What would you like to write?</strong><br><br>Pick one! There are NO wrong choices! 😊', true, buttons);
+            setNextStep(null, 'Pick a category first!', false);
+        }
+
+        function selectCategory(categoryIndex) {
+            const categories = Object.keys(topics);
+            const category = categoryIndex >= categories.length ? 'Custom' : categories[categoryIndex];
+            
+            state.category = category;
+            addUserMessage(category === 'Custom' ? 'My Own Idea!' : category);
+            awardAchievement('first_choice');
+            
+            if (category === 'Custom') {
+                setTimeout(() => {
+                    addTutorMessage("🌟 <strong>Cool! What's your topic?</strong><br><br>Type it below and press Enter! ⬇️", false);
+                    enableCustomInput();
+                    updateProgress(2, 'Choose your topic! 📚');
+                }, 500);
+            } else {
+                setTimeout(() => {
+                    showTopicSelection(category);
+                }, 500);
+            }
+        }
+
+        function showTopicSelection(category) {
+            updateProgress(2, 'Choose your topic! 📚');
+            
+            const categoryTopics = topics[category];
+            const buttons = categoryTopics.map((topic, index) => ({
+                text: topic,
+                action: `selectTopic(${index})`
+            }));
+            
+            addTutorMessage('<strong>Pick a topic:</strong><br><br>Choose what sounds fun to you! 🎯', true, buttons);
+        }
+
+        function selectTopic(topicIndex) {
+            const categoryTopics = topics[state.category];
+            const topic = categoryTopics[topicIndex];
+            
+            if (topic.includes('own')) {
+                addUserMessage('My own topic!');
+                setTimeout(() => {
+                    addTutorMessage("🌟 <strong>Awesome! What's your idea?</strong><br><br>Type it below! ⬇️", false);
+                    enableCustomInput();
+                }, 500);
+                return;
+            }
+            
+            state.topic = topic.replace(/[🪖🎮⏰🤖🔍✨💡🕹️⚔️🎯👩‍✈️📊🎖️🎓]/g, '').trim();
+            addUserMessage(state.topic);
+            awardAchievement('topic_selected');
+            
+            setTimeout(() => {
+                continueToFormatting();
+            }, 500);
+        }
+
+        function enableCustomInput() {
+            const chatSection = document.querySelector('.chat-section');
+            const inputDiv = document.createElement('div');
+            inputDiv.id = 'customInput';
+            inputDiv.style.cssText = 'padding: 15px 20px; background: white; border-top: 2px solid #e0e0e0;';
+            inputDiv.innerHTML = `
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="topicInput" placeholder="Type your topic here..." style="flex: 1; padding: 12px; border: 3px solid #667eea; border-radius: 25px; font-size: 15px; outline: none;">
+                    <button onclick="submitCustomTopic()" style="padding: 12px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 15px;">Send ✈️</button>
+                </div>
+            `;
+            chatSection.appendChild(inputDiv);
+            
+            document.getElementById('topicInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') submitCustomTopic();
+            });
+            document.getElementById('topicInput').focus();
+        }
+
+        function submitCustomTopic() {
+            const input = document.getElementById('topicInput');
+            const topic = input.value.trim();
+            
+            if (!topic) {
+                alert('Please type something! 😊');
+                return;
+            }
+            
+            state.topic = topic;
+            addUserMessage(topic);
+            document.getElementById('customInput').remove();
+            awardAchievement('topic_selected');
+            
+            setTimeout(() => {
+                continueToFormatting();
+            }, 500);
+        }
+
+        function continueToFormatting() {
+            updateProgress(3, 'Get ready to write! 🚀');
+            
+            const isCreative = state.category && state.category.includes('Creative');
+            const templateType = isCreative ? 'creative' : 
+                               (state.category && state.category.includes('Research') ? 'research' : 'essay');
+            
+            state.templateType = templateType;
+            
+            addTutorMessage(`🎉 <strong>Perfect! Let's write about "${state.topic}"!</strong><br><br>`, false);
+            
+            setTimeout(() => {
+                if (isCreative) {
+                    addTutorMessage(`📖 <strong>Quick tip for stories:</strong><br><br>Every story needs a <span class="highlight">main idea or theme</span>. What feeling or message do you want readers to get?<br><br>Examples:<br>• Courage in scary times<br>• Friends help each other<br>• War changes people<br><br>Don't worry - just write your story and the theme will come through! ✨`, false);
+                } else {
+                    addTutorMessage(`📝 <strong>Quick tip:</strong><br><br>Every paper needs a <span class="highlight">main point (thesis)</span>. This is what you want to say about your topic!<br><br><strong>Example:</strong> If writing about video games, your main point might be: "Video games can help kids learn problem-solving."<br><br>Everything you write should connect to this main idea! 🎯`, false);
+                }
+                
+                setTimeout(() => {
+                    askAboutFormat();
+                }, 2000);
+            }, 1000);
+        }
+
+        function askAboutFormat() {
+            const isCreative = state.category && state.category.includes('Creative');
+            
+            if (isCreative) {
+                setTimeout(() => {
+                    startWriting();
+                }, 1000);
+            } else {
+                addTutorMessage(`📐 <strong>One quick thing!</strong><br><br>We can pick a <span class="highlight">format style</span> (like MLA or APA) for citing sources.<br><br><strong>Don't worry if this sounds confusing!</strong> You can skip it for now and just focus on writing! 😊<br><br>What do you want to do?`, true, [
+                    { text: 'Skip it - just write! ✍️', action: 'skipFormat()' },
+                    { text: 'Use MLA format 📚', action: 'selectFormat(0)' },
+                    { text: 'What are my options? 🤔', action: 'showFormatOptions()' }
+                ]);
+            }
+        }
+
+        function showFormatOptions() {
+            addUserMessage('What are my options?');
+            
+            setTimeout(() => {
+                addTutorMessage(`📚 <strong>Here are the main formats:</strong><br><br>• <strong>MLA</strong> - Used for English, Arts<br>• <strong>APA</strong> - Used for Science, Psychology<br>• <strong>Chicago</strong> - Used for History<br><br><strong>Pick one, or skip it!</strong> You can always add citations later! 😊`, true, [
+                    { text: 'MLA 📗', action: 'selectFormat(0)' },
+                    { text: 'APA 📘', action: 'selectFormat(1)' },
+                    { text: 'Chicago 📙', action: 'selectFormat(2)' },
+                    { text: 'Skip for now! ⏭️', action: 'skipFormat()' }
+                ]);
+            }, 500);
+        }
+
+        function selectFormat(formatIndex) {
+            const formats = ['MLA', 'APA', 'Chicago'];
+            state.formatType = formats[formatIndex];
+            addUserMessage(state.formatType + ' Format');
+            
+            setTimeout(() => {
+                addTutorMessage(`✅ <strong>Great! Using ${state.formatType} format!</strong><br><br>Don't worry - I'll help you cite sources correctly! 📝`, false);
+                setTimeout(() => startWriting(), 1000);
+            }, 500);
+        }
+
+        function skipFormat() {
+            addUserMessage('Skip format');
+            state.formatType = 'None';
+            
+            setTimeout(() => {
+                addTutorMessage(`✅ <strong>No problem!</strong> Let's focus on writing! ✍️`, false);
+                setTimeout(() => startWriting(), 1000);
+            }, 500);
+        }
+
+        function startWriting() {
+            updateProgress(4, 'Start writing! ✍️');
+            
+            const isCreative = state.category && state.category.includes('Creative');
+            state.templateType = isCreative ? 'creative' : 
+                               (state.category && state.category.includes('Research') ? 'research' : 'essay');
+            
+            renderInteractiveTemplate();
+            
+            addTutorMessage(`🎨 <strong>Time to start writing!</strong><br><br>I'm going to walk you through this step-by-step! We'll work on one section at a time together! 🤝<br><br>Look at the <span class="highlight">📑 Template tab</span> - I've prepared your first section!`, true, [
+                { text: '📑 Show me the template', action: 'showTemplateTab()', small: true },
+                { text: '✍️ Let\'s do this!', action: 'startGuidedWriting()' }
+            ]);
+            
+            setNextStep('startGuidedWriting()', '✍️ Start Section 1!', true);
+        }
+
+        function renderInteractiveTemplate() {
+            const template = templates[state.templateType];
+            if (!template || !template.sections) return;
+            
+            const section = template.sections[state.currentSection];
+            const isFirstSection = state.currentSection === 0;
+            const isLastSection = state.currentSection === template.sections.length - 1;
+            
+            let html = `
+                <div style="padding: 20px;">
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 15px; margin-bottom: 20px;">
+                        <h2 style="margin: 0 0 10px 0; font-size: 24px;">✍️ Section ${state.currentSection + 1} of ${template.sections.length}</h2>
+                        <div style="opacity: 0.9; font-size: 14px;">You're doing great! One section at a time! 💪</div>
+                        <div style="margin-top: 12px; display: flex; gap: 8px;">
+                            ${!isFirstSection ? '<button onclick="goToPreviousSection()" style="background: rgba(255,255,255,0.2); border: 2px solid white; color: white; padding: 6px 14px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px;">⬅️ Previous</button>' : ''}
+                            ${!isLastSection ? '<button onclick="moveToNextSection()" style="background: rgba(255,255,255,0.2); border: 2px solid white; color: white; padding: 6px 14px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px;">Next ➡️</button>' : ''}
+                        </div>
+                    </div>
+                    
+                    <div class="template-section" style="background: white;">
+                        <h3 style="color: #667eea; font-size: 22px; margin-bottom: 5px;">${section.title}</h3>
+                        <div style="background: #e3f2fd; padding: 10px 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <strong style="color: #2196f3;">📏 ${section.guide}</strong>
+                        </div>
+                        <p style="font-size: 15px; line-height: 1.8; margin-bottom: 20px;"><strong>What to do:</strong> ${section.description}</p>
+                        
+                        <div style="background: #fff3cd; padding: 15px; border-radius: 10px; border-left: 5px solid #f59e0b; margin-bottom: 20px;">
+                            <h4 style="color: #f59e0b; margin-bottom: 15px; font-size: 16px;">💭 Fill in your ideas:</h4>
+                            ${section.prompts.map((prompt, idx) => `
+                                <div style="margin-bottom: 15px;">
+                                    <label style="display: block; font-weight: bold; color: #333; margin-bottom: 8px; font-size: 14px;">${prompt.label}:</label>
+                                    <textarea id="prompt_${idx}" placeholder="${prompt.placeholder}" style="width: 100%; padding: 12px; border: 2px solid #f59e0b; border-radius: 8px; font-size: 14px; min-height: 60px; font-family: Georgia, serif; line-height: 1.6;" oninput="updateSectionDraft(${idx}, this.value)"></textarea>
+                                </div>
+                            `).join('')}
+                            <button onclick="transferToFullDraft()" style="background: #34d399; color: white; border: none; padding: 12px 24px; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 15px; margin-top: 10px;">
+                                ✅ Add to My Draft!
+                            </button>
+                        </div>
+                        
+                        <div id="helpersSection" style="margin-top: 20px;">
+                            <button onclick="toggleHelpers('starters')" class="option-btn small" style="margin-right: 10px;">💡 Sentence Starters</button>
+                            <button onclick="toggleHelpers('samples')" class="option-btn small">📝 Example Sentences</button>
+                        </div>
+                        
+                        <div id="startersBox" style="display: none; background: #f0fdf4; padding: 15px; border-radius: 10px; border-left: 5px solid #34d399; margin-top: 15px;">
+                            <h4 style="color: #059669; margin-bottom: 12px; font-size: 15px;">💡 Sentence Starters:</h4>
+                            <p style="font-size: 13px; color: #666; margin-bottom: 10px;"><em>Use these to get started, then make them your own! Change words to fit YOUR topic! 😊</em></p>
+                            ${section.starters.map((starter, idx) => `
+                                <div style="background: white; padding: 10px; margin-bottom: 8px; border-radius: 6px; border-left: 3px solid #34d399;">
+                                    <button onclick="useStarter(${idx})" style="background: none; border: none; text-align: left; width: 100%; cursor: pointer; font-size: 14px; color: #333; line-height: 1.6;">"${starter}"</button>
+                                </div>
+                            `).join('')}
+                        </div>
+                        
+                        <div id="samplesBox" style="display: none; background: #fffbeb; padding: 15px; border-radius: 10px; border-left: 5px solid #f59e0b; margin-top: 15px;">
+                            <h4 style="color: #d97706; margin-bottom: 12px; font-size: 15px;">📝 Example Sentences:</h4>
+                            <p style="font-size: 13px; color: #666; margin-bottom: 10px;"><em>These show you HOW to write this section. You should write your OWN sentences about YOUR topic! Use these for ideas, not to copy! 🌟</em></p>
+                            ${section.samples.map((sample, idx) => `
+                                <div style="background: white; padding: 12px; margin-bottom: 10px; border-radius: 6px; border-left: 3px solid #f59e0b;">
+                                    <p style="font-size: 14px; line-height: 1.7; margin-bottom: 8px; color: #333;">${sample}</p>
+                                    <button onclick="useSample(${idx})" style="background: #f59e0b; color: white; border: none; padding: 6px 12px; border-radius: 15px; cursor: pointer; font-size: 12px; font-weight: bold;">Use as Starting Point</button>
+                                </div>
+                            `).join('')}
+                            <div style="background: #dbeafe; padding: 10px; border-radius: 6px; margin-top: 12px;">
+                                <p style="font-size: 13px; color: #1e40af; margin: 0;"><strong>💪 Challenge yourself:</strong> Try writing your own first! Only use examples if you're really stuck. You're more capable than you think! ✨</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('templateContent').innerHTML = html;
+            
+            // Restore any saved content
+            if (state.sectionDrafts[state.currentSection]) {
+                const drafts = state.sectionDrafts[state.currentSection];
+                Object.keys(drafts).forEach(key => {
+                    const textarea = document.getElementById(`prompt_${key}`);
+                    if (textarea) textarea.value = drafts[key];
+                });
+            }
+        }
+
+        function goToPreviousSection() {
+            if (state.currentSection > 0) {
+                state.currentSection--;
+                renderInteractiveTemplate();
+                
+                const template = templates[state.templateType];
+                addTutorMessage(`⬅️ <strong>Going back to Section ${state.currentSection + 1}</strong><br><br>${template.sections[state.currentSection].title}<br><br>Take your time to review or add more! 😊`, false);
+                showTemplateTab();
+            }
+        }
+
+        function updateSectionDraft(promptIdx, value) {
+            if (!state.sectionDrafts[state.currentSection]) {
+                state.sectionDrafts[state.currentSection] = {};
+            }
+            state.sectionDrafts[state.currentSection][promptIdx] = value;
+        }
+
+        function toggleHelpers(type) {
+            const startersBox = document.getElementById('startersBox');
+            const samplesBox = document.getElementById('samplesBox');
+            
+            if (type === 'starters') {
+                const isHidden = startersBox.style.display === 'none';
+                startersBox.style.display = isHidden ? 'block' : 'none';
+                samplesBox.style.display = 'none';
+            } else {
+                const isHidden = samplesBox.style.display === 'none';
+                samplesBox.style.display = isHidden ? 'block' : 'none';
+                startersBox.style.display = 'none';
+            }
+        }
+
+        function useStarter(starterIdx) {
+            const template = templates[state.templateType];
+            const section = template.sections[state.currentSection];
+            const starter = section.starters[starterIdx];
+            
+            // Check if we're on the template tab
+            const activeTab = document.querySelector('.tab.active').textContent;
+            
+            if (activeTab.includes('Template')) {
+                // Find the first empty prompt field and add it there
+                const section = state.currentSection;
+                const promptCount = template.sections[section].prompts.length;
+                
+                for (let i = 0; i < promptCount; i++) {
+                    const textarea = document.getElementById(`prompt_${i}`);
+                    if (textarea && !textarea.value.trim()) {
+                        textarea.value = starter + ' ';
+                        textarea.focus();
+                        updateSectionDraft(i, textarea.value);
+                        
+                        addTutorMessage(`✨ <strong>Great!</strong> I added that sentence starter to the template field!<br><br>Now finish the sentence to make it about YOUR topic! Change any words you want! 🎨`, false);
+                        return;
+                    }
+                }
+                
+                // If all fields are full, add to draft
+                const draftArea = document.getElementById('draftArea');
+                const currentText = draftArea.value.trim();
+                
+                if (currentText) {
+                    draftArea.value = currentText + ' ' + starter + ' ';
+                } else {
+                    draftArea.value = starter + ' ';
+                }
+                
+                switchTab('draft', { target: document.querySelectorAll('.tab')[1] });
+                draftArea.focus();
+                
+                addTutorMessage(`✨ <strong>Added to your draft!</strong> All template fields are filled, so I added the starter to your draft instead!<br><br>Now make it YOUR OWN! 🎨`, false);
+            } else {
+                // We're on draft or notes tab - add directly
+                const draftArea = document.getElementById('draftArea');
+                const currentText = draftArea.value.trim();
+                
+                if (currentText) {
+                    draftArea.value = currentText + ' ' + starter + ' ';
+                } else {
+                    draftArea.value = starter + ' ';
+                }
+                
+                draftArea.focus();
+                
+                addTutorMessage(`✨ <strong>Great choice!</strong> I added that sentence starter to your draft!<br><br>Now finish it and make it about YOUR topic! Change any words to make it yours! 🎨`, false);
+            }
+        }
+
+        function useSample(sampleIdx) {
+            addTutorMessage(`📝 <strong>Hold on!</strong> That example is there to SHOW you how to write, not to copy! 😊<br><br>Here's what to do:<br><br>1️⃣ Read the example carefully<br>2️⃣ Notice HOW it's written (the structure)<br>3️⃣ Now write YOUR OWN sentences about YOUR topic<br><br>You can do it! I believe in you! 💪`, true, [
+                { text: '💡 Give me a sentence starter instead', action: 'toggleHelpers(\'starters\')', small: true },
+                { text: '✍️ I\'ll write my own!', action: 'dismissHelp()', small: true }
+            ]);
+        }
+
+        function transferToFullDraft() {
+            const template = templates[state.templateType];
+            const section = template.sections[state.currentSection];
+            const drafts = state.sectionDrafts[state.currentSection] || {};
+            
+            // Check if they wrote anything
+            const hasContent = Object.values(drafts).some(val => val && val.trim());
+            
+            if (!hasContent) {
+                addTutorMessage(`❌ <strong>Oops!</strong> You haven't filled in any of the blanks yet!<br><br>Try writing something in at least one of the text boxes! Remember, it doesn't have to be perfect! 😊`, true, [
+                    { text: '💡 I need help!', action: 'toggleHelpers(\'starters\')', small: true }
+                ]);
+                return;
+            }
+            
+            // Combine the content with proper formatting
+            let combinedText = Object.values(drafts)
+                .filter(val => val && val.trim())
+                .map(val => val.trim())
+                .join(' ');
+            
+            // Add to draft area with section header
+            const draftArea = document.getElementById('draftArea');
+            const currentText = draftArea.value.trim();
+            
+            if (currentText) {
+                // Add double line break between sections for readability
+                draftArea.value = currentText + '\n\n\n' + combinedText;
+            } else {
+                draftArea.value = combinedText;
+            }
+            
+            updateWordCount();
+            
+            switchTab('draft', { target: document.querySelectorAll('.tab')[1] });
+            
+            const isLastSection = state.currentSection === template.sections.length - 1;
+            
+            if (isLastSection) {
+                addTutorMessage(`🎉 <strong>Amazing!</strong> I added your writing to the draft!<br><br>You've completed ALL sections! Your paper is done! 🏆<br><br>Now you can:<br>• Review and edit your work ✏️<br>• Check the analysis 📊<br>• Download your paper! 📥`, true, [
+                    { text: '✏️ Edit more', action: 'switchTab(\'draft\', {target: document.querySelectorAll(\'.tab\')[1]})', small: true },
+                    { text: '✅ Check my work!', action: 'reviewWork()' }
+                ]);
+            } else {
+                addTutorMessage(`✅ <strong>Awesome!</strong> I added your writing to the draft!<br><br>Great job on Section ${state.currentSection + 1}! 🌟<br><br>What would you like to do?`, true, [
+                    { text: '✏️ Edit it more', action: 'switchTab(\'draft\', {target: document.querySelectorAll(\'.tab\')[1]})', small: true },
+                    { text: '➡️ Next section!', action: 'moveToNextSection()' }
+                ]);
+            }
+        }
+
+        function moveToNextSection() {
+            const template = templates[state.templateType];
+            
+            if (state.currentSection < template.sections.length - 1) {
+                state.currentSection++;
+                renderInteractiveTemplate();
+                
+                addTutorMessage(`✅ <strong>Section ${state.currentSection} complete!</strong><br><br>Moving to Section ${state.currentSection + 1}: <strong>${template.sections[state.currentSection].title}</strong><br><br>Keep up the great work! 🌟`, false);
+                
+                setTimeout(() => {
+                    showTemplateTab();
+                    setTimeout(() => {
+                        startGuidedSection();
+                    }, 500);
+                }, 1000);
+            } else {
+                // All sections complete!
+                addTutorMessage(`🎊 <strong>WOW! You've completed ALL sections!</strong><br><br>Your paper has:<br>• Introduction ✅<br>• Body paragraphs ✅<br>• Conclusion ✅<br><br>Now let's review your work! 📋`, true, [
+                    { text: '✅ Check my work!', action: 'reviewWork()' },
+                    { text: '✏️ Edit more first', action: 'switchTab(\'draft\', {target: document.querySelectorAll(\'.tab\')[1]})' }
+                ]);
+                
+                setNextStep('reviewWork()', '✅ Check My Work!', true);
+            }
+        }
+
+        function startGuidedWriting() {
+            updateProgress(5, 'Write your draft! 📝');
+            awardAchievement('writing_started');
+            state.writingStarted = true;
+            state.currentSection = 0;
+            
+            renderInteractiveTemplate();
+            showTemplateTab();
+            
+            setTimeout(() => {
+                startGuidedSection();
+            }, 500);
+        }
+
+        function startGuidedSection() {
+            const template = templates[state.templateType];
+            const section = template.sections[state.currentSection];
+            const sectionNum = state.currentSection + 1;
+            
+            addTutorMessage(`📝 <strong>Section ${sectionNum}: ${section.title}</strong><br><br>${section.description}<br><br><strong>📏 Goal:</strong> ${section.guide}<br><br>Look at the <span class="highlight">📑 Template tab</span> - fill in the blanks with YOUR ideas!`, true, [
+                { text: '💡 Sentence Starters', action: 'toggleHelpers(\'starters\')', small: true },
+                { text: '📝 Show Examples', action: 'toggleHelpers(\'samples\')', small: true },
+                { text: '✍️ I\'m ready to write!', action: 'dismissHelp()', small: true }
+            ]);
+        }
+
+        function provideSentenceStarter() {
+            addUserMessage('Give me a sentence starter');
+            
+            let starters;
+            if (state.templateType && state.currentSection !== undefined) {
+                // Use section-specific starters
+                const template = templates[state.templateType];
+                starters = template.sections[state.currentSection].starters;
+            } else {
+                // Fallback to general starters
+                const isCreative = state.category && state.category.includes('Creative');
+                starters = isCreative ? sentenceStarters.creative : sentenceStarters.introduction;
+            }
+            
+            const randomStarter = starters[Math.floor(Math.random() * starters.length)];
+            
+            setTimeout(() => {
+                addTutorMessage(`💡 <strong>Here's a sentence starter for you:</strong><br><br><em>"${randomStarter}"</em><br><br><strong>Now make it yours!</strong> Change the words to fit YOUR topic! For example, if your topic is about video games, add "video games" into the sentence! 🎨<br><br>Remember: This is just to help you get started - you'll make it your own! ✍️`, true, [
+                    { text: '💡 Give me another one!', action: 'provideSentenceStarter()', small: true },
+                    { text: '✅ Thanks!', action: 'dismissHelp()', small: true }
+                ]);
+            }, 500);
+        }
+
+        function dismissHelp() {
+            addUserMessage('Thanks!');
+            setTimeout(() => {
+                addTutorMessage('👍 You got this! Keep writing! 🌟', false);
+            }, 300);
+        }
+
+        function reviewWork() {
+            const draftText = document.getElementById('draftArea').value.trim();
+            
+            if (!draftText) {
+                addTutorMessage(`❌ <strong>Oops!</strong> I don't see any writing yet!<br><br>Write something in the <strong>✍️ Draft tab</strong> on the right first!<br><br>Remember: It doesn't have to be perfect! Just start with one sentence! 💪`, true, [
+                    { text: '💡 Give me a sentence starter', action: 'provideSentenceStarter()', small: true }
+                ]);
+                return;
+            }
+            
+            updateProgress(6, 'Review & improve! 🎉');
+            
+            addTutorMessage(`🔍 <strong>Let me analyze your writing...</strong>`, false);
+            
+            setTimeout(() => {
+                analyzeWriting(draftText);
+            }, 1500);
+        }
+
+        function analyzeWriting(text) {
+            const wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
+            const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+            const sentenceCount = sentences.length;
+            const paragraphs = text.split(/\n\n+/).filter(p => p.trim().length > 0);
+            
+            let analysisHTML = `<div class="analysis-box"><strong>📊 Writing Analysis</strong><br><br>`;
+            
+            // Word count feedback
+            analysisHTML += `<div class="analysis-item success">✅ <strong>Word count:</strong> ${wordCount} words`;
+            if (wordCount < 100) {
+                analysisHTML += `<br>💡 Try adding more details to reach at least 200-300 words!`;
+            }
+            analysisHTML += `</div>`;
+            
+            // Sentence count
+            analysisHTML += `<div class="analysis-item">📝 <strong>Sentences:</strong> ${sentenceCount}</div>`;
+            
+            // Paragraph check
+            if (paragraphs.length < 3) {
+                analysisHTML += `<div class="analysis-item warning">⚠️ <strong>Paragraphs:</strong> You have ${paragraphs.length} paragraph(s). Try to have at least 3-5 paragraphs (introduction, body paragraphs, conclusion).</div>`;
+            } else {
+                analysisHTML += `<div class="analysis-item success">✅ <strong>Paragraphs:</strong> ${paragraphs.length} - Good structure!</div>`;
+            }
+            
+            // Check for repeated words
+            const words = text.toLowerCase().match(/\b\w+\b/g) || [];
+            const wordFreq = {};
+            words.forEach(w => {
+                if (w.length > 4) wordFreq[w] = (wordFreq[w] || 0) + 1;
+            });
+            const repeated = Object.entries(wordFreq).filter(([w, count]) => count > 5);
+            if (repeated.length > 0) {
+                analysisHTML += `<div class="analysis-item warning">💡 <strong>Repeated words:</strong> You use "${repeated[0][0]}" a lot (${repeated[0][1]} times). Try using synonyms!</div>`;
+            }
+            
+            // Check for sentence variety
+            const avgSentenceLength = wordCount / sentenceCount;
+            if (avgSentenceLength < 8) {
+                analysisHTML += `<div class="analysis-item warning">💡 <strong>Sentence length:</strong> Your sentences are pretty short. Try combining some sentences or adding more details!</div>`;
+            } else if (avgSentenceLength > 25) {
+                analysisHTML += `<div class="analysis-item warning">💡 <strong>Sentence length:</strong> Your sentences are pretty long. Try breaking some into shorter sentences for easier reading!</div>`;
+            } else {
+                analysisHTML += `<div class="analysis-item success">✅ <strong>Sentence variety:</strong> Good mix of sentence lengths!</div>`;
+            }
+            
+            // Check for capital letters
+            if (!text.match(/^[A-Z]/)) {
+                analysisHTML += `<div class="analysis-item error">❌ <strong>Capitalization:</strong> Start with a capital letter!</div>`;
+            }
+            
+            // Check for punctuation
+            const missingPunctuation = sentences.filter(s => !s.trim().match(/[.!?]$/));
+            if (missingPunctuation.length > 0) {
+                analysisHTML += `<div class="analysis-item warning">⚠️ <strong>Punctuation:</strong> Some sentences might be missing end punctuation!</div>`;
+            }
+            
+            analysisHTML += `</div>`;
+            
+            addTutorMessage(analysisHTML, false);
+            
+            setTimeout(() => {
+                addTutorMessage(`<strong>🎉 Great job writing!</strong><br><br><strong>Final checklist:</strong> 📋<br>• Read it out loud - does it sound good?<br>• Did you use your main idea?<br>• Do sentences connect smoothly?<br>• Check spelling!<br><br><strong>When you're happy, download your paper!</strong> 📥`, true, [
+                    { text: '🔄 Analyze again', action: 'reviewWork()', small: true },
+                    { text: '📥 Download now!', action: 'exportToPDF()' }
+                ]);
+                
+                setTimeout(() => {
+                    awardAchievement('paper_complete');
+                    addTutorMessage(`<strong>🏆 YOU DID IT!</strong><br><br>You wrote a whole paper! That's amazing! 🌟<br><br>You earned the <strong>Writing Champion</strong> achievement! 🎉<br><br>Keep practicing and you'll get even better! 👏`, false);
+                    
+                    setNextStep('exportToPDF()', '📥 Download My Paper!', true);
+                }, 2000);
+            }, 1000);
+        }
+
+        function exportToPDF() {
+            const { jsPDF } = window.jspdf;
+            
+            if (!jsPDF) {
+                alert('PDF not available. Check internet connection! 🌐');
+                return;
+            }
+            
+            const draftText = document.getElementById('draftArea').value.trim();
+            
+            if (!draftText) {
+                alert('Write something first! ✍️');
+                return;
+            }
+            
+            const doc = new jsPDF();
+            
+            doc.setFontSize(18);
+            doc.setFont(undefined, 'bold');
+            doc.text(state.topic || 'My Paper', 105, 20, { align: 'center' });
+            
+            doc.setFontSize(12);
+            doc.setFont(undefined, 'normal');
+            doc.text('By: [Your Name]', 105, 30, { align: 'center' });
+            doc.text(new Date().toLocaleDateString(), 105, 35, { align: 'center' });
+            
+            doc.setFontSize(11);
+            const splitText = doc.splitTextToSize(draftText, 170);
+            doc.text(splitText, 20, 50);
+            
+            const fileName = (state.topic || 'my-paper').replace(/[^a-z0-9]/gi, '-').toLowerCase();
+            doc.save(`${fileName}.pdf`);
+            
+            addTutorMessage(`<strong>🎉 SUCCESS!</strong><br><br>Your paper has been downloaded!<br><br>🏆 You're a writing champion! Keep up the great work! 🌟`, false);
+            
+            showCelebration('🎉');
+        }
+    </script>
+</body>
+</html>

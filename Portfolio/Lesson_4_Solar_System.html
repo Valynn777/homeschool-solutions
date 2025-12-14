@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Solar System - Astronomy Lesson</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .lesson-preview {
+            background: #1a1a2e;
+            width: 8.5in;
+            min-height: 11in;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .template-4 {
+            padding: 20px;
+            background: #1a1a2e;
+            font-family: Arial, sans-serif;
+        }
+
+        .template-4 .lesson-title {
+            text-align: center;
+            font-size: 52px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 8px;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            line-height: 1.2;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .template-4 .subtitle {
+            text-align: right;
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #87ceeb;
+        }
+
+        .template-4 .intro-section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1.6;
+            font-size: 16px;
+            border-radius: 10px;
+        }
+
+        .template-4 .intro-section p {
+            margin-bottom: 10px;
+        }
+
+        .template-4 .highlight-section {
+            background: #4169e1;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .template-4 .highlight-section h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .template-4 .highlight-section .content-with-image {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .template-4 .grid-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .template-4 .grid-item {
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            line-height: 1.6;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .template-4 .grid-item h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .template-4 .grid-item p {
+            margin-bottom: 10px;
+        }
+
+        .image-slot {
+            flex-shrink: 0;
+        }
+
+        .image-slot img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #ffd700;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            .lesson-preview {
+                box-shadow: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-preview template-4">
+        <div style="background: white; padding: 20px; border-radius: 10px;">
+            <div class="lesson-title">SOLAR SYSTEM</div>
+            <div class="subtitle">FACT FILE</div>
+            <hr style="border: 2px solid #000; margin: 10px 0;">
+            <div class="intro-section">
+                <p>Our solar system is a cosmic neighborhood consisting of the Sun and everything that orbits around it. Created by God during Creation Week, it contains eight planets, dozens of moons, countless asteroids, comets, and other celestial objects—all designed with perfect order and purpose.</p>
+                <p>The Sun, a massive star at the center, contains 99.8% of the solar system's mass and provides the light and heat that makes life on Earth possible.</p>
+            </div>
+
+            <div class="highlight-section">
+                <h3>THE SUN: Our Star</h3>
+                <div class="content-with-image">
+                    <div class="image-slot">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%23ffa500'/%3E%3Ccircle cx='60' cy='60' r='35' fill='%23ffd700'/%3E%3Ccircle cx='55' cy='55' r='5' fill='%23ff8c00' opacity='0.5'/%3E%3Ccircle cx='70' cy='65' r='7' fill='%23ff8c00' opacity='0.5'/%3E%3Ccircle cx='50' cy='70' r='4' fill='%23ff8c00' opacity='0.5'/%3E%3C/svg%3E" alt="The Sun">
+                    </div>
+                    <p>The Sun is a medium-sized yellow star created on Day 4 of Creation Week to govern the day and provide light for the Earth. It's so large that over one million Earths could fit inside it! The Sun's core temperature reaches 27 million degrees Fahrenheit. Through nuclear fusion, it converts hydrogen into helium, releasing enormous amounts of energy that travel to Earth as light and heat.</p>
+                </div>
+            </div>
+
+            <div class="grid-section">
+                <div class="grid-item" style="background: #ffebcd;">
+                    <h4>INNER PLANETS (Rocky)</h4>
+                    <p><strong>Mercury:</strong> Closest to the Sun, smallest planet, no atmosphere, extreme temperatures.</p>
+                    <p><strong>Venus:</strong> Hottest planet due to thick atmosphere, rotates backwards, similar size to Earth.</p>
+                    <p><strong>Earth:</strong> Only known planet with life, 71% water coverage, one moon.</p>
+                    <p><strong>Mars:</strong> The "Red Planet," has polar ice caps, largest volcano in solar system (Olympus Mons).</p>
+                </div>
+
+                <div class="grid-item" style="background: #e6f3ff;">
+                    <h4>OUTER PLANETS (Gas Giants)</h4>
+                    <p><strong>Jupiter:</strong> Largest planet, Great Red Spot storm, 79 known moons, strong magnetic field.</p>
+                    <p><strong>Saturn:</strong> Famous rings made of ice and rock, second largest planet, 82 moons.</p>
+                    <p><strong>Uranus:</strong> Ice giant, rotates on its side, blue-green color, 27 moons.</p>
+                    <p><strong>Neptune:</strong> Farthest planet, strongest winds in solar system, dark blue color, 14 moons.</p>
+                </div>
+
+                <div class="grid-item" style="background: #fff0e6;">
+                    <h4>ASTEROID BELT</h4>
+                    <p>Located between Mars and Jupiter, the asteroid belt contains millions of rocky objects ranging from tiny pebbles to objects hundreds of miles wide.</p>
+                    <p>The largest asteroid, Ceres, is so big it's classified as a dwarf planet. Many creation scientists believe these asteroids may be remnants from catastrophic events in Earth's early history.</p>
+                </div>
+
+                <div class="grid-item" style="background: #f0e6ff;">
+                    <h4>AMAZING FACTS</h4>
+                    <p>• A year on Neptune equals 165 Earth years!</p>
+                    <p>• Saturn's rings are 175,000 miles wide but only 30 feet thick in some places.</p>
+                    <p>• One day on Venus is longer than one year on Venus.</p>
+                    <p>• The solar system travels through space at 450,000 mph around the Milky Way galaxy.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

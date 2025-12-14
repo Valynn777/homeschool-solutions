@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cell: God's Marvelous Design - Faith-Based Biology Textbook</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, serif;
+            background: #f0f0f0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .lesson-preview {
+            background: white;
+            width: 8.5in;
+            min-height: 11in;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .page {
+            page-break-after: always;
+            min-height: 11in;
+            padding: 40px;
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        /* Header Styles */
+        .header-section {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .header-image {
+            width: 200px;
+            height: 200px;
+            flex-shrink: 0;
+        }
+
+        .header-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        .textbook-info {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .category {
+            font-size: 18px;
+            color: #2c5f2d;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .chapter-info {
+            font-size: 16px;
+            color: #97c1a9;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Title Styles */
+        .lesson-title {
+            font-size: 56px;
+            font-family: Georgia, serif;
+            font-style: italic;
+            color: #2c5f2d;
+            margin: 20px 0;
+            font-weight: normal;
+            line-height: 1.2;
+            border-bottom: 4px solid #97c1a9;
+            padding-bottom: 15px;
+        }
+
+        .subtitle {
+            font-family: Georgia, serif;
+            font-size: 32px;
+            font-style: italic;
+            color: #2c5f2d;
+            margin: 35px 0 20px 0;
+            font-weight: bold;
+            border-bottom: 2px solid #97c1a9;
+            padding-bottom: 10px;
+        }
+
+        .section-title {
+            font-family: Georgia, serif;
+            font-size: 24px;
+            color: #2c5f2d;
+            margin: 25px 0 15px 0;
+            font-weight: bold;
+        }
+
+        /* Text Styles */
+        .text-columns {
+            column-count: 2;
+            column-gap: 30px;
+            text-align: justify;
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .text-columns p {
+            margin-bottom: 15px;
+        }
+
+        .text-columns p:first-of-type:first-letter {
+            font-size: 3.5em;
+            float: left;
+            line-height: 0.9;
+            margin: 0.05em 0.1em 0 0;
+            color: #2c5f2d;
+            font-weight: bold;
+        }
+
+        .single-column {
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .single-column p {
+            margin-bottom: 15px;
+        }
+
+        /* Faith Box */
+        .faith-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid #2c5f2d;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .faith-box-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c5f2d;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faith-box-title::before {
+            content: "✝";
+            font-size: 24px;
+        }
+
+        .faith-box p {
+            font-style: italic;
+            color: #2d4a2b;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .scripture {
+            font-weight: bold;
+            color: #1b5e20;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        /* Image Styles */
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .image-grid-item {
+            text-align: center;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+        }
+
+        .full-width-image {
+            width: 100%;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .full-width-image img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .caption {
+            font-size: 13px;
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #fff9e6;
+            border: 2px solid #ffeb3b;
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .info-box-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #f57c00;
+            margin-bottom: 10px;
+        }
+
+        /* List Styles */
+        ul, ol {
+            margin: 15px 0 15px 25px;
+            line-height: 1.8;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        /* Key Terms Box */
+        .key-terms {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .key-terms-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1565c0;
+            margin-bottom: 15px;
+        }
+
+        .key-terms dl {
+            margin: 0;
+        }
+
+        .key-terms dt {
+            font-weight: bold;
+            color: #1976d2;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .key-terms dd {
+            margin-left: 20px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Activity Box */
+        .activity-box {
+            background: #fff3e0;
+            border: 3px solid #ff9800;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 10px;
+        }
+
+        .activity-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .activity-title::before {
+            content: "📝";
+            font-size: 24px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .lesson-preview {
+                box-shadow: none;
+                width: 100%;
+            }
+            .page {
+                padding: 0.5in;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-preview">
+        
+        <!-- PAGE 1: Introduction -->
+        <div class="page">
+            <div class="header-section">
+                <div class="header-image">
+                    <img src="../Python Script for Images/biology_images/Cell_biology/Cell_biology_1_022S.jpg" alt="Microscope view of cells">
+                </div>
+                <div class="header-text">
+                    <div class="textbook-info">Faith-Based Biology | High School Edition</div>
+                    <div class="category">BIOLOGY TEXTBOOK SAMPLE</div>
+                    <div class="chapter-info">Chapter 3: Cellular Biology</div>
+                    <div class="description">
+                        Explore the incredible complexity and design of the basic unit of life - the cell. 
+                        Discover how modern science reveals the fingerprint of the Creator in every living organism.
+                    </div>
+                </div>
+            </div>
+
+            <h1 class="lesson-title">The Cell: God's Marvelous Design</h1>
+
+            <div class="text-columns">
+                <p>
+                    Every living thing on Earth—from the tiniest bacterium to the largest whale, from a single blade of grass to a towering redwood tree—is made up of cells. The cell is the fundamental unit of life, a microscopic masterpiece that showcases the incredible wisdom and creativity of our Creator. In Genesis 1:11-12, God spoke vegetation into existence, and in Genesis 1:20-25, He created animal life. Though ancient peoples could not see cells with their naked eyes, God knew the intricate designs He was placing into every living creature.
+                </p>
+                <p>
+                    When we peer through a microscope into the world of cells, we discover a realm of staggering complexity. Each cell is like a miniature city, bustling with activity, filled with specialized structures working together in perfect harmony. The more we learn about cellular biology, the more we stand in awe of God's infinite intelligence and power. As the Psalmist wrote, "I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well" (Psalm 139:14).
+                </p>
+                <p>
+                    The discovery of cells dates back to 1665 when English scientist Robert Hooke examined a thin slice of cork under a primitive microscope. He observed tiny box-like compartments which he called "cells" because they reminded him of the small rooms (cells) where monks lived in monasteries. Little did Hooke know that he was glimpsing the building blocks of all life on Earth.
+                </p>
+            </div>
+
+            <div class="faith-box">
+                <div class="faith-box-title">Faith Connection</div>
+                <p>
+                    The Bible tells us that God created all living things "according to their kinds" (Genesis 1:24-25). Modern cellular biology confirms this biblical truth. While all cells share certain basic features—revealing a common Designer—the cells of different kinds of organisms have unique characteristics. A plant cell is distinctly different from an animal cell, just as God's Word describes distinct kinds of creation.
+                </p>
+                <p class="scripture">
+                    "For since the creation of the world God's invisible qualities—his eternal power and divine nature—have been clearly seen, being understood from what has been made." - Romans 1:20
+                </p>
+            </div>
+
+            <h2 class="subtitle">Two Types of Cells: Prokaryotic and Eukaryotic</h2>
+
+            <div class="single-column">
+                <p>
+                    Scientists classify cells into two main categories based on their structure: prokaryotic and eukaryotic cells. Understanding the differences between these cell types helps us appreciate the diversity and orderliness in God's creation.
+                </p>
+            </div>
+
+            <div class="image-grid">
+                <div class="image-grid-item">
+                    <img src="../Python Script for Images/biology_images/Cell_biology/Cell_biology_2_023S.jpg" alt="Bacteria cells under microscope">
+                    <div class="caption">Prokaryotic cells (bacteria) are simpler and lack a nucleus</div>
+                </div>
+                <div class="image-grid-item">
+                    <img src="../Python Script for Images/biology_images/Eukaryotic_cells/Cell_biology_4_200801large.jpg" alt="Plant cells showing structure">
+                    <div class="caption">Eukaryotic cells have complex internal structures including a nucleus</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2: Cell Structure Details -->
+        <div class="page">
+            <h2 class="subtitle">Inside the Eukaryotic Cell: A City of Life</h2>
+
+            <div class="single-column">
+                <p>
+                    Eukaryotic cells, found in all plants, animals, fungi, and protists, are marvels of microscopic engineering. Let's explore the major components of these cells and consider how each reveals purposeful design.
+                </p>
+            </div>
+
+            <div class="key-terms">
+                <div class="key-terms-title">Key Cellular Components</div>
+                <dl>
+                    <dt>Cell Membrane</dt>
+                    <dd>A flexible boundary that controls what enters and exits the cell, much like a city wall with selective gates. Made of a phospholipid bilayer with embedded proteins.</dd>
+                    
+                    <dt>Nucleus</dt>
+                    <dd>The control center of the cell, containing DNA—the instruction manual for life. God encoded information in every cell that determines traits and functions.</dd>
+                    
+                    <dt>Mitochondria</dt>
+                    <dd>The powerhouses of the cell, converting nutrients into usable energy (ATP). These remarkable organelles contain their own DNA.</dd>
+                    
+                    <dt>Ribosomes</dt>
+                    <dd>Molecular machines that build proteins according to instructions from DNA. Thousands of ribosomes work in each cell.</dd>
+                    
+                    <dt>Endoplasmic Reticulum (ER)</dt>
+                    <dd>A network of membranes for processing and transporting proteins and lipids. Comes in two types: rough (with ribosomes) and smooth (without ribosomes).</dd>
+                    
+                    <dt>Golgi Apparatus</dt>
+                    <dd>The packaging and shipping center, modifying and sorting proteins for transport to their destinations.</dd>
+                    
+                    <dt>Chloroplasts (in plant cells)</dt>
+                    <dd>Organelles that perform photosynthesis, converting light energy into chemical energy. A testament to God's provision for sustaining life.</dd>
+                </dl>
+            </div>
+
+            <div class="full-width-image">
+                <img src="../Python Script for Images/biology_images/Microscopy/Microscopy_1_0-02-05-6fc8752c475bb8719933365c65b6e657b34c4ffc0e48c387099aa3cf063ee086_c97bb0a163fd22cd_1671562553.jpg" alt="Scientific research with microscope">
+                <div class="caption">Modern microscopy and research continue to reveal the incredible complexity of cellular structures</div>
+            </div>
+
+            <div class="info-box">
+                <div class="info-box-title">Did You Know?</div>
+                <p>
+                    The human body contains approximately 37.2 trillion cells! Each cell contains about 3 billion base pairs of DNA, which if stretched out would measure about 6 feet long. If we could stretch out all the DNA in all your cells, it would reach from Earth to the Sun and back over 600 times. This incredible storage of information points to an Intelligent Designer who encoded the instructions for life itself.
+                </p>
+            </div>
+
+            <h2 class="section-title">The Cell Membrane: A Masterpiece of Design</h2>
+
+            <div class="single-column">
+                <p>
+                    The cell membrane is far more than a simple bag holding cellular contents. It's a sophisticated barrier that demonstrates remarkable engineering. Made primarily of phospholipids arranged in a bilayer, the membrane is selectively permeable—allowing beneficial substances in while keeping harmful ones out. Embedded proteins act as channels, pumps, and receptors, controlling cellular communication and transport with precision.
+                </p>
+                <p>
+                    This fluid mosaic model of the membrane shows purposeful design. Without such a sophisticated boundary system, cells could not maintain homeostasis, respond to their environment, or survive. The irreducible complexity of the cell membrane challenges purely naturalistic explanations and points to intentional creation.
+                </p>
+            </div>
+        </div>
+
+        <!-- PAGE 3: DNA and Information -->
+        <div class="page">
+            <h2 class="subtitle">DNA: The Language of Life</h2>
+
+            <div class="text-columns">
+                <p>
+                    Perhaps nothing in cellular biology more clearly demonstrates intelligent design than DNA (deoxyribonucleic acid). This double-helix molecule contains the genetic instructions for building and maintaining all living organisms. DNA is essentially a language—a code written in four chemical letters (A, T, G, and C) that spell out the instructions for creating proteins, which are the building blocks and workers of the cell.
+                </p>
+                <p>
+                    The amount of information stored in DNA is staggering. Just as this textbook contains meaningful information arranged by an intelligent author, DNA contains biological information that could only come from an Intelligent Source. The genetic code is universal among all living things—the same code works in bacteria, plants, and humans—suggesting a single, brilliant Creator rather than random evolutionary processes.
+                </p>
+                <p>
+                    Scientists have discovered that DNA is far more sophisticated than early researchers imagined. What was once called "junk DNA" is now understood to have important regulatory functions. The more we learn, the more complexity we find, consistently pointing to intentional design rather than undirected natural processes.
+                </p>
+            </div>
+
+            <div class="image-grid">
+                <div class="image-grid-item">
+                    <img src="../Python Script for Images/biology_images/Mitochondria/Mitochondria_1_0315 Mitochondrion new.jpg" alt="Mitochondria structure">
+                    <div class="caption">Mitochondria - the powerhouses of the cell with their own DNA</div>
+                </div>
+                <div class="image-grid-item">
+                    <img src="../Python Script for Images/biology_images/Cell_nucleus/Cell_nucleus_2_202012 Nuclear membrane.svg" alt="Cell nucleus structure">
+                    <div class="caption">The cell nucleus contains DNA and controls cellular functions</div>
+                </div>
+            </div>
+
+            <div class="faith-box">
+                <div class="faith-box-title">Theological Reflection</div>
+                <p>
+                    When we consider that every cell in our body contains a complete copy of our genetic code—approximately 3 billion base pairs of information—we glimpse God's omniscience. He knows every detail of our physical being because He designed and created it. David wrote, "Your eyes saw my unformed body; all the days ordained for me were written in your book before one of them came to be" (Psalm 139:16). The discovery of DNA helps us understand how God could see our "unformed body" with such detail.
+                </p>
+                <p class="scripture">
+                    "He determines the number of the stars and calls them each by name. Great is our Lord and mighty in power; his understanding has no limit." - Psalm 147:4-5
+                </p>
+            </div>
+
+            <h2 class="section-title">Protein Synthesis: From Information to Function</h2>
+
+            <div class="single-column">
+                <p>
+                    The process of protein synthesis demonstrates the sophisticated machinery within cells. First, during transcription, the DNA code is copied into messenger RNA (mRNA). This mRNA then travels from the nucleus to the ribosomes in the cytoplasm. During translation, the ribosome reads the mRNA code three letters at a time, with each three-letter "word" (called a codon) specifying which amino acid should be added to the growing protein chain.
+                </p>
+                <p>
+                    Transfer RNA (tRNA) molecules bring the correct amino acids to the ribosome, matching their anticodon to the mRNA codon. The ribosome links the amino acids together in the precise order specified by the mRNA, forming a protein. This protein then folds into a specific three-dimensional shape that allows it to perform its designated function in the cell.
+                </p>
+                <p>
+                    This entire process requires numerous components working together with precision timing and accuracy. The interdependence of DNA, RNA, ribosomes, and enzymes suggests they were designed to work as an integrated system from the beginning, challenging the idea that they evolved gradually and independently.
+                </p>
+            </div>
+        </div>
+
+        <!-- PAGE 4: Cellular Processes -->
+        <div class="page">
+            <h2 class="subtitle">Cellular Energy: The Power of Life</h2>
+
+            <div class="single-column">
+                <p>
+                    Life requires energy, and cells have elegant systems for capturing, converting, and using energy. In plant cells, chloroplasts capture light energy from the sun and convert it into chemical energy through photosynthesis, producing glucose and oxygen. God's wisdom is evident in this process that sustains virtually all life on Earth.
+                </p>
+                <p>
+                    Animal cells and plant cells both use mitochondria to break down glucose through cellular respiration, releasing the stored energy and producing ATP (adenosine triphosphate), the universal energy currency of cells. The complexity of these processes, involving dozens of enzymes and cofactors working in precise sequence, testifies to purposeful design.
+                </p>
+            </div>
+
+            <div class="full-width-image">
+                <img src="../Python Script for Images/biology_images/Chloroplasts/Chloroplasts_4_Bryophyte Leaf Cells.jpg" alt="Green plant cells with chloroplasts">
+                <div class="caption">Plant cells contain chloroplasts that capture sunlight and produce the oxygen we breathe</div>
+            </div>
+
+            <h2 class="section-title">Cellular Respiration: A Closer Look</h2>
+
+            <div class="single-column">
+                <p>
+                    Cellular respiration occurs in three main stages: glycolysis (in the cytoplasm), the Krebs cycle (in the mitochondrial matrix), and the electron transport chain (in the inner mitochondrial membrane). Through these interconnected processes, a single glucose molecule can produce up to 38 ATP molecules—a remarkably efficient energy conversion system.
+                </p>
+            </div>
+
+            <div class="info-box">
+                <div class="info-box-title">The ATP Synthase Motor</div>
+                <p>
+                    One of the most fascinating molecular machines in the cell is ATP synthase, which produces ATP in the mitochondria. This enzyme literally spins like a rotary motor at about 9,000 revolutions per minute! It contains a rotor, stator, and drive shaft, much like human-designed motors. This molecular machine was functional from the first cell, as it couldn't have evolved gradually—all parts are necessary for function. It stands as a testament to intelligent design.
+                </p>
+            </div>
+
+            <h2 class="section-title">Cell Communication and Cooperation</h2>
+
+            <div class="single-column">
+                <p>
+                    Cells don't exist in isolation. They communicate with each other through chemical signals, responding to their environment and coordinating their activities. This cellular communication allows multicellular organisms to function as unified wholes rather than collections of independent cells.
+                </p>
+                <p>
+                    Receptor proteins on cell surfaces detect specific signal molecules, triggering responses inside the cell. This signal transduction system involves cascades of molecular interactions that amplify the signal and produce appropriate cellular responses. The sophistication of these communication networks reveals purposeful design for community and cooperation—reflecting the relational nature of our Triune God.
+                </p>
+            </div>
+
+            <div class="faith-box">
+                <div class="faith-box-title">Spiritual Application</div>
+                <p>
+                    Just as cells in your body must work together for your health, Christians are called to function as one body in Christ. Paul writes in 1 Corinthians 12:12-27 about the body of Christ, where different members have different functions but all are essential. The way cells communicate and cooperate for the good of the whole organism mirrors how believers should work together for God's kingdom.
+                </p>
+                <p class="scripture">
+                    "Just as a body, though one, has many parts, but all its many parts form one body, so it is with Christ." - 1 Corinthians 12:12
+                </p>
+            </div>
+        </div>
+
+        <!-- PAGE 5: Review and Activities -->
+        <div class="page">
+            <h2 class="subtitle">Chapter Review and Reflection</h2>
+
+            <h2 class="section-title">Summary of Key Concepts</h2>
+
+            <div class="single-column">
+                <p>
+                    In this chapter, we've explored the fundamental unit of life—the cell. We've seen how cells demonstrate irreducible complexity, containing numerous interdependent parts that must all be present and functional for the cell to survive. From the information-rich DNA molecule to the molecular motors like ATP synthase, cellular biology reveals purposeful design at every level.
+                </p>
+                <p>
+                    The cell is not a "simple blob of protoplasm" as early scientists imagined, but rather a microscopic city of incredible complexity. As technology allows us to peer deeper into cellular structures and processes, we consistently find more sophistication, more information, and more evidence of intentional design. This aligns perfectly with the biblical worldview that an infinite, intelligent Creator spoke life into existence.
+                </p>
+            </div>
+
+            <div class="activity-box">
+                <div class="activity-title">Study Questions</div>
+                <ol>
+                    <li>Describe the main differences between prokaryotic and eukaryotic cells. What might these differences reveal about God's creative variety?</li>
+                    <li>Explain why the cell membrane is described as "selectively permeable." How does this feature demonstrate purposeful design?</li>
+                    <li>What is DNA, and why does its information-carrying capacity point to an intelligent source?</li>
+                    <li>Describe the process of protein synthesis from DNA to functional protein. Why is this process considered evidence of design?</li>
+                    <li>How do mitochondria and chloroplasts work together in the ecosystem to sustain life?</li>
+                    <li>Reflect on Psalm 139:14. How does your study of cells enhance your appreciation for being "fearfully and wonderfully made"?</li>
+                </ol>
+            </div>
+
+            <div class="activity-box">
+                <div class="activity-title">Hands-On Activity: Observe Cells Under a Microscope</div>
+                <p><strong>Materials Needed:</strong></p>
+                <ul>
+                    <li>Microscope (at least 400x magnification)</li>
+                    <li>Microscope slides and cover slips</li>
+                    <li>Onion (for plant cells)</li>
+                    <li>Cotton swabs (for cheek cells)</li>
+                    <li>Methylene blue or iodine stain</li>
+                    <li>Drawing paper and colored pencils</li>
+                </ul>
+                
+                <p><strong>Procedure:</strong></p>
+                <ol>
+                    <li>Prepare a slide with a thin layer of onion skin. Add a drop of stain and observe under the microscope.</li>
+                    <li>Identify and sketch the cell wall, cell membrane, nucleus, and cytoplasm.</li>
+                    <li>Prepare a slide with cheek cells by gently scraping the inside of your cheek with a cotton swab. Add stain and observe.</li>
+                    <li>Compare the plant and animal cells. Note the differences in structure.</li>
+                    <li>As you observe, reflect on the complexity you see even at this basic level. Thank God for His creative wisdom.</li>
+                </ol>
+            </div>
+
+            <h2 class="section-title">Moving Forward</h2>
+
+            <div class="single-column">
+                <p>
+                    As we continue our study of biology from a biblical perspective, we'll build on this foundation of cellular knowledge. In the next chapter, we'll explore how cells reproduce through mitosis and meiosis, examining how genetic information is faithfully passed from generation to generation—another testimony to God's wisdom in establishing "kinds" that reproduce after their own kind.
+                </p>
+                <p>
+                    Remember that as you study biology, you're not just learning facts about the natural world—you're studying God's handiwork. Every discovery should lead us to greater worship and appreciation of our Creator. As the heavens declare God's glory (Psalm 19:1), so too does the microscopic world of cells declare His wisdom, power, and creative genius.
+                </p>
+            </div>
+
+            <div class="faith-box">
+                <div class="faith-box-title">Prayer of Thanksgiving</div>
+                <p>
+                    "Heavenly Father, we thank You for revealing Your glory through the study of Your creation. Thank You for the complexity and beauty we find in every cell, from the smallest bacterium to the cells in our own bodies. Help us to always see Your hand in the natural world and to use our knowledge to glorify You. May our study of biology draw us closer to You and strengthen our faith in Your Word. In Jesus' name, Amen."
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #97c1a9; color: #666; font-size: 14px;">
+                <p><em>Faithful Way Homeschool Solutions</em></p>
+                <p>Faith-Based Biology Textbook | Chapter 3: Cellular Biology | Page 1-5</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Print functionality
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                window.print();
+            }
+        });
+    </script>
+</body>
+</html>

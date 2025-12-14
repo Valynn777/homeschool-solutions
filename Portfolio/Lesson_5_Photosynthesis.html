@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photosynthesis - Biology Lesson</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, serif;
+            background: #f0f0f0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .lesson-preview {
+            background: white;
+            width: 8.5in;
+            min-height: 11in;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .template-5 {
+            padding: 40px;
+            font-family: Georgia, serif;
+        }
+
+        .template-5 .header-section {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .template-5 .header-image {
+            width: 180px;
+            height: 180px;
+            flex-shrink: 0;
+        }
+
+        .template-5 .header-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .template-5 .header-text {
+            flex: 1;
+        }
+
+        .template-5 .date {
+            text-align: right;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .template-5 .category {
+            font-size: 18px;
+            color: #2d5016;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .template-5 .description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .template-5 .lesson-title {
+            font-size: 64px;
+            font-family: Georgia, serif;
+            font-style: italic;
+            color: #2d5016;
+            margin: 20px 0;
+            font-weight: normal;
+            line-height: 1.2;
+            border-bottom: 3px solid #228b22;
+            padding-bottom: 15px;
+        }
+
+        .template-5 .subtitle {
+            font-family: Georgia, serif;
+            font-size: 28px;
+            font-style: italic;
+            color: #2d5016;
+            margin: 25px 0 15px 0;
+            font-weight: bold;
+        }
+
+        .template-5 .text-columns {
+            column-count: 2;
+            column-gap: 30px;
+            text-align: justify;
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .template-5 .text-columns p {
+            margin-bottom: 15px;
+        }
+
+        .template-5 .text-columns p:first-of-type:first-letter {
+            font-size: 3.5em;
+            float: left;
+            line-height: 0.9;
+            margin: 0.05em 0.1em 0 0;
+            color: #228b22;
+            font-weight: bold;
+        }
+
+        .template-5 .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .template-5 .image-grid-item {
+            text-align: center;
+        }
+
+        .template-5 .image-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+        }
+
+        .template-5 .caption {
+            font-size: 13px;
+            font-style: italic;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .template-5 .info-box {
+            background: #f0f8f0;
+            border-left: 4px solid #228b22;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+
+        .template-5 .info-box h4 {
+            color: #2d5016;
+            font-size: 20px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .template-5 .info-box p {
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            .lesson-preview {
+                box-shadow: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-preview template-5">
+        <div class="header-section">
+            <div class="header-image">
+                <img src="https://images.unsplash.com/photo-1466781783364-36c955e42a7f?w=180&h=180&fit=crop" alt="Green Plant Leaves">
+            </div>
+            <div class="header-text">
+                <div class="date">Biology Series | 2024</div>
+                <div class="category">Plant Biology</div>
+                <div class="description">Discover how plants create their own food using sunlight, water, and carbon dioxide in one of nature's most important processes.</div>
+            </div>
+        </div>
+
+        <div class="lesson-title">Photosynthesis</div>
+
+        <div class="text-columns">
+            <p>Photosynthesis is one of the most important biological processes on Earth and a beautiful example of God's intricate design. This remarkable chemical reaction allows plants, algae, and some bacteria to convert light energy from the sun into chemical energy stored in sugar molecules. Without this God-designed process, life as we know it would not exist.</p>
+
+            <p>The word "photosynthesis" comes from Greek words meaning "light" and "putting together." During this process, plants capture light energy and use it to combine carbon dioxide from the air with water from the soil to produce glucose (sugar) and oxygen. The oxygen is released into the atmosphere as a byproduct, which is fortunate for us because we need oxygen to breathe!</p>
+
+            <p>Photosynthesis takes place primarily in the leaves of plants, specifically in tiny structures called chloroplasts. These microscopic organelles contain chlorophyll, a green pigment that absorbs light energy. This is why most plants appear green—chlorophyll reflects green light while absorbing red and blue wavelengths.</p>
+
+            <p>The process occurs in two main stages: the light-dependent reactions and the light-independent reactions (also called the Calvin cycle). During the light-dependent reactions, chlorophyll captures sunlight and converts it into energy-storing molecules. The light-independent reactions use this stored energy to convert carbon dioxide into glucose.</p>
+        </div>
+
+        <div class="subtitle">The Chemical Equation</div>
+
+        <div class="info-box">
+            <h4>6CO₂ + 6H₂O + Light Energy → C₆H₁₂O₆ + 6O₂</h4>
+            <p><strong>Translation:</strong> Six molecules of carbon dioxide plus six molecules of water, combined with light energy, produce one molecule of glucose plus six molecules of oxygen.</p>
+            <p>This simple equation represents one of the most complex and vital processes in God's creation, sustaining nearly all life on our planet and testifying to the wisdom of our Creator.</p>
+        </div>
+
+        <div class="subtitle">Why Photosynthesis Matters</div>
+
+        <div class="image-grid">
+            <div class="image-grid-item">
+                <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=300&h=200&fit=crop" alt="Trees and green plants in sunlight">
+                <div class="caption">Plants produce the oxygen we breathe as a byproduct of photosynthesis</div>
+            </div>
+            <div class="image-grid-item">
+                <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&h=200&fit=crop" alt="Fresh vegetables and produce from plants">
+                <div class="caption">All food chains begin with photosynthesis—plants create energy that feeds the entire ecosystem</div>
+            </div>
+        </div>
+
+        <div class="text-columns" style="margin-top: 30px;">
+            <p>Photosynthesis is the foundation of most food chains on Earth. Plants use the glucose they produce for energy and growth. When animals eat plants, they obtain this stored energy. When predators eat those animals, the energy transfers again. In this way, the energy captured from sunlight by plants eventually powers all living organisms.</p>
+
+            <p>Beyond food production, photosynthesis plays a crucial role in regulating Earth's atmosphere. Plants absorb carbon dioxide, a greenhouse gas, and release oxygen. This helps maintain the balance of gases in our atmosphere and moderates global temperatures. Scientists estimate that photosynthetic organisms produce about 330 billion tons of oxygen each year!</p>
+
+            <p>Understanding photosynthesis has practical applications too. Researchers study this process to develop more efficient crops, create biofuels, and even design artificial systems that mimic photosynthesis to produce clean energy. As we face environmental challenges, the lessons we learn from photosynthesis may help us create a more sustainable future.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solomon - Wisdom and Idolatry - 4-Day Interactive Lesson</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .page-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .lesson-header {
+            background: linear-gradient(135deg, #c7931e 0%, #f4e5b2 50%, #c7931e 100%);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(199, 147, 30, 0.3);
+            margin-bottom: 40px;
+            border: 3px solid #8b6914;
+        }
+
+        .lesson-title {
+            font-size: 3em;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+            font-weight: bold;
+        }
+
+        .prayer-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border-left: 5px solid #8b6914;
+            font-style: italic;
+            color: #333;
+            line-height: 2;
+        }
+
+        .verse-banner {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            color: white;
+            padding: 25px 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+            font-size: 1.3em;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 2px solid #c7931e;
+        }
+
+        .day-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .day-btn {
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            font-family: 'Georgia', serif;
+        }
+
+        .day-btn.bible-day {
+            background: linear-gradient(135deg, #8b4513 0%, #d2691e 100%);
+            color: white;
+        }
+
+        .day-btn.history-day {
+            background: linear-gradient(135deg, #1e3a5f 0%, #3a7ca5 100%);
+            color: white;
+        }
+
+        .day-btn.english-day {
+            background: linear-gradient(135deg, #2d5016 0%, #5a9a27 100%);
+            color: white;
+        }
+
+        .day-btn.review-day {
+            background: linear-gradient(135deg, #7b2d7b 0%, #b565b5 100%);
+            color: white;
+        }
+
+        .day-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .day-btn.active {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(199, 147, 30, 0.8);
+        }
+
+        .day-content {
+            display: none;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        .day-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 45px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            border-left: 8px solid;
+        }
+
+        .content-card.bible {
+            border-left-color: #8b4513;
+        }
+
+        .content-card.history {
+            border-left-color: #1e3a5f;
+        }
+
+        .content-card.english {
+            border-left-color: #2d5016;
+        }
+
+        .content-card.vocab {
+            border-left-color: #7b2d7b;
+        }
+
+        .section-title {
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            color: #1a1a2e;
+            border-bottom: 3px solid #c7931e;
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-icon {
+            font-size: 1.3em;
+        }
+
+        .content-text {
+            font-size: 1.15em;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .content-text strong {
+            color: #8b4513;
+            font-weight: bold;
+        }
+
+        .vocab-list {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .vocab-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #c7931e;
+        }
+
+        .vocab-term {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+
+        .vocab-definition {
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        .activity-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 35px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 3px solid #c7931e;
+        }
+
+        .activity-title {
+            font-size: 1.8em;
+            color: #1a1a2e;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .question-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #c7931e;
+        }
+
+        .question-text {
+            font-size: 1.2em;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .option {
+            padding: 15px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.05em;
+        }
+
+        .option:hover {
+            background: #e9ecef;
+            border-color: #c7931e;
+            transform: translateX(10px);
+        }
+
+        .option.selected {
+            background: #c7931e;
+            color: white;
+            border-color: #8b6914;
+        }
+
+        .option.correct {
+            background: #28a745;
+            color: white;
+            border-color: #1e7e34;
+        }
+
+        .option.incorrect {
+            background: #dc3545;
+            color: white;
+            border-color: #bd2130;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.05em;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+
+        .blank-input {
+            padding: 8px 15px;
+            border: 2px solid #c7931e;
+            border-radius: 5px;
+            font-size: 1em;
+            min-width: 150px;
+            font-family: 'Georgia', serif;
+        }
+
+        .blank-input.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .blank-input.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        .tf-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .tf-option {
+            padding: 20px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tf-true {
+            background: #e8f5e9;
+            border: 3px solid #4caf50;
+            color: #2e7d32;
+        }
+
+        .tf-false {
+            background: #ffebee;
+            border: 3px solid #f44336;
+            color: #c62828;
+        }
+
+        .tf-option:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .tf-option.selected.correct {
+            background: #4caf50;
+            color: white;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+        }
+
+        .tf-option.selected.incorrect {
+            background: #f44336;
+            color: white;
+            box-shadow: 0 0 20px rgba(244, 67, 54, 0.6);
+        }
+
+        .matching-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .matching-left, .matching-right {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .match-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.05em;
+        }
+
+        .match-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .match-item.selected {
+            background: #c7931e;
+            color: white;
+            border-color: #8b6914;
+        }
+
+        .match-item.matched {
+            background: #28a745;
+            color: white;
+            border-color: #1e7e34;
+            cursor: default;
+        }
+
+        .review-summary {
+            background: linear-gradient(135deg, #fff8dc 0%, #faf0d7 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border: 3px solid #c7931e;
+            margin: 30px 0;
+            font-size: 1.1em;
+            line-height: 2;
+        }
+
+        .fill-blank-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .fill-blank-item {
+            font-size: 1.15em;
+            margin: 15px 0;
+            line-height: 2;
+        }
+
+        @media (max-width: 768px) {
+            .lesson-title {
+                font-size: 2em;
+            }
+
+            .day-navigation {
+                flex-direction: column;
+            }
+
+            .matching-container {
+                grid-template-columns: 1fr;
+            }
+
+            .tf-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="lesson-header">
+            <div class="lesson-title">Solomon - Wisdom and Idolatry</div>
+            <div style="font-size: 1.3em; color: #1a1a2e; margin-top: 10px;">Module 1 • Unit 2 • Lesson 19</div>
+            <div class="prayer-section">
+                <strong>Opening Prayer:</strong><br>
+                Almighty Father, YHVH, as we study King Solomon, we come before You in humility. Thank You for the gift of wisdom that comes from You alone. Help us to seek wisdom first and foremost, not wealth or honor. Yet we also see in Solomon's life a sobering warning: even great wisdom cannot save us if we turn away from obedience to Your Torah. Guard our hearts from compromise and idolatry. Teach us that knowing what is right is not enough—we must also do what is right. May we finish well, remaining faithful to You all our days. In the name of Y'eshua, the wisdom of YHVH made flesh, we pray. Amen.
+            </div>
+        </div>
+
+        <div class="verse-banner">
+            📖 "The fear of YHVH is the beginning of wisdom, and the knowledge of the Holy One is understanding." - Proverbs 9:10
+        </div>
+
+        <div class="day-navigation">
+            <button class="day-btn bible-day active" onclick="showDay(1)">📜 Day 1: Bible Focus</button>
+            <button class="day-btn history-day" onclick="showDay(2)">🏛️ Day 2: History Focus</button>
+            <button class="day-btn english-day" onclick="showDay(3)">📝 Day 3: English Focus</button>
+            <button class="day-btn review-day" onclick="showDay(4)">⭐ Day 4: Review & Assessment</button>
+        </div>
+
+        <!-- DAY 1: BIBLE FOCUS -->
+        <div id="day1" class="day-content active">
+            <div class="content-card bible">
+                <div class="section-title">
+                    <span class="section-icon">👑</span>
+                    Solomon Asks for Wisdom
+                </div>
+                <div class="content-text">
+                    After King David's death, his son Solomon became king over all Israel around 970 BC. <strong>YHVH appeared to Solomon in a dream</strong> at Gibeon and said, "Ask what you wish Me to give you" (1 Kings 3:5). Solomon could have requested anything—long life, riches, victory over enemies, honor. But instead, Solomon humbly asked for "an understanding heart to judge Your people, to discern between good and evil" (1 Kings 3:9).
+                </div>
+                <div class="content-text">
+                    This request pleased YHVH greatly. Because Solomon asked for wisdom rather than selfish things, <strong>YHVH gave him not only unmatched wisdom but also riches and honor</strong> beyond any other king (1 Kings 3:12-13). Solomon's wisdom became legendary throughout the ancient world.
+                </div>
+                <div class="content-text">
+                    When two women came before him, both claiming to be the mother of the same baby, Solomon ordered the child to be cut in half. The true mother immediately cried out, "Give her the living child!" while the false mother said, "Let it be neither mine nor yours" (1 Kings 3:26-27). Through this test, Solomon's wisdom revealed the truth.
+                </div>
+            </div>
+
+            <div class="content-card bible">
+                <div class="section-title">
+                    <span class="section-icon">📚</span>
+                    Solomon's Writings and Wisdom
+                </div>
+                <div class="content-text">
+                    Solomon is credited with writing much of the book of <strong>Proverbs</strong>, the <strong>Song of Songs</strong>, and <strong>Ecclesiastes</strong>. Proverbs contains hundreds of wise sayings about life, relationships, work, speech, and godly living. Many proverbs contrast the path of wisdom with the path of folly: "The fear of YHVH is the beginning of knowledge, but fools despise wisdom and instruction" (Proverbs 1:7).
+                </div>
+                <div class="content-text">
+                    Solomon composed 1,005 songs and spoke 3,000 proverbs, and people came from all nations to hear his wisdom (1 Kings 4:32-34). News of his wisdom spread far and wide, and leaders from many nations came to seek his counsel, including the famous Queen of Sheba (1 Kings 10:1-13).
+                </div>
+            </div>
+
+            <div class="content-card bible">
+                <div class="section-title">
+                    <span class="section-icon">⛪</span>
+                    Building the Temple
+                </div>
+                <div class="content-text">
+                    But Solomon's greatest achievement was <strong>building the temple of YHVH in Jerusalem</strong>. David had desired to build it, but YHVH told him that his son would have that honor (2 Samuel 7:12-13). Solomon began construction in the fourth year of his reign, employing thousands of workers and using the finest materials—cedar from Lebanon, gold, bronze, and precious stones.
+                </div>
+                <div class="content-text">
+                    After seven years, the magnificent temple was completed. When the Ark of the Covenant was brought into the Holy of Holies, <strong>the glory of YHVH filled the temple so powerfully</strong> that the priests could not stand to minister (1 Kings 8:10-11). Solomon offered a beautiful dedicatory prayer, asking YHVH to hear the prayers of His people when they prayed toward this place (1 Kings 8:22-53).
+                </div>
+            </div>
+
+            <div class="content-card vocab">
+                <div class="section-title">
+                    <span class="section-icon">📖</span>
+                    Vocabulary
+                </div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <div class="vocab-term">Wisdom (Old English wisdom)</div>
+                        <div class="vocab-definition">The ability to make sound judgments based on knowledge, experience, and understanding; in biblical context, wisdom begins with the fear of YHVH and applying His truth to life.</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-term">Discernment</div>
+                        <div class="vocab-definition">The ability to judge well; to perceive and distinguish between truth and falsehood, good and evil, wise and foolish choices.</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-term">Apostasy (Greek apostasia - stand away from)</div>
+                        <div class="vocab-definition">The abandonment or renunciation of one's faith; turning away from YHVH and His covenant to follow other gods or teachings.</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-term">Consequence</div>
+                        <div class="vocab-definition">The result or effect of an action or condition; outcomes that follow from choices, whether good or bad.</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-term">Idolatry</div>
+                        <div class="vocab-definition">The worship of idols or false gods instead of YHVH; giving ultimate devotion to anything other than the one true God.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-section">
+                <div class="activity-title">📝 Day 1 Assessment</div>
+                
+                <div class="question-card">
+                    <div class="question-text">1. What did Solomon ask YHVH to give him?</div>
+                    <div class="option" onclick="selectOption(this, false)">Great wealth and honor</div>
+                    <div class="option" onclick="selectOption(this, false)">Victory over his enemies</div>
+                    <div class="option" onclick="selectOption(this, true)">Wisdom to judge the people</div>
+                    <div class="option" onclick="selectOption(this, false)">A long life</div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">2. What was Solomon's greatest achievement?</div>
+                    <div class="option" onclick="selectOption(this, false)">Writing 3,000 proverbs</div>
+                    <div class="option" onclick="selectOption(this, true)">Building the temple of YHVH</div>
+                    <div class="option" onclick="selectOption(this, false)">Accumulating wealth</div>
+                    <div class="option" onclick="selectOption(this, false)">Expanding the kingdom</div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">3. What are the seven coordinating conjunctions (FANBOYS)?</div>
+                    <div class="option" onclick="selectOption(this, true)">For, And, Nor, But, Or, Yet, So</div>
+                    <div class="option" onclick="selectOption(this, false)">For, After, Near, Before, Over, Yet, Since</div>
+                    <div class="option" onclick="selectOption(this, false)">From, And, Neither, Both, Or, Yes, Still</div>
+                    <div class="option" onclick="selectOption(this, false)">First, Also, Next, Besides, Otherwise, Yesterday, Soon</div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAY 2: HISTORY & REVIEW -->
+        <div id="day2" class="day-content">
+            <div class="review-summary">
+                <strong>Yesterday's Review:</strong> We learned that Solomon asked YHVH for wisdom rather than wealth or power, and YHVH granted his request along with riches and honor. Solomon's wisdom became famous throughout the world, demonstrated in judgments like the case of the two mothers claiming the same baby. He wrote much of Proverbs, Ecclesiastes, and Song of Songs, and spoke 3,000 proverbs and 1,005 songs. Solomon's greatest achievement was building the temple of YHVH in Jerusalem, where the glory of YHVH filled the sanctuary.
+            </div>
+
+            <div class="content-card history">
+                <div class="section-title">
+                    <span class="section-icon">🏛️</span>
+                    Israel at Its Peak
+                </div>
+                <div class="content-text">
+                    Under Solomon's reign, <strong>Israel reached the height of its power, wealth, and international influence</strong>. The kingdom extended from the Euphrates River in the north to the border of Egypt in the south, encompassing territories conquered by David. Solomon established trade routes and formed alliances with neighboring nations, including treaties with Tyre (modern-day Lebanon) and Egypt.
+                </div>
+                <div class="content-text">
+                    He built a massive merchant fleet at Ezion-geber on the Red Sea, which brought gold, silver, ivory, and exotic goods from distant lands (1 Kings 9:26-28; 10:22). The Queen of Sheba traveled from southern Arabia to witness Solomon's wisdom and wealth, bringing lavish gifts of gold, spices, and precious stones.
+                </div>
+            </div>
+
+            <div class="content-card history">
+                <div class="section-title">
+                    <span class="section-icon">🏗️</span>
+                    Building Projects and Their Cost
+                </div>
+                <div class="content-text">
+                    Solomon's building projects were extensive. Besides the temple, he built a royal palace that took thirteen years to complete, the House of the Forest of Lebanon (an armory), and fortified cities throughout the kingdom including <strong>Hazor, Megiddo, and Gezer</strong>. He also built storage cities for chariots and horses, establishing a powerful military force.
+                </div>
+                <div class="content-text">
+                    Archaeological excavations have confirmed Solomon's building activities, particularly the distinctive six-chambered gates found at Hazor, Megiddo, and Gezer. However, Solomon's wealth and building projects came at a cost to the people. <strong>He imposed heavy taxes and forced labor on the Israelites</strong>, which created resentment that would eventually contribute to the kingdom's division after his death.
+                </div>
+                <div class="content-text">
+                    He conscripted 30,000 men for work in Lebanon, and 150,000 workers for quarrying and transporting stones (1 Kings 5:13-16; 9:15-23). The people began to feel burdened by the demands of maintaining Solomon's luxurious court and ambitious projects.
+                </div>
+            </div>
+
+            <div class="content-card english">
+                <div class="section-title">
+                    <span class="section-icon">✍️</span>
+                    Compound Sentences
+                </div>
+                <div class="content-text">
+                    Today we study <strong>compound sentences</strong>. A compound sentence contains two or more independent clauses (complete thoughts that could stand alone as sentences) joined together. The independent clauses are usually connected by a coordinating conjunction preceded by a comma.
+                </div>
+                <div class="content-text">
+                    There are seven coordinating conjunctions, easily remembered by the acronym <strong>FANBOYS: For, And, Nor, But, Or, Yet, So</strong>.
+                </div>
+                <div class="content-text">
+                    <strong>Examples from Solomon's life:</strong><br>
+                    • "Solomon asked for wisdom, and YHVH granted his request." (two independent clauses joined by "and")<br>
+                    • "Solomon built the temple, but he also built many fortifications." (two independent clauses joined by "but")<br>
+                    • "Solomon could have asked for riches, yet he chose wisdom instead." (two independent clauses joined by "yet")
+                </div>
+                <div class="content-text">
+                    When writing compound sentences, remember to place a comma before the coordinating conjunction: [Independent clause], [FANBOYS] [independent clause]. Each clause must have its own subject and verb and be able to stand alone as a complete sentence.
+                </div>
+            </div>
+
+            <div class="activity-section">
+                <div class="activity-title">📝 Fill in the Blanks</div>
+                <div class="fill-blank-section">
+                    <div class="fill-blank-item">
+                        1. Solomon asked YHVH for <input type="text" class="blank-input" data-answer="wisdom" onblur="checkBlank(this)"> to judge the people rather than for wealth or long life.
+                    </div>
+                    <div class="fill-blank-item">
+                        2. Solomon is credited with writing most of the book of <input type="text" class="blank-input" data-answer="proverbs" onblur="checkBlank(this)">, as well as Ecclesiastes and Song of Songs.
+                    </div>
+                    <div class="fill-blank-item">
+                        3. Solomon built the <input type="text" class="blank-input" data-answer="temple" onblur="checkBlank(this)"> of YHVH in Jerusalem, which took seven years to complete.
+                    </div>
+                    <div class="fill-blank-item">
+                        4. The glory of YHVH filled the temple so powerfully that the priests could not <input type="text" class="blank-input" data-answer="stand" onblur="checkBlank(this)"> to minister.
+                    </div>
+                    <div class="fill-blank-item">
+                        5. A compound sentence contains two or more <input type="text" class="blank-input" data-answer="independent clauses" onblur="checkBlank(this)"> joined by a coordinating conjunction.
+                    </div>
+                    <div class="fill-blank-item">
+                        6. The seven coordinating conjunctions are remembered by the acronym <input type="text" class="blank-input" data-answer="fanboys" onblur="checkBlank(this)">.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAY 3: SOLOMON'S FALL -->
+        <div id="day3" class="day-content">
+            <div class="review-summary">
+                <strong>Today's Focus:</strong> We examine Solomon's tragic fall into idolatry and the lessons we must learn from his downfall. Despite receiving unmatched wisdom from YHVH, despite building the magnificent temple, despite knowing YHVH's Torah thoroughly, Solomon's heart was eventually led astray. How could this happen to the wisest man who ever lived?
+            </div>
+
+            <div class="content-card bible">
+                <div class="section-title">
+                    <span class="section-icon">⚠️</span>
+                    The Root of Solomon's Downfall
+                </div>
+                <div class="content-text">
+                    The root of Solomon's downfall was <strong>compromise and disobedience</strong> to YHVH's clear commands. YHVH had specifically commanded in Deuteronomy 17:16-17 that the future king of Israel must not multiply horses, must not multiply wives, and must not greatly accumulate silver and gold. But 1 Kings 10-11 records that <strong>Solomon violated all three prohibitions</strong>.
+                </div>
+                <div class="content-text">
+                    He accumulated 1,400 chariots and 12,000 horses, much of them from Egypt (1 Kings 10:26). He amassed enormous wealth—666 talents of gold came to him in one year alone (1 Kings 10:14). And most tragically, "he had 700 wives, princesses, and 300 concubines, and his wives turned away his heart" (1 Kings 11:3).
+                </div>
+            </div>
+
+            <div class="content-card bible">
+                <div class="section-title">
+                    <span class="section-icon">💔</span>
+                    His Wives Turned His Heart
+                </div>
+                <div class="content-text">
+                    Solomon's marriages were primarily political alliances with foreign nations, including Egypt, Moab, Ammon, Edom, Sidon, and the Hittites—all nations about which YHVH had said, "You shall not intermarry with them, for they will surely turn your heart away after their gods" (1 Kings 11:2). <strong>That is exactly what happened.</strong>
+                </div>
+                <div class="content-text">
+                    As Solomon grew old, his foreign wives turned his heart after other gods, and his heart was not wholly devoted to YHVH as David's heart had been (1 Kings 11:4). Solomon even built high places for Chemosh the detestable god of Moab, and for Molech the detestable god of the Ammonites, on the mountain east of Jerusalem (1 Kings 11:7). He did this for all his foreign wives who burned incense and sacrificed to their gods.
+                </div>
+            </div>
+
+            <div class="content-card bible">
+                <div class="section-title">
+                    <span class="section-icon">⚖️</span>
+                    YHVH's Judgment
+                </div>
+                <div class="content-text">
+                    YHVH's anger burned against Solomon because his heart had turned away despite YHVH appearing to him twice and specifically commanding him not to go after other gods (1 Kings 11:9-10). As judgment, <strong>YHVH declared that He would tear the kingdom away from Solomon's son</strong>, though for David's sake He would leave one tribe (1 Kings 11:11-13).
+                </div>
+                <div class="content-text">
+                    YHVH also raised up adversaries against Solomon during his lifetime, including Hadad the Edomite and Jeroboam the son of Nebat, signaling the coming division (1 Kings 11:14, 26). The book of Ecclesiastes is traditionally understood as Solomon's reflections in his old age, after experiencing the emptiness of pursuing everything the world offers—wisdom, pleasure, wealth, accomplishments—while forsaking wholehearted devotion to YHVH.
+                </div>
+                <div class="content-text">
+                    The repeated refrain "vanity of vanities, all is vanity" (Ecclesiastes 1:2) expresses the futility of life lived apart from YHVH's purposes. The conclusion of the book is sobering: <strong>"Fear God and keep His commandments, for this is the whole duty of man. For God will bring every deed into judgment, including every hidden thing, whether it is good or evil"</strong> (Ecclesiastes 12:13-14).
+                </div>
+            </div>
+
+            <div class="content-card english">
+                <div class="section-title">
+                    <span class="section-icon">✍️</span>
+                    Practice Compound Sentences
+                </div>
+                <div class="content-text">
+                    Practice writing compound sentences about Solomon:<br>
+                    • "Solomon began his reign with wisdom, but he ended it in idolatry."<br>
+                    • "Solomon knew YHVH's commands, yet he chose to disobey them."<br>
+                    • "Solomon could have remained faithful, for YHVH had blessed him abundantly."
+                </div>
+                <div class="content-text">
+                    Notice how each compound sentence connects two related but contrasting ideas, showing the tragedy of Solomon's fall. The coordinating conjunctions "but" and "yet" are especially useful for showing contrast.
+                </div>
+            </div>
+
+            <div class="activity-section">
+                <div class="activity-title">✅ True or False</div>
+                
+                <div class="question-card">
+                    <div class="question-text">Solomon asked YHVH for wealth and power.</div>
+                    <div class="tf-container">
+                        <div class="tf-option tf-true" onclick="selectTF(this, true, false)">TRUE</div>
+                        <div class="tf-option tf-false" onclick="selectTF(this, false, false)">FALSE</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">YHVH told Solomon he could have anything he wanted, and Solomon asked for wisdom.</div>
+                    <div class="tf-container">
+                        <div class="tf-option tf-true" onclick="selectTF(this, true, true)">TRUE</div>
+                        <div class="tf-option tf-false" onclick="selectTF(this, false, true)">FALSE</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">Solomon's foreign wives eventually turned his heart toward idolatry.</div>
+                    <div class="tf-container">
+                        <div class="tf-option tf-true" onclick="selectTF(this, true, true)">TRUE</div>
+                        <div class="tf-option tf-false" onclick="selectTF(this, false, true)">FALSE</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">Solomon obeyed all of YHVH's commands about not multiplying horses, wives, and wealth.</div>
+                    <div class="tf-container">
+                        <div class="tf-option tf-true" onclick="selectTF(this, true, false)">TRUE</div>
+                        <div class="tf-option tf-false" onclick="selectTF(this, false, false)">FALSE</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">Ecclesiastes reflects Solomon's realization that life without YHVH is meaningless.</div>
+                    <div class="tf-container">
+                        <div class="tf-option tf-true" onclick="selectTF(this, true, true)">TRUE</div>
+                        <div class="tf-option tf-false" onclick="selectTF(this, false, true)">FALSE</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">A compound sentence must contain at least two independent clauses.</div>
+                    <div class="tf-container">
+                        <div class="tf-option tf-true" onclick="selectTF(this, true, true)">TRUE</div>
+                        <div class="tf-option tf-false" onclick="selectTF(this, false, true)">FALSE</div>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAY 4: REVIEW & ASSESSMENT -->
+        <div id="day4" class="day-content">
+            <div class="review-summary">
+                <strong>Final Review:</strong> As we conclude our study of Solomon, we must soberly reflect on the tragedy of his life. Solomon started with such promise—wisdom from YHVH, international fame, the honor of building the temple, wealth and honor beyond measure. Yet he ended his life as a builder of idolatrous high places, with a heart turned away from YHVH. How does someone with so much wisdom make such foolish choices?
+            </div>
+
+            <div class="content-card bible">
+                <div class="section-title">
+                    <span class="section-icon">💡</span>
+                    Lessons from Solomon's Life
+                </div>
+                <div class="content-text">
+                    The answer lies in the difference between <strong>knowledge and obedience</strong>. Solomon had knowledge—unmatched wisdom and understanding. But wisdom is worthless if it is not applied. James 1:22 says, "Prove yourselves doers of the word, and not merely hearers who delude themselves." Solomon knew what YHVH commanded, but he chose his own path.
+                </div>
+                <div class="content-text">
+                    He rationalized his disobedience—perhaps he told himself that the political marriages were necessary for peace, that the wealth was for YHVH's glory, that he was wise enough to avoid being influenced by pagan wives. But <strong>YHVH's Word is not a suggestion to be weighed against our circumstances; it is an absolute standard to be obeyed</strong>.
+                </div>
+                <div class="content-text">
+                    Solomon's fall also demonstrates that <strong>no one is immune to temptation, pride, and compromise</strong>. If the wisest man who ever lived could fall into idolatry, how much more must we guard our hearts! Proverbs 4:23 says, "Watch over your heart with all diligence, for from it flow the springs of life." Solomon wrote those words, but he failed to heed his own wisdom in his later years.
+                </div>
+            </div>
+
+            <div class="content-card bible">
+                <div class="section-title">
+                    <span class="section-icon">✝️</span>
+                    One Greater Than Solomon
+                </div>
+                <div class="content-text">
+                    Finally, Solomon's life points us to <strong>one greater than Solomon—Y'eshua the Messiah</strong>. In Matthew 12:42, Y'eshua said, "The Queen of the South will rise up with this generation at the judgment and will condemn it, because she came from the ends of the earth to hear the wisdom of Solomon; and behold, something greater than Solomon is here."
+                </div>
+                <div class="content-text">
+                    Y'eshua is the wisdom of YHVH personified (1 Corinthians 1:24, 30). He never compromised, never fell into sin, and perfectly obeyed the Father in all things. <strong>Where Solomon failed, Y'eshua succeeded.</strong> He is the true King who reigns forever in righteousness and truth.
+                </div>
+            </div>
+
+            <div class="activity-section">
+                <div class="activity-title">🎯 Matching Activity</div>
+                <p style="text-align: center; margin-bottom: 20px; font-size: 1.1em;">Click items on the left, then click the matching definition on the right.</p>
+                
+                <div class="matching-container">
+                    <div class="matching-left">
+                        <div class="match-item" data-id="1" onclick="selectMatch(this)">Solomon</div>
+                        <div class="match-item" data-id="2" onclick="selectMatch(this)">Proverbs</div>
+                        <div class="match-item" data-id="3" onclick="selectMatch(this)">Temple</div>
+                        <div class="match-item" data-id="4" onclick="selectMatch(this)">Ecclesiastes</div>
+                        <div class="match-item" data-id="5" onclick="selectMatch(this)">Compound sentence</div>
+                        <div class="match-item" data-id="6" onclick="selectMatch(this)">FANBOYS</div>
+                    </div>
+                    <div class="matching-right">
+                        <div class="match-item" data-match="1" onclick="selectMatch(this)">Wisest king who fell into idolatry</div>
+                        <div class="match-item" data-match="2" onclick="selectMatch(this)">Book of wisdom sayings written mostly by Solomon</div>
+                        <div class="match-item" data-match="3" onclick="selectMatch(this)">Solomon's greatest achievement, built in Jerusalem</div>
+                        <div class="match-item" data-match="4" onclick="selectMatch(this)">Book expressing the vanity of life apart from YHVH</div>
+                        <div class="match-item" data-match="5" onclick="selectMatch(this)">Two independent clauses joined by a coordinating conjunction</div>
+                        <div class="match-item" data-match="6" onclick="selectMatch(this)">For, And, Nor, But, Or, Yet, So</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-section">
+                <div class="activity-title">📝 Final Assessment Questions</div>
+                
+                <div class="question-card">
+                    <div class="question-text">1. What three things did YHVH command kings not to multiply, which Solomon violated?</div>
+                    <div class="option" onclick="selectOption(this, false)">Servants, gold, and soldiers</div>
+                    <div class="option" onclick="selectOption(this, true)">Horses, wives, and silver/gold</div>
+                    <div class="option" onclick="selectOption(this, false)">Temples, palaces, and cities</div>
+                    <div class="option" onclick="selectOption(this, false)">Priests, prophets, and judges</div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">2. How many wives and concubines did Solomon have?</div>
+                    <div class="option" onclick="selectOption(this, false)">100 wives and 200 concubines</div>
+                    <div class="option" onclick="selectOption(this, false)">300 wives and 700 concubines</div>
+                    <div class="option" onclick="selectOption(this, true)">700 wives and 300 concubines</div>
+                    <div class="option" onclick="selectOption(this, false)">1,000 wives total</div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">3. What is the main message of the book of Ecclesiastes?</div>
+                    <div class="option" onclick="selectOption(this, false)">Wealth and wisdom bring happiness</div>
+                    <div class="option" onclick="selectOption(this, true)">Life apart from YHVH is meaningless vanity</div>
+                    <div class="option" onclick="selectOption(this, false)">Building temples pleases YHVH</div>
+                    <div class="option" onclick="selectOption(this, false)">Kings should marry many wives</div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text">4. Which sentence is a proper compound sentence?</div>
+                    <div class="option" onclick="selectOption(this, false)">Solomon was wise but foolish.</div>
+                    <div class="option" onclick="selectOption(this, true)">Solomon was wise, but he became foolish.</div>
+                    <div class="option" onclick="selectOption(this, false)">Although Solomon was wise, he became foolish.</div>
+                    <div class="option" onclick="selectOption(this, false)">Solomon was wise he became foolish.</div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+
+            <div class="content-card bible" style="margin-top: 30px;">
+                <div class="section-title">
+                    <span class="section-icon">✍️</span>
+                    Writing Practice
+                </div>
+                <div class="content-text">
+                    <strong>Assignment:</strong> Write three compound sentences about Solomon's life, using different coordinating conjunctions (FANBOYS). Make sure each sentence contains two independent clauses with a comma before the conjunction.
+                </div>
+                <div class="content-text" style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                    <strong>Example answers:</strong><br>
+                    1. Solomon asked for wisdom, and YHVH granted his request generously.<br>
+                    2. Solomon built the magnificent temple, yet he also built high places for idols.<br>
+                    3. Solomon knew YHVH's commands, but he chose to disobey them in his old age.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Day navigation
+        function showDay(dayNum) {
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById('day' + i).classList.remove('active');
+            }
+            
+            const buttons = document.querySelectorAll('.day-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById('day' + dayNum).classList.add('active');
+            buttons[dayNum - 1].classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Multiple choice questions
+        function selectOption(element, isCorrect) {
+            const questionCard = element.parentElement;
+            const options = questionCard.querySelectorAll('.option');
+            const feedback = questionCard.querySelector('.feedback');
+            
+            options.forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+                feedback.innerHTML = '✓ Correct! Well done.';
+                feedback.classList.add('show', 'correct');
+                feedback.classList.remove('incorrect');
+            } else {
+                element.classList.add('incorrect');
+                feedback.innerHTML = '✗ Not quite. Please review the material and try again.';
+                feedback.classList.add('show', 'incorrect');
+                feedback.classList.remove('correct');
+            }
+        }
+
+        // Fill in the blank
+        function checkBlank(input) {
+            const correctAnswer = input.getAttribute('data-answer').toLowerCase();
+            const userAnswer = input.value.trim().toLowerCase();
+            
+            if (userAnswer === correctAnswer) {
+                input.classList.add('correct');
+                input.classList.remove('incorrect');
+            } else if (userAnswer !== '') {
+                input.classList.add('incorrect');
+                input.classList.remove('correct');
+            }
+        }
+
+        // True/False
+        function selectTF(element, isTrue, correctAnswer) {
+            const questionCard = element.parentElement.parentElement;
+            const options = questionCard.querySelectorAll('.tf-option');
+            const feedback = questionCard.querySelector('.feedback');
+            
+            options.forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            const isCorrect = (isTrue === correctAnswer);
+            
+            if (isCorrect) {
+                element.classList.add('selected', 'correct');
+                feedback.innerHTML = '✓ Correct!';
+                feedback.classList.add('show', 'correct');
+                feedback.classList.remove('incorrect');
+            } else {
+                element.classList.add('selected', 'incorrect');
+                feedback.innerHTML = '✗ Incorrect. Try again!';
+                feedback.classList.add('show', 'incorrect');
+                feedback.classList.remove('correct');
+            }
+        }
+
+        // Matching activity
+        let selectedLeft = null;
+        let selectedRight = null;
+
+        function selectMatch(element) {
+            const isLeft = element.parentElement.classList.contains('matching-left');
+            
+            if (element.classList.contains('matched')) {
+                return;
+            }
+            
+            if (isLeft) {
+                if (selectedLeft) {
+                    selectedLeft.classList.remove('selected');
+                }
+                selectedLeft = element;
+                element.classList.add('selected');
+            } else {
+                if (selectedRight) {
+                    selectedRight.classList.remove('selected');
+                }
+                selectedRight = element;
+                element.classList.add('selected');
+            }
+            
+            if (selectedLeft && selectedRight) {
+                const leftId = selectedLeft.getAttribute('data-id');
+                const rightMatch = selectedRight.getAttribute('data-match');
+                
+                if (leftId === rightMatch) {
+                    selectedLeft.classList.remove('selected');
+                    selectedRight.classList.remove('selected');
+                    selectedLeft.classList.add('matched');
+                    selectedRight.classList.add('matched');
+                } else {
+                    setTimeout(() => {
+                        selectedLeft.classList.remove('selected');
+                        selectedRight.classList.remove('selected');
+                    }, 800);
+                }
+                
+                selectedLeft = null;
+                selectedRight = null;
+            }
+        }
+    </script>
+</body>
+</html>

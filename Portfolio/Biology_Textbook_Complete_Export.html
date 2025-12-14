@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cell: God's Marvelous Design - Complete Biology Textbook</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, serif;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+
+        .export-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #0078d4;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .export-button:hover {
+            background: #005fa3;
+        }
+
+        .export-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .page-container {
+            max-width: 8.5in;
+            margin: 0 auto 40px auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .page {
+            page-break-after: always;
+            min-height: 11in;
+            padding: 40px;
+            background: white;
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        .header-section {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .header-image {
+            width: 200px;
+            height: 200px;
+            flex-shrink: 0;
+        }
+
+        .header-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        .textbook-info {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .category {
+            font-size: 18px;
+            color: #2c5f2d;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .chapter-info {
+            font-size: 16px;
+            color: #97c1a9;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .lesson-title {
+            font-size: 48px;
+            font-family: Georgia, serif;
+            font-style: italic;
+            color: #2c5f2d;
+            margin: 20px 0;
+            font-weight: normal;
+            line-height: 1.2;
+            border-bottom: 4px solid #97c1a9;
+            padding-bottom: 15px;
+        }
+
+        .subtitle {
+            font-family: Georgia, serif;
+            font-size: 28px;
+            font-style: italic;
+            color: #2c5f2d;
+            margin: 25px 0 15px 0;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-family: Georgia, serif;
+            font-size: 22px;
+            color: #2c5f2d;
+            margin: 20px 0 10px 0;
+            font-weight: bold;
+        }
+
+        .text-content {
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .text-content p {
+            margin-bottom: 15px;
+        }
+
+        .faith-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid #2c5f2d;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .faith-box-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c5f2d;
+            margin-bottom: 12px;
+        }
+
+        .faith-box-title::before {
+            content: "✝ ";
+            font-size: 20px;
+        }
+
+        .faith-box p {
+            font-style: italic;
+            color: #2d4a2b;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .scripture {
+            font-weight: bold;
+            color: #1b5e20;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 25px;
+            line-height: 1.8;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .key-terms {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .key-terms-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1565c0;
+            margin-bottom: 15px;
+        }
+
+        .key-terms dl {
+            margin: 0;
+        }
+
+        .key-terms dt {
+            font-weight: bold;
+            color: #1976d2;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .key-terms dd {
+            margin-left: 20px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .export-button {
+                display: none;
+            }
+            .page-container {
+                box-shadow: none;
+                width: 100%;
+                margin: 0;
+            }
+            .page {
+                padding: 0.5in;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="export-button" onclick="exportToPDF()" id="exportBtn">📄 Export Complete PDF</button>
+
+    <!-- PAGE 1 -->
+    <div class="page-container">
+        <div class="page">
+            <div class="header-section">
+                <div class="header-image">
+                    <img src="Python Script for Images/biology_images/Cell_biology/Cell_biology_1_022S.jpg" alt="Microscope view of cells">
+                </div>
+                <div class="header-text">
+                    <div class="textbook-info">Faith-Based Biology | High School Edition</div>
+                    <div class="category">BIOLOGY TEXTBOOK</div>
+                    <div class="chapter-info">Chapter 3: Cellular Biology</div>
+                    <div class="description">
+                        Explore the incredible complexity and design of the basic unit of life - the cell.
+                    </div>
+                </div>
+            </div>
+
+            <h1 class="lesson-title">The Cell: God's Marvelous Design</h1>
+
+            <div class="text-content">
+                <p>
+                    Every living thing on Earth—from the tiniest bacterium to the largest whale, from a single blade of grass to a towering redwood tree—is made up of cells. The cell is the fundamental unit of life, a microscopic masterpiece that showcases the incredible wisdom and creativity of our Creator.
+                </p>
+                <p>
+                    When we peer through a microscope into the world of cells, we discover a realm of staggering complexity. Each cell is like a miniature city, bustling with activity, filled with specialized structures working together in perfect harmony.
+                </p>
+            </div>
+
+            <div class="faith-box">
+                <div class="faith-box-title">Faith Connection</div>
+                <p>
+                    The Bible tells us that God created all living things "according to their kinds" (Genesis 1:24-25). Modern cellular biology confirms this biblical truth.
+                </p>
+                <p class="scripture">
+                    "For since the creation of the world God's invisible qualities—his eternal power and divine nature—have been clearly seen, being understood from what has been made." - Romans 1:20
+                </p>
+            </div>
+
+            <h2 class="subtitle">Two Types of Cells</h2>
+
+            <div class="text-content">
+                <p>
+                    Scientists classify cells into two main categories: prokaryotic and eukaryotic cells. Understanding the differences between these cell types helps us appreciate the diversity and orderliness in God's creation.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page-container">
+        <div class="page">
+            <h2 class="subtitle">Inside the Eukaryotic Cell: A City of Life</h2>
+
+            <div class="text-content">
+                <p>
+                    Eukaryotic cells, found in all plants, animals, fungi, and protists, are marvels of microscopic engineering. Let's explore the major components of these cells.
+                </p>
+            </div>
+
+            <div class="key-terms">
+                <div class="key-terms-title">Key Cellular Components</div>
+                <dl>
+                    <dt>Cell Membrane</dt>
+                    <dd>A flexible boundary that controls what enters and exits the cell, like a city wall with selective gates.</dd>
+                    
+                    <dt>Nucleus</dt>
+                    <dd>The control center of the cell, containing DNA—the instruction manual for life.</dd>
+                    
+                    <dt>Mitochondria</dt>
+                    <dd>The powerhouses of the cell, converting nutrients into usable energy (ATP).</dd>
+                    
+                    <dt>Ribosomes</dt>
+                    <dd>Molecular machines that build proteins according to instructions from DNA.</dd>
+                    
+                    <dt>Endoplasmic Reticulum (ER)</dt>
+                    <dd>A network of membranes for processing and transporting proteins and lipids.</dd>
+                    
+                    <dt>Golgi Apparatus</dt>
+                    <dd>The packaging and shipping center for proteins.</dd>
+                    
+                    <dt>Chloroplasts (in plant cells)</dt>
+                    <dd>Organelles that perform photosynthesis, converting light energy into chemical energy.</dd>
+                </dl>
+            </div>
+
+            <div class="faith-box">
+                <div class="faith-box-title">Did You Know?</div>
+                <p>
+                    The human body contains approximately 37.2 trillion cells! Each cell demonstrates incredible storage of information that points to an Intelligent Designer who encoded the instructions for life itself.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page-container">
+        <div class="page">
+            <h2 class="subtitle">DNA: The Language of Life</h2>
+
+            <div class="text-content">
+                <p>
+                    Perhaps nothing in cellular biology more clearly demonstrates intelligent design than DNA (deoxyribonucleic acid). This double-helix molecule contains the genetic instructions for building and maintaining all living organisms.
+                </p>
+                <p>
+                    DNA is essentially a language—a code written in four chemical letters (A, T, G, and C) that spell out the instructions for creating proteins. The amount of information stored in DNA is staggering.
+                </p>
+                <p>
+                    Just as this textbook contains meaningful information arranged by an intelligent author, DNA contains biological information that could only come from an Intelligent Source.
+                </p>
+            </div>
+
+            <div class="faith-box">
+                <div class="faith-box-title">Theological Reflection</div>
+                <p>
+                    When we consider that every cell in our body contains a complete copy of our genetic code—approximately 3 billion base pairs of information—we glimpse God's omniscience. He knows every detail of our physical being because He designed and created it.
+                </p>
+                <p class="scripture">
+                    "I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well." - Psalm 139:14
+                </p>
+            </div>
+
+            <h2 class="section-title">Protein Synthesis: From Information to Function</h2>
+
+            <div class="text-content">
+                <p>
+                    The process of protein synthesis demonstrates the sophisticated machinery within cells. DNA code is copied into messenger RNA (mRNA), which travels to ribosomes where proteins are assembled with precision timing and accuracy.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page-container">
+        <div class="page">
+            <h2 class="subtitle">Cellular Energy: The Power of Life</h2>
+
+            <div class="text-content">
+                <p>
+                    Life requires energy, and cells have elegant systems for capturing, converting, and using energy. In plant cells, chloroplasts capture light energy from the sun and convert it into chemical energy through photosynthesis.
+                </p>
+                <p>
+                    Animal cells and plant cells both use mitochondria to break down glucose through cellular respiration, releasing stored energy and producing ATP (adenosine triphosphate), the universal energy currency of cells.
+                </p>
+            </div>
+
+            <h2 class="section-title">The ATP Synthase Motor</h2>
+
+            <div class="faith-box">
+                <div class="faith-box-title">Design Evidence</div>
+                <p>
+                    One of the most fascinating molecular machines in the cell is ATP synthase, which produces ATP in the mitochondria. This enzyme literally spins like a rotary motor at about 9,000 revolutions per minute! It contains a rotor, stator, and drive shaft, much like human-designed motors.
+                </p>
+            </div>
+
+            <h2 class="section-title">Cell Communication and Cooperation</h2>
+
+            <div class="text-content">
+                <p>
+                    Cells don't exist in isolation. They communicate with each other through chemical signals, responding to their environment and coordinating their activities. This cellular communication allows multicellular organisms to function as unified wholes.
+                </p>
+            </div>
+
+            <div class="faith-box">
+                <div class="faith-box-title">Spiritual Application</div>
+                <p>
+                    Just as cells in your body must work together for your health, Christians are called to function as one body in Christ. The way cells communicate and cooperate mirrors how believers should work together for God's kingdom.
+                </p>
+                <p class="scripture">
+                    "Just as a body, though one, has many parts, but all its many parts form one body, so it is with Christ." - 1 Corinthians 12:12
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 5 -->
+    <div class="page-container">
+        <div class="page">
+            <h2 class="subtitle">Chapter Review and Reflection</h2>
+
+            <h2 class="section-title">Summary of Key Concepts</h2>
+
+            <div class="text-content">
+                <p>
+                    In this chapter, we've explored the fundamental unit of life—the cell. We've seen how cells demonstrate irreducible complexity, containing numerous interdependent parts that must all be present and functional for the cell to survive.
+                </p>
+                <p>
+                    The cell is not a "simple blob of protoplasm" as early scientists imagined, but rather a microscopic city of incredible complexity. As technology allows us to peer deeper into cellular structures and processes, we consistently find more sophistication and evidence of intentional design.
+                </p>
+            </div>
+
+            <h2 class="section-title">Study Questions</h2>
+
+            <ol>
+                <li>Describe the main differences between prokaryotic and eukaryotic cells. What might these differences reveal about God's creative variety?</li>
+                <li>Explain why the cell membrane is described as "selectively permeable." How does this feature demonstrate purposeful design?</li>
+                <li>What is DNA, and why does its information-carrying capacity point to an intelligent source?</li>
+                <li>Describe the process of protein synthesis from DNA to functional protein. Why is this considered evidence of design?</li>
+                <li>How do mitochondria and chloroplasts work together in the ecosystem to sustain life?</li>
+                <li>Reflect on Psalm 139:14. How does your study of cells enhance your appreciation for being "fearfully and wonderfully made"?</li>
+            </ol>
+
+            <h2 class="section-title">Moving Forward</h2>
+
+            <div class="text-content">
+                <p>
+                    As we continue our study of biology from a biblical perspective, we'll build on this foundation of cellular knowledge. Remember that as you study biology, you're not just learning facts about the natural world—you're studying God's handiwork.
+                </p>
+            </div>
+
+            <div class="faith-box">
+                <div class="faith-box-title">Prayer of Thanksgiving</div>
+                <p>
+                    "Heavenly Father, we thank You for revealing Your glory through the study of Your creation. Thank You for the complexity and beauty we find in every cell. Help us to always see Your hand in the natural world and to use our knowledge to glorify You. In Jesus' name, Amen."
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #97c1a9; color: #666; font-size: 14px;">
+                <p><em>Faithful Way Homeschool Solutions</em></p>
+                <p>Faith-Based Biology Textbook | Chapter 3: Cellular Biology</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function exportToPDF() {
+            const btn = document.getElementById('exportBtn');
+            btn.disabled = true;
+            btn.textContent = '⏳ Generating PDF... (this may take a minute)';
+            
+            try {
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'in',
+                    format: 'letter'
+                });
+
+                const pages = document.querySelectorAll('.page');
+                
+                for (let i = 0; i < pages.length; i++) {
+                    btn.textContent = `⏳ Processing page ${i + 1} of ${pages.length}...`;
+                    
+                    const canvas = await html2canvas(pages[i], {
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: true,
+                        backgroundColor: '#ffffff',
+                        logging: false,
+                        width: pages[i].offsetWidth,
+                        height: pages[i].offsetHeight
+                    });
+                    
+                    const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                    const imgWidth = 8.5;
+                    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                    
+                    if (i > 0) {
+                        pdf.addPage();
+                    }
+                    
+                    pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+                }
+                
+                pdf.save('Biology_Textbook_The_Cell_Complete.pdf');
+                
+                btn.textContent = '✓ PDF Generated Successfully!';
+                setTimeout(() => {
+                    btn.textContent = '📄 Export Complete PDF';
+                    btn.disabled = false;
+                }, 3000);
+                
+            } catch (error) {
+                alert('Error generating PDF: ' + error.message);
+                btn.textContent = '📄 Export Complete PDF';
+                btn.disabled = false;
+            }
+        }
+
+        // Keyboard shortcut
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                exportToPDF();
+            }
+        });
+    </script>
+</body>
+</html>

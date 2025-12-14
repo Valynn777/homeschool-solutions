@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Lesson Builder</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="app">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h1>📚 Lesson Builder</h1>
+        <p>Create interactive lessons</p>
+      </div>
+      <div class="pages-list" id="pagesList"></div>
+      <button class="add-page-btn" id="addPageBtn">+ Add New Page</button>
+    </div>
+
+    <div class="main-content">
+      <div class="toolbar">
+        <button class="element-btn" data-type="heading">🔤 Heading</button>
+        <button class="element-btn" data-type="text">📝 Text</button>
+        <button class="element-btn" data-type="image">🖼️ Image</button>
+        <button class="element-btn" data-type="list">📋 List</button>
+        <button class="element-btn" data-type="mcq">✅ MCQ</button>
+        <button class="element-btn" data-type="fib">✏️ Fill Blank</button>
+        <button class="element-btn" data-type="namefield">👤 Name Field</button>
+        <button class="element-btn" data-type="flipcard">🔄 Flip Card</button>
+        <button class="element-btn" data-type="popout">💬 Pop-out</button>
+        <button class="element-btn" data-type="highlight">✨ Highlight</button>
+
+        <div style="flex:1"></div>
+
+        <div class="color-group">
+          <label>Primary:</label>
+          <input type="color" id="primaryColor" value="#667eea">
+        </div>
+        <div class="color-group">
+          <label>Secondary:</label>
+          <input type="color" id="secondaryColor" value="#764ba2">
+        </div>
+
+        <select id="fontSelector" title="Font">
+          <option value="system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" selected>System Sans</option>
+          <option value="'Comic Sans MS', 'Comic Sans', cursive">Comic Sans</option>
+          <option value="Georgia, 'Times New Roman', serif">Serif</option>
+          <option value="'Courier New', Courier, monospace">Monospace</option>
+          <option value="Verdana, Geneva, Tahoma, sans-serif">Verdana</option>
+        </select>
+
+        <button class="btn" id="resetThemeBtn" title="Reset theme to defaults">♻️ Reset Theme</button>
+
+        <button class="save-btn" id="saveTemplateBtn">💾 Save</button>
+        <button class="load-btn" id="loadTemplateBtn">📂 Load</button>
+        <button class="export-btn" id="exportLessonBtn">🚀 Export Lesson</button>
+        <button class="download-btn" id="downloadProjectBtn">⬇️ Download</button>
+      </div>
+
+      <div class="canvas-area">
+        <div class="canvas">
+          <div class="page-title-bar">
+            <input type="text" id="pageTitleInput" placeholder="Enter page title...">
+          </div>
+          <div class="canvas-content" id="canvasContent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Element Editor Modal -->
+  <div class="modal" id="elementModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Add Element</h2>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="cancelElementBtn">Cancel</button>
+        <button class="btn btn-primary" id="saveElementBtn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Message Modal -->
+  <div class="modal" id="messageModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalMessageTitle">Message</h2>
+      </div>
+      <div class="modal-body">
+        <p id="modalMessage"></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="closeModalBtn">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- hidden file input for loading a project -->
+  <input type="file" id="fileInput" accept=".json" hidden>
+
+  <div class="notification" id="notification"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

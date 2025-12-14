@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Choose your ideal custom curriculum - Interactive questionnaire for Faithful Way Homeschool Solutions">
+    <title>Curriculum Questionnaire - Faithful Way Homeschool Solutions</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .questionnaire-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .progress-container {
+            background: rgba(196, 153, 179, 0.2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .progress-bar-wrapper {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            height: 30px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, #a67d99, #c499b3);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: var(--color-text);
+            font-size: 1rem;
+        }
+
+        .section-card {
+            background: var(--color-bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-card h2 {
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .section-card .subtitle {
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .option-card {
+            background: rgba(196, 153, 179, 0.1);
+            border: 2px solid var(--color-border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .option-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(166, 125, 153, 0.3);
+        }
+
+        .option-card.selected {
+            border-color: var(--color-accent);
+            background: rgba(196, 153, 179, 0.25);
+            box-shadow: 0 0 20px rgba(166, 125, 153, 0.4);
+        }
+
+        .option-card input[type="radio"],
+        .option-card input[type="checkbox"] {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: var(--color-accent);
+        }
+
+        .option-card h4 {
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+            padding-right: 3rem;
+            font-size: 1.2rem;
+        }
+
+        .option-card p {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .option-card .price-tag {
+            color: var(--color-accent-bright);
+            font-weight: bold;
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .option-card .details-list {
+            margin-top: 1rem;
+            padding-left: 1.2rem;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+
+        .option-card .details-list li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Lesson Template Preview Cards */
+        .template-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .template-preview-card {
+            background: rgba(196, 153, 179, 0.1);
+            border: 3px solid var(--color-border);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .template-preview-card:hover {
+            border-color: var(--color-accent);
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(166, 125, 153, 0.4);
+        }
+
+        .template-preview-card.selected {
+            border-color: var(--color-accent-bright);
+            box-shadow: 0 0 25px rgba(196, 153, 179, 0.6);
+        }
+
+        .template-preview-image {
+            width: 100%;
+            height: 350px;
+            background-size: cover;
+            background-position: top center;
+            position: relative;
+        }
+
+        .template-preview-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+
+        .template-preview-info {
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .template-preview-info h4 {
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .template-preview-info p {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .template-preview-card input[type="radio"] {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            accent-color: var(--color-accent);
+            z-index: 10;
+        }
+
+        .template-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--color-accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .view-example-btn {
+            display: inline-block;
+            margin-top: 0.8rem;
+            padding: 0.5rem 1rem;
+            background: var(--color-accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .view-example-btn:hover {
+            background: var(--color-accent-bright);
+            transform: scale(1.05);
+        }
+
+        /* Interactive Level Comparison */
+        .interactivity-comparison {
+            background: rgba(196, 153, 179, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .interactivity-comparison table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .interactivity-comparison th,
+        .interactivity-comparison td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .interactivity-comparison th {
+            color: var(--color-accent);
+            font-weight: bold;
+        }
+
+        .interactivity-comparison td {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: linear-gradient(135deg, rgba(166, 125, 153, 0.2), rgba(196, 153, 179, 0.2));
+            border: 2px solid var(--color-accent);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .summary-section h3 {
+            color: var(--color-accent-bright);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .summary-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+        }
+
+        .summary-item strong {
+            color: var(--color-accent);
+        }
+
+        .submit-section {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 2rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #a67d99, #c499b3);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(166, 125, 153, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(196, 153, 179, 0.6);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .form-status {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .form-status.success {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgb(34, 197, 94);
+            color: rgb(34, 197, 94);
+            display: block;
+        }
+
+        .form-status.error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgb(239, 68, 68);
+            color: rgb(239, 68, 68);
+            display: block;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .option-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .template-preview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .template-preview-image {
+                height: 250px;
+            }
+
+            .progress-container {
+                position: relative;
+                top: 0;
+            }
+        }
+
+        /* Screenshot preview styles */
+        .screenshot-preview {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .template-preview-card:hover .screenshot-preview {
+            transform: scale(1.02);
+        }
+
+        .info-box {
+            background: rgba(196, 153, 179, 0.15);
+            border-left: 4px solid var(--color-accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .info-box p {
+            color: var(--color-text);
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="images/logo.png" alt="Faithful Way Homeschool Solutions Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="tools/tools.html">Tools</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="glow">Curriculum Choice Questionnaire</h1>
+                <p class="subtitle">Design your perfect Torah-observant, faith-aligned curriculum</p>
+            </div>
+        </section>
+
+        <div class="questionnaire-container">
+            <!-- Progress Tracker -->
+            <div class="progress-container">
+                <div class="progress-bar-wrapper">
+                    <div class="progress-bar-fill" id="progressBar">0%</div>
+                </div>
+                <div class="progress-text" id="progressText">Section 1 of 8: Basic Information</div>
+            </div>
+
+            <form id="curriculumForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <!-- Section 1: Basic Information -->
+                <div class="section-card" data-section="1">
+                    <h2>📋 Basic Information</h2>
+                    <p class="subtitle">Tell us about your homeschool needs</p>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parentName">Your Name *</label>
+                            <input type="text" id="parentName" name="parentName" required placeholder="Full Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="your@email.com">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gradeLevel">Grade Level(s) Needed *</label>
+                        <select id="gradeLevel" name="gradeLevel" required onchange="updateProgress()">
+                            <option value="">Select grade level...</option>
+                            <option value="K-2">Kindergarten - 2nd Grade</option>
+                            <option value="3-5">3rd - 5th Grade</option>
+                            <option value="6-8">6th - 8th Grade</option>
+                            <option value="9-12">9th - 12th Grade (High School)</option>
+                            <option value="multi">Multiple Grade Levels</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Primary Subject(s) of Interest * <span style="font-size: 0.85rem; color: var(--color-text-muted);">(Select all that apply)</span></label>
+                        <div class="option-grid">
+                            <div class="option-card" onclick="toggleSelection(this, 'subject-science')">
+                                <input type="checkbox" id="subject-science" name="subjects" value="Science">
+                                <h4>Science</h4>
+                                <p>Young-earth creation perspective, God's design in nature</p>
+                            </div>
+                            <div class="option-card" onclick="toggleSelection(this, 'subject-math')">
+                                <input type="checkbox" id="subject-math" name="subjects" value="Math">
+                                <h4>Mathematics</h4>
+                                <p>Biblical applications, measurements, Torah-based contexts</p>
+                            </div>
+                            <div class="option-card" onclick="toggleSelection(this, 'subject-history')">
+                                <input type="checkbox" id="subject-history" name="subjects" value="History">
+                                <h4>History</h4>
+                                <p>Biblical timeline integration, Torah-aligned chronology</p>
+                            </div>
+                            <div class="option-card" onclick="toggleSelection(this, 'subject-bible')">
+                                <input type="checkbox" id="subject-bible" name="subjects" value="Bible">
+                                <h4>Bible/Torah Studies</h4>
+                                <p>In-depth Scripture study, Hebrew roots perspective</p>
+                            </div>
+                            <div class="option-card" onclick="toggleSelection(this, 'subject-language')">
+                                <input type="checkbox" id="subject-language" name="subjects" value="Language Arts">
+                                <h4>Language Arts</h4>
+                                <p>Reading, writing, grammar with faith-based content</p>
+                            </div>
+                            <div class="option-card" onclick="toggleSelection(this, 'subject-hebrew')">
+                                <input type="checkbox" id="subject-hebrew" name="subjects" value="Hebrew">
+                                <h4>Hebrew Language</h4>
+                                <p>Biblical Hebrew, Aleph-Bet, Torah reading</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Curriculum Type -->
+                <div class="section-card" data-section="2">
+                    <h2>📚 Curriculum Type</h2>
+                    <p class="subtitle">What format best fits your teaching style?</p>
+
+                    <div class="info-box">
+                        <p><strong>💡 Tip:</strong> Start small with a unit study or single subject, then expand. Full textbooks take 6-12 months to create.</p>
+                    </div>
+
+                    <div class="option-grid">
+                        <div class="option-card" onclick="selectRadio(this, 'curriculum-single-lesson')">
+                            <input type="radio" id="curriculum-single-lesson" name="curriculumType" value="Single Lesson" onchange="updateProgress()">
+                            <h4>Single Lesson</h4>
+                            <p>One focused topic (30-60 min student time)</p>
+                            <div class="price-tag">$8 - $15</div>
+                            <ul class="details-list">
+                                <li>15-25 pages</li>
+                                <li>Quick teaching moments</li>
+                                <li>3-6 hours production time</li>
+                            </ul>
+                        </div>
+
+                        <div class="option-card" onclick="selectRadio(this, 'curriculum-mini-unit')">
+                            <input type="radio" id="curriculum-mini-unit" name="curriculumType" value="Mini Unit" onchange="updateProgress()">
+                            <h4>Mini Unit (3-5 Lessons)</h4>
+                            <p>1-2 weeks of focused instruction</p>
+                            <div class="price-tag">$25 - $45</div>
+                            <ul class="details-list">
+                                <li>30-50 pages total</li>
+                                <li>Skill development focus</li>
+                                <li>15-25 hours production</li>
+                            </ul>
+                        </div>
+
+                        <div class="option-card" onclick="selectRadio(this, 'curriculum-unit-study')">
+                            <input type="radio" id="curriculum-unit-study" name="curriculumType" value="Unit Study" onchange="updateProgress()">
+                            <h4>Unit Study</h4>
+                            <p>Deep dive into one topic (2-6 weeks)</p>
+                            <div class="price-tag">$65 - $150</div>
+                            <ul class="details-list">
+                                <li>75-150 pages</li>
+                                <li>Comprehensive exploration</li>
+                                <li>Examples: Volcanoes (young-earth), Ancient Israel, Water Cycle</li>
+                            </ul>
+                        </div>
+
+                        <div class="option-card" onclick="selectRadio(this, 'curriculum-single-subject')">
+                            <input type="radio" id="curriculum-single-subject" name="curriculumType" value="Single-Subject Textbook" onchange="updateProgress()">
+                            <h4>Single-Subject Textbook</h4>
+                            <p>Full course coverage (semester or year)</p>
+                            <div class="price-tag">$120 - $300</div>
+                            <ul class="details-list">
+                                <li>180-400 pages</li>
+                                <li>30-50 chapters</li>
+                                <li>Complete grade-level coverage</li>
+                                <li>6-12 months production</li>
+                            </ul>
+                        </div>
+
+                        <div class="option-card" onclick="selectRadio(this, 'curriculum-multi-subject')">
+                            <input type="radio" id="curriculum-multi-subject" name="curriculumType" value="Multi-Subject Textbook" onchange="updateProgress()">
+                            <h4>Multi-Subject Textbook</h4>
+                            <p>2-3 integrated subjects (semester/year)</p>
+                            <div class="price-tag">$220 - $500</div>
+                            <ul class="details-list">
+                                <li>250-600 pages</li>
+                                <li>Math + Science, History + Bible, etc.</li>
+                                <li>Thematic connections</li>
+                            </ul>
+                        </div>
+
+                        <div class="option-card" onclick="selectRadio(this, 'curriculum-thematic')">
+                            <input type="radio" id="curriculum-thematic" name="curriculumType" value="Thematic Integrated Unit" onchange="updateProgress()">
+                            <h4>Thematic Integrated Unit</h4>
+                            <p>Multiple subjects, one theme (4-12 weeks)</p>
+                            <div class="price-tag">$90 - $220</div>
+                            <ul class="details-list">
+                                <li>100-300 pages</li>
+                                <li>3-6 subjects woven together</li>
+                                <li>Example: "Creation Week Science Study"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Lesson Template Style -->
+                <div class="section-card" data-section="3">
+                    <h2>🎨 Lesson Template Style</h2>
+                    <p class="subtitle">Choose your preferred visual layout from our portfolio examples</p>
+
+                    <div class="info-box">
+                        <p><strong>✨ Preview Examples:</strong> Click on each card to view the actual lesson from our portfolio. Select your favorite style!</p>
+                    </div>
+
+                    <div class="template-preview-grid">
+                        <!-- Template 1: Water Cycle (Classic Educational) -->
+                        <div class="template-preview-card" onclick="selectRadio(this, 'template-classic')">
+                            <input type="radio" id="template-classic" name="templateStyle" value="Classic Educational" onchange="updateProgress()">
+                            <div class="template-badge">Science</div>
+                            <div class="template-preview-image" style="background: linear-gradient(180deg, #87ceeb 0%, #f5f5dc 100%);">
+                                <div style="padding: 20px; text-align: center; padding-top: 50px;">
+                                    <div style="background: #f5f5dc; border-radius: 20px; padding: 20px; max-width: 90%; margin: 0 auto;">
+                                        <div style="font-size: 11px; color: #666; text-align: left; margin-bottom: 8px;">Science | Earth & Environment</div>
+                                        <h3 style="font-size: 32px; color: #2c3e50; margin-bottom: 15px; font-family: 'Trebuchet MS', Arial;">The Water Cycle</h3>
+                                        <div style="font-size: 11px; color: #555; line-height: 1.6; text-align: left;">
+                                            Water is constantly moving on, above, and below the surface of the Earth...
+                                        </div>
+                                        <div style="background: #4682b4; color: white; padding: 12px; border-radius: 8px; margin-top: 15px; text-align: left;">
+                                            <div style="font-size: 13px; font-weight: bold; margin-bottom: 8px;">True or False</div>
+                                            <div style="font-size: 9px; border-bottom: 1px solid rgba(255,255,255,0.3); padding: 4px 0;">1. Evaporation is when water vapor turns into liquid water. &nbsp;&nbsp;&nbsp; T / F</div>
+                                            <div style="font-size: 9px; padding: 4px 0;">2. The sun's heat is essential for the water cycle to work. &nbsp;&nbsp;&nbsp; T / F</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-preview-info">
+                                <h4>Classic Educational Style</h4>
+                                <p>Clean layout with subject headers, large titles, reading passages, and activity boxes. Perfect for traditional science and history lessons.</p>
+                                <a href="Portfolio/Lesson_1_Water_Cycle.html" target="_blank" class="view-example-btn">View Full Example →</a>
+                            </div>
+                        </div>
+
+                        <!-- Template 2: Writing Tutor (Interactive & Colorful) -->
+                        <div class="template-preview-card" onclick="selectRadio(this, 'template-interactive')">
+                            <input type="radio" id="template-interactive" name="templateStyle" value="Interactive Gamified" onchange="updateProgress()">
+                            <div class="template-badge">Interactive</div>
+                            <div class="template-preview-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <div style="padding: 20px; color: white; padding-top: 40px;">
+                                    <div style="background: rgba(255,255,255,0.3); border-radius: 20px; padding: 8px 15px; margin-bottom: 10px; display: inline-block;">
+                                        <div style="font-size: 10px; opacity: 0.9; margin-bottom: 3px;">Step 1 of 6: Get Started!</div>
+                                        <div style="background: rgba(255,255,255,0.3); border-radius: 10px; height: 12px; overflow: hidden;">
+                                            <div style="background: linear-gradient(90deg, #34d399, #10b981); width: 50%; height: 100%;"></div>
+                                        </div>
+                                    </div>
+                                    <div style="background: white; border-radius: 15px; padding: 20px; color: #333; box-shadow: 0 8px 20px rgba(0,0,0,0.2); text-align: left;">
+                                        <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 15px;">
+                                            <div style="width: 30px; height: 30px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px;">🎓</div>
+                                            <div style="flex: 1; background: white; padding: 12px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-size: 11px; line-height: 1.5;">
+                                                <strong style="color: #667eea;">Hey there! Welcome to Writing Tutor!</strong><br>
+                                                I'm super excited to help you write something awesome!
+                                            </div>
+                                        </div>
+                                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                            <button style="padding: 8px 14px; border: 2px solid #667eea; background: white; color: #667eea; border-radius: 20px; font-size: 10px; font-weight: bold;">Creative Story</button>
+                                            <button style="padding: 8px 14px; border: 2px solid #667eea; background: white; color: #667eea; border-radius: 20px; font-size: 10px; font-weight: bold;">Essay</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-preview-info">
+                                <h4>Interactive Gamified Style</h4>
+                                <p>Vibrant colors, progress tracking, achievements, and step-by-step guidance. Ideal for engaging students with interactive lessons and writing activities.</p>
+                                <a href="Portfolio/writing_tutor.html" target="_blank" class="view-example-btn">View Full Example →</a>
+                            </div>
+                        </div>
+
+                        <!-- Template 3: Solomon Bible Study (Narrative Style) -->
+                        <div class="template-preview-card" onclick="selectRadio(this, 'template-narrative')">
+                            <input type="radio" id="template-narrative" name="templateStyle" value="Narrative Bible Study" onchange="updateProgress()">
+                            <div class="template-badge">Bible Study</div>
+                            <div class="template-preview-image" style="background: linear-gradient(180deg, #8b7355 0%, #f5e6d3 100%);">
+                                <div style="padding: 20px; padding-top: 50px;">
+                                    <div style="background: rgba(255,255,255,0.95); border-radius: 15px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+                                        <div style="font-size: 10px; color: #8b7355; font-weight: bold; margin-bottom: 8px; text-transform: uppercase;">Bible Study | Kings of Israel</div>
+                                        <h3 style="font-size: 24px; color: #2c1810; margin-bottom: 12px; font-family: Georgia, serif;">Solomon: Wisdom and Idolatry</h3>
+                                        <div style="font-size: 10px; color: #666; line-height: 1.7; text-align: left; margin-bottom: 12px;">
+                                            King Solomon began his reign with unparalleled wisdom. When God appeared to him in a dream and asked what he wanted, Solomon chose wisdom over wealth or power...
+                                        </div>
+                                        <div style="background: #fff3cd; border-left: 4px solid #f0ad4e; padding: 10px; border-radius: 6px;">
+                                            <div style="font-size: 10px; color: #856404; font-weight: bold; margin-bottom: 5px;">📖 Scripture Focus</div>
+                                            <div style="font-size: 9px; color: #856404;">1 Kings 3:5-14, 1 Kings 11:1-13</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-preview-info">
+                                <h4>Narrative Bible Study Style</h4>
+                                <p>Warm, inviting design with story-focused layout, Scripture references, and reflection prompts. Perfect for Bible studies and historical narratives.</p>
+                                <a href="Portfolio/Lesson_19_Solomon_Wisdom_and_Idolatry.html" target="_blank" class="view-example-btn">View Full Example →</a>
+                            </div>
+                        </div>
+
+                        <!-- Template 4: Simple & Minimalist -->
+                        <div class="template-preview-card" onclick="selectRadio(this, 'template-minimalist')">
+                            <input type="radio" id="template-minimalist" name="templateStyle" value="Simple Minimalist" onchange="updateProgress()">
+                            <div class="template-badge">All Subjects</div>
+                            <div class="template-preview-image" style="background: #ffffff; border: 1px solid #e0e0e0;">
+                                <div style="padding: 25px; padding-top: 60px;">
+                                    <div style="text-align: left;">
+                                        <h3 style="font-size: 28px; color: #1a1a1a; margin-bottom: 10px; font-weight: 600; border-bottom: 3px solid #a67d99; padding-bottom: 8px; display: inline-block;">Lesson Title</h3>
+                                        <p style="font-size: 11px; color: #666; line-height: 1.8; margin-top: 15px; margin-bottom: 12px;">
+                                            Clean, distraction-free layout focusing on content clarity. Simple black text on white background with minimal design elements.
+                                        </p>
+                                        <div style="background: #f8f8f8; padding: 12px; border-left: 3px solid #a67d99; margin-top: 15px;">
+                                            <div style="font-size: 10px; font-weight: bold; color: #1a1a1a; margin-bottom: 6px;">Key Concept</div>
+                                            <div style="font-size: 10px; color: #555; line-height: 1.6;">
+                                                Important information highlighted in simple boxes with minimal styling.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-preview-info">
+                                <h4>Simple Minimalist Style</h4>
+                                <p>Clean, distraction-free design with focus on readability. Perfect for students who learn best with minimal visual clutter. Works for all subjects.</p>
+                                <a href="#" onclick="alert('This is a concept template. We can create this style for any subject!'); return false;" class="view-example-btn">Learn More →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box" style="margin-top: 1.5rem;">
+                        <p><strong>🎨 Custom Styles:</strong> Don't see exactly what you want? We can customize colors, fonts, and layouts to match your preferences!</p>
+                    </div>
+                </div>
+
+                <!-- Section 4: Interactivity Level -->
+                <div class="section-card" data-section="4">
+                    <h2>⚡ Interactivity Level</h2>
+                    <p class="subtitle">How interactive do you want your curriculum?</p>
+
+                    <div class="interactivity-comparison">
+                        <h4 style="color: var(--color-accent); margin-bottom: 1rem;">Comparison Guide</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Level</th>
+                                    <th>Features</th>
+                                    <th>Best For</th>
+                                    <th>Price Impact</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Level 1: Static PDF</strong></td>
+                                    <td>Printable worksheets, text, images</td>
+                                    <td>Traditional learners, printing preferred</td>
+                                    <td>Base price</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Level 2: Basic Interactive</strong></td>
+                                    <td>Auto-graded quizzes, progress bar</td>
+                                    <td>Digital learners, instant feedback</td>
+                                    <td>+$10-20</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Level 3: Enhanced</strong></td>
+                                    <td>Drag-drop, flashcards, badges</td>
+                                    <td>Engaging activities, motivation</td>
+                                    <td>+$25-40</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Level 4: Premium</strong></td>
+                                    <td>Simulations, videos, full gamification</td>
+                                    <td>Highly interactive, visual learners</td>
+                                    <td>+$50-100</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="option-grid" style="margin-top: 2rem;">
+                        <div class="option-card" onclick="selectRadio(this, 'interactivity-static')">
+                            <input type="radio" id="interactivity-static" name="interactivityLevel" value="Level 1: Static PDF" onchange="updateProgress()">
+                            <h4>Level 1: Static PDF</h4>
+                            <p>Printable, text-based with images and worksheets</p>
+                            <ul class="details-list">
+                                <li>Print-friendly format</li>
+                                <li>Traditional workbook style</li>
+                                <li>No technology required</li>
+                            </ul>
+                        </div>
+
+                        <div class="option-card" onclick="selectRadio(this, 'interactivity-basic')">
+                            <input type="radio" id="interactivity-basic" name="interactivityLevel" value="Level 2: Basic Interactive" onchange="updateProgress()">
+                            <h4>Level 2: Basic Interactive</h4>
+                            <p>Auto-graded quizzes and progress tracking</p>
+                            <ul class="details-list">
+                                <li>Instant quiz feedback</li>
+                                <li>Completion tracking</li>
+                                <li>Digital or print options</li>
+                            </ul>
+                        </div>
+
+                        <div class="option-card" onclick="selectRadio(this, 'interactivity-enhanced')">
+                            <input type="radio" id="interactivity-enhanced" name="interactivityLevel" value="Level 3: Enhanced Interactive" onchange="updateProgress()">
+                            <h4>Level 3: Enhanced Interactive</h4>
+                            <p>Drag-and-drop activities, flashcards, achievement badges</p>
+                            <ul class="details-list">
+                                <li>Engaging activities</li>
+                                <li>Gamification elements</li>
+                                <li>Motivation & rewards</li>
+                            </ul>
+                        </div>
+
+                        <div class="option-card" onclick="selectRadio(this, 'interactivity-premium')">
+                            <input type="radio" id="interactivity-premium" name="interactivityLevel" value="Level 4: Premium Interactive" onchange="updateProgress()">
+                            <h4>Level 4: Premium Interactive</h4>
+                            <p>Simulations, videos, full gamification with leaderboards</p>
+                            <ul class="details-list">
+                                <li>3D models (e.g., Tabernacle)</li>
+                                <li>Video explanations</li>
+                                <li>Full game-like experience</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Optional Add-Ons -->
+                <div class="section-card" data-section="5">
+                    <h2>➕ Optional Add-Ons</h2>
+                    <p class="subtitle">Enhance your curriculum with additional resources</p>
+
+                    <div class="form-group">
+                        <label>Select Add-Ons <span style="font-size: 0.85rem; color: var(--color-text-muted);">(Choose any that interest you)</span></label>
+                        <div class="option-grid">
+                            <div class="option-card" onclick="toggleSelection(this, 'addon-worksheets')">
+                                <input type="checkbox" id="addon-worksheets" name="addons" value="Extra Practice Worksheets">
+                                <h4>Extra Practice Worksheets</h4>
+                                <p>10-20 additional printable practice pages</p>
+                                <div class="price-tag">+$5-15</div>
+                            </div>
+
+                            <div class="option-card" onclick="toggleSelection(this, 'addon-quizzes')">
+                                <input type="checkbox" id="addon-quizzes" name="addons" value="Auto-Graded Quizzes">
+                                <h4>Auto-Graded Quiz Pack</h4>
+                                <p>5-10 interactive quizzes with instant feedback</p>
+                                <div class="price-tag">+$10-20</div>
+                            </div>
+
+                            <div class="option-card" onclick="toggleSelection(this, 'addon-flashcards')">
+                                <input type="checkbox" id="addon-flashcards" name="addons" value="Digital Flashcards">
+                                <h4>Digital Flashcards</h4>
+                                <p>20-50 cards for memorization and review</p>
+                                <div class="price-tag">+$5-10</div>
+                            </div>
+
+                            <div class="option-card" onclick="toggleSelection(this, 'addon-answer-keys')">
+                                <input type="checkbox" id="addon-answer-keys" name="addons" value="Answer Keys">
+                                <h4>Complete Answer Keys</h4>
+                                <p>Full solutions manual for all exercises</p>
+                                <div class="price-tag">+$8-15</div>
+                            </div>
+
+                            <div class="option-card" onclick="toggleSelection(this, 'addon-progress-tracking')">
+                                <input type="checkbox" id="addon-progress-tracking" name="addons" value="Progress Tracking Dashboard">
+                                <h4>Progress Tracking Dashboard</h4>
+                                <p>Student dashboard showing completion %</p>
+                                <div class="price-tag">+$15-30</div>
+                            </div>
+
+                            <div class="option-card" onclick="toggleSelection(this, 'addon-manipulatives')">
+                                <input type="checkbox" id="addon-manipulatives" name="addons" value="Printable Manipulatives">
+                                <h4>Printable Manipulatives</h4>
+                                <p>Cut-out models, timeline pieces, hands-on activities</p>
+                                <div class="price-tag">+$8-18</div>
+                            </div>
+
+                            <div class="option-card" onclick="toggleSelection(this, 'addon-simulations')">
+                                <input type="checkbox" id="addon-simulations" name="addons" value="Interactive Simulations">
+                                <h4>Interactive Simulations</h4>
+                                <p>2-5 HTML5 activities (e.g., Noah's Ark builder, Tabernacle tour)</p>
+                                <div class="price-tag">+$20-50</div>
+                            </div>
+
+                            <div class="option-card" onclick="toggleSelection(this, 'addon-videos')">
+                                <input type="checkbox" id="addon-videos" name="addons" value="Video Lessons">
+                                <h4>Video Lessons</h4>
+                                <p>5-15 minute explanation videos for key concepts</p>
+                                <div class="price-tag">+$30-80</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 6: Budget & Pricing Tier -->
+                <div class="section-card" data-section="6">
+                    <h2>💰 Budget & Pricing Tier</h2>
+                    <p class="subtitle">Help us understand your budget preferences</p>
+
+                    <div class="option-grid">
+                        <div class="option-card" onclick="selectRadio(this, 'budget-economy')">
+                            <input type="radio" id="budget-economy" name="budgetTier" value="Economy Tier" onchange="updateProgress()">
+                            <h4>Economy Tier</h4>
+                            <p>Essential content, minimal add-ons</p>
+                            <ul class="details-list">
+                                <li>Core curriculum only</li>
+                                <li>Basic practice included</li>
+                                <li>5-10 printable worksheets</li>
+                                <li>Great starting point</li>
+                            </ul>
+                        </div>
+
+                        <div class="option-card" onclick="selectRadio(this, 'budget-standard')">
+                            <input type="radio" id="budget-standard" name="budgetTier" value="Standard Tier" onchange="updateProgress()">
+                            <h4>Standard Tier</h4>
+                            <p>Balanced features and value</p>
+                            <ul class="details-list">
+                                <li>Core content + extras</li>
+                                <li>15-20 practice worksheets</li>
+                                <li>Auto-graded quizzes (5)</li>
+                                <li>Answer keys included</li>
+                                <li>Basic progress tracking</li>
+                            </ul>
+                        </div>
+
+                        <div class="option-card" onclick="selectRadio(this, 'budget-premium')">
+                            <input type="radio" id="budget-premium" name="budgetTier" value="Premium Tier" onchange="updateProgress()">
+                            <h4>Premium Tier</h4>
+                            <p>Fully interactive experience</p>
+                            <ul class="details-list">
+                                <li>All practice materials</li>
+                                <li>Interactive simulations (3-5)</li>
+                                <li>Gamification with badges</li>
+                                <li>Video lessons (optional)</li>
+                                <li>Printable manipulatives</li>
+                                <li>Full support package</li>
+                            </ul>
+                        </div>
+
+                        <div class="option-card" onclick="selectRadio(this, 'budget-custom')">
+                            <input type="radio" id="budget-custom" name="budgetTier" value="Custom - Let's Discuss" onchange="updateProgress()">
+                            <h4>Custom Budget</h4>
+                            <p>Let's discuss what works for you</p>
+                            <ul class="details-list">
+                                <li>Flexible payment plans</li>
+                                <li>Mix and match features</li>
+                                <li>Sliding scale available</li>
+                                <li>Work within your budget</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box" style="margin-top: 1.5rem;">
+                        <p><strong>🤝 Sliding Scale Pricing:</strong> We offer income-based pricing to make faith-aligned education accessible to all families. <a href="sliding-scale.html" style="color: var(--color-accent); text-decoration: underline;">Learn more →</a></p>
+                    </div>
+                </div>
+
+                <!-- Section 7: Faith & Content Priorities -->
+                <div class="section-card" data-section="7">
+                    <h2>✝️ Faith & Content Priorities</h2>
+                    <p class="subtitle">Ensure your curriculum aligns with your values</p>
+
+                    <div class="info-box">
+                        <p><strong>Our Commitment:</strong> All curriculum is Torah-observant with young-earth creation perspective. This section helps us understand your specific priorities.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Faith Priorities <span style="font-size: 0.85rem; color: var(--color-text-muted);">(Select all that apply)</span></label>
+                        <div class="option-grid">
+                            <div class="option-card" onclick="toggleSelection(this, 'faith-young-earth')">
+                                <input type="checkbox" id="faith-young-earth" name="faithPriorities" value="Young-Earth Creation" checked>
+                                <h4>Young-Earth Creation</h4>
+                                <p>6,000-year timeline, Biblical flood geology</p>
+                            </div>
+
+                            <div class="option-card" onclick="toggleSelection(this, 'faith-torah')">
+                                <input type="checkbox" id="faith-torah" name="faithPriorities" value="Torah Observance" checked>
+                                <h4>Torah Observance</h4>
+                                <p>Biblical feasts, Hebrew calendar, Levitical laws</p>
+                            </div>
+
+                            <div class="option-card" onclick="toggleSelection(this, 'faith-biblical-timeline')">
+                                <input type="checkbox" id="faith-biblical-timeline" name="faithPriorities" value="Biblical Timeline Integration">
+                                <h4>Biblical Timeline Integration</h4>
+                                <p>History synchronized with Scripture</p>
+                            </div>
+
+                            <div class="option-card" onclick="toggleSelection(this, 'faith-hebrew-roots')">
+                                <input type="checkbox" id="faith-hebrew-roots" name="faithPriorities" value="Hebrew Roots Perspective">
+                                <h4>Hebrew Roots Perspective</h4>
+                                <p>Messianic Jewish approach to Scripture</p>
+                            </div>
+
+                            <div class="option-card" onclick="toggleSelection(this, 'faith-scripture-based')">
+                                <input type="checkbox" id="faith-scripture-based" name="faithPriorities" value="Scripture-Based Examples">
+                                <h4>Scripture-Based Examples</h4>
+                                <p>Math, language, and applications from Bible</p>
+                            </div>
+
+                            <div class="option-card" onclick="toggleSelection(this, 'faith-secular-free')">
+                                <input type="checkbox" id="faith-secular-free" name="faithPriorities" value="Secular-Free Content">
+                                <h4>Secular-Free Content</h4>
+                                <p>No evolutionary, humanistic, or secular worldview</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="faithNotes">Additional Faith-Alignment Notes</label>
+                        <textarea id="faithNotes" name="faithNotes" rows="4" placeholder="Any specific doctrinal preferences, topics to avoid, or faith perspectives you want emphasized?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Section 8: Additional Information & Timeline -->
+                <div class="section-card" data-section="8">
+                    <h2>📅 Timeline & Additional Details</h2>
+                    <p class="subtitle">Help us plan your curriculum creation</p>
+
+                    <div class="form-group">
+                        <label for="timeline">When do you need this curriculum? *</label>
+                        <select id="timeline" name="timeline" required onchange="updateProgress()">
+                            <option value="">Select timeline...</option>
+                            <option value="Immediately">As soon as possible</option>
+                            <option value="1-2 months">Within 1-2 months</option>
+                            <option value="3-4 months">Within 3-4 months</option>
+                            <option value="5-6 months">Within 5-6 months</option>
+                            <option value="6+ months">6+ months (planning ahead)</option>
+                            <option value="Flexible">Flexible - whenever ready</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="learningStyle">Student's Learning Style</label>
+                        <select id="learningStyle" name="learningStyle">
+                            <option value="">Select if known...</option>
+                            <option value="Visual">Visual (learns best by seeing)</option>
+                            <option value="Auditory">Auditory (learns best by hearing)</option>
+                            <option value="Kinesthetic">Kinesthetic (learns best by doing)</option>
+                            <option value="Reading/Writing">Reading/Writing preference</option>
+                            <option value="Mixed">Mixed/Multiple styles</option>
+                            <option value="Not sure">Not sure yet</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="specialNeeds">Special Accommodations or Learning Differences</label>
+                        <textarea id="specialNeeds" name="specialNeeds" rows="3" placeholder="E.g., dyslexia, ADHD, gifted, needs larger fonts, audio support, etc. (Optional - helps us customize for your child)"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="additionalInfo">Any Other Details or Questions?</label>
+                        <textarea id="additionalInfo" name="additionalInfo" rows="4" placeholder="Topics you'd love covered, specific examples you want, questions about our process, or anything else!"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hearAboutUs">How did you hear about us?</label>
+                        <select id="hearAboutUs" name="hearAboutUs">
+                            <option value="">Select...</option>
+                            <option value="Search Engine">Search Engine (Google, etc.)</option>
+                            <option value="Social Media">Social Media</option>
+                            <option value="Friend/Family Referral">Friend or Family Referral</option>
+                            <option value="Homeschool Group">Homeschool Group/Co-op</option>
+                            <option value="Online Forum">Online Forum/Community</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Summary Section -->
+                <div class="summary-section" id="summarySection" style="display: none;">
+                    <h3>📋 Your Curriculum Summary</h3>
+                    <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">Review your selections before submitting</p>
+
+                    <div id="summaryContent"></div>
+
+                    <div style="text-align: center; margin-top: 1.5rem; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                        <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">Estimated Price Range:</p>
+                        <p style="font-size: 1.8rem; font-weight: bold; color: var(--color-accent-bright);" id="estimatedPrice">$XX - $XX</p>
+                        <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.5rem;">*Final pricing determined during consultation</p>
+                    </div>
+                </div>
+
+                <!-- Submit Section -->
+                <div class="submit-section">
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        🚀 Submit My Curriculum Request
+                    </button>
+
+                    <div id="formStatus" class="form-status"></div>
+
+                    <p style="margin-top: 1rem; color: var(--color-text-muted); font-size: 0.9rem;">
+                        We'll review your request and contact you within 24-48 hours to discuss next steps!
+                    </p>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Faithful Way Homeschool Solutions. All rights reserved.</p>
+            <p>Empowering families through Torah-observant, faith-aligned education.</p>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+    <script>
+        // Progress tracking
+        const totalSections = 8;
+        let completedSections = new Set();
+
+        function updateProgress() {
+            // Check each section for completion
+            const section1Complete = document.getElementById('gradeLevel').value &&
+                                    document.querySelectorAll('input[name="subjects"]:checked').length > 0;
+            const section2Complete = document.querySelector('input[name="curriculumType"]:checked');
+            const section3Complete = document.querySelector('input[name="templateStyle"]:checked');
+            const section4Complete = document.querySelector('input[name="interactivityLevel"]:checked');
+            const section5Complete = true; // Optional section
+            const section6Complete = document.querySelector('input[name="budgetTier"]:checked');
+            const section7Complete = true; // Optional section
+            const section8Complete = document.getElementById('timeline').value;
+
+            completedSections.clear();
+            if (section1Complete) completedSections.add(1);
+            if (section2Complete) completedSections.add(2);
+            if (section3Complete) completedSections.add(3);
+            if (section4Complete) completedSections.add(4);
+            if (section5Complete) completedSections.add(5);
+            if (section6Complete) completedSections.add(6);
+            if (section7Complete) completedSections.add(7);
+            if (section8Complete) completedSections.add(8);
+
+            const progress = (completedSections.size / totalSections) * 100;
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+
+            progressBar.style.width = progress + '%';
+            progressBar.textContent = Math.round(progress) + '%';
+
+            if (progress === 100) {
+                progressText.textContent = '✅ Complete! Ready to submit';
+                generateSummary();
+            } else {
+                const nextSection = findNextIncompleteSection();
+                progressText.textContent = `Section ${completedSections.size} of ${totalSections} complete - Next: Section ${nextSection}`;
+            }
+        }
+
+        function findNextIncompleteSection() {
+            for (let i = 1; i <= totalSections; i++) {
+                if (!completedSections.has(i)) {
+                    return i;
+                }
+            }
+            return totalSections;
+        }
+
+        function toggleSelection(card, inputId) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'checkbox') {
+                input.checked = !input.checked;
+            } else {
+                input.checked = true;
+            }
+
+            if (input.checked) {
+                card.classList.add('selected');
+            } else {
+                card.classList.remove('selected');
+            }
+
+            updateProgress();
+        }
+
+        function selectRadio(card, inputId) {
+            const input = document.getElementById(inputId);
+            const name = input.name;
+
+            // Remove selected class from all cards with same name
+            const allCards = document.querySelectorAll(`input[name="${name}"]`);
+            allCards.forEach(radio => {
+                radio.closest('.option-card').classList.remove('selected');
+                radio.closest('.template-preview-card')?.classList.remove('selected');
+            });
+
+            // Add selected class to clicked card
+            input.checked = true;
+            card.classList.add('selected');
+
+            updateProgress();
+        }
+
+        function generateSummary() {
+            const summarySection = document.getElementById('summarySection');
+            const summaryContent = document.getElementById('summaryContent');
+
+            let html = '';
+
+            // Basic Info
+            const gradeLevel = document.getElementById('gradeLevel').value;
+            const subjects = Array.from(document.querySelectorAll('input[name="subjects"]:checked')).map(cb => cb.value);
+            html += `<div class="summary-item"><strong>Grade Level:</strong> ${gradeLevel}</div>`;
+            html += `<div class="summary-item"><strong>Subjects:</strong> ${subjects.join(', ')}</div>`;
+
+            // Curriculum Type
+            const curriculumType = document.querySelector('input[name="curriculumType"]:checked')?.value;
+            if (curriculumType) {
+                html += `<div class="summary-item"><strong>Curriculum Type:</strong> ${curriculumType}</div>`;
+            }
+
+            // Template Style
+            const templateStyle = document.querySelector('input[name="templateStyle"]:checked')?.value;
+            if (templateStyle) {
+                html += `<div class="summary-item"><strong>Template Style:</strong> ${templateStyle}</div>`;
+            }
+
+            // Interactivity Level
+            const interactivityLevel = document.querySelector('input[name="interactivityLevel"]:checked')?.value;
+            if (interactivityLevel) {
+                html += `<div class="summary-item"><strong>Interactivity:</strong> ${interactivityLevel}</div>`;
+            }
+
+            // Add-ons
+            const addons = Array.from(document.querySelectorAll('input[name="addons"]:checked')).map(cb => cb.value);
+            if (addons.length > 0) {
+                html += `<div class="summary-item"><strong>Add-Ons:</strong> ${addons.join(', ')}</div>`;
+            }
+
+            // Budget Tier
+            const budgetTier = document.querySelector('input[name="budgetTier"]:checked')?.value;
+            if (budgetTier) {
+                html += `<div class="summary-item"><strong>Budget Tier:</strong> ${budgetTier}</div>`;
+            }
+
+            // Timeline
+            const timeline = document.getElementById('timeline').value;
+            if (timeline) {
+                html += `<div class="summary-item"><strong>Timeline:</strong> ${timeline}</div>`;
+            }
+
+            summaryContent.innerHTML = html;
+            summarySection.style.display = 'block';
+
+            // Calculate estimated price
+            calculateEstimatedPrice(curriculumType, interactivityLevel, addons.length, budgetTier);
+        }
+
+        function calculateEstimatedPrice(curriculumType, interactivityLevel, addonCount, budgetTier) {
+            let basePrice = { min: 0, max: 0 };
+
+            // Base price by curriculum type
+            switch(curriculumType) {
+                case 'Single Lesson':
+                    basePrice = { min: 8, max: 15 };
+                    break;
+                case 'Mini Unit':
+                    basePrice = { min: 25, max: 45 };
+                    break;
+                case 'Unit Study':
+                    basePrice = { min: 65, max: 150 };
+                    break;
+                case 'Single-Subject Textbook':
+                    basePrice = { min: 120, max: 300 };
+                    break;
+                case 'Multi-Subject Textbook':
+                    basePrice = { min: 220, max: 500 };
+                    break;
+                case 'Thematic Integrated Unit':
+                    basePrice = { min: 90, max: 220 };
+                    break;
+            }
+
+            // Adjust for interactivity
+            if (interactivityLevel?.includes('Level 2')) {
+                basePrice.min += 10;
+                basePrice.max += 20;
+            } else if (interactivityLevel?.includes('Level 3')) {
+                basePrice.min += 25;
+                basePrice.max += 40;
+            } else if (interactivityLevel?.includes('Level 4')) {
+                basePrice.min += 50;
+                basePrice.max += 100;
+            }
+
+            // Add-ons (rough estimate)
+            basePrice.min += addonCount * 5;
+            basePrice.max += addonCount * 15;
+
+            document.getElementById('estimatedPrice').textContent = `$${basePrice.min} - $${basePrice.max}`;
+        }
+
+        // Form submission
+        document.getElementById('curriculumForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const formStatus = document.getElementById('formStatus');
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Submitting...';
+
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: new FormData(this),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    formStatus.className = 'form-status success';
+                    formStatus.textContent = '✅ Success! Your curriculum request has been submitted. We\'ll contact you within 24-48 hours!';
+                    this.reset();
+                    document.getElementById('summarySection').style.display = 'none';
+                    updateProgress();
+
+                    // Scroll to success message
+                    formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                formStatus.className = 'form-status error';
+                formStatus.textContent = '❌ Oops! Something went wrong. Please try again or email us directly.';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '🚀 Submit My Curriculum Request';
+            }
+        });
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>

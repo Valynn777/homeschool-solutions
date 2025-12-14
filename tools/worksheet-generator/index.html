@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worksheet Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="generator-container">
+  <h1>Worksheet Page Builder</h1>
+
+  <label>Worksheet Title:</label>
+  <input id="titleInput" placeholder="Enter title (e.g., Volcanoes)">
+
+  <label>Header Tags (e.g., Reading | Geology | Earth Science):</label>
+  <input id="headerInput">
+
+  <label>Main Text:</label>
+  <textarea id="mainText" rows="8"></textarea>
+
+  <label>Activity Section:</label>
+  <textarea id="activityText" rows="6" placeholder="Enter questions, tasks, or one statement per line for T/F"></textarea>
+
+  <label style="margin-top: 1rem;">
+    <input type="checkbox" id="tfFormat" style="width: auto; margin-right: 0.5rem;">
+    Format as True/False statements (one statement per line)
+  </label>
+
+  <label>Upload Image (Optional):</label>
+  <input type="file" id="imgUpload" accept="image/*">
+
+  <button onclick="generateWorksheet()">Generate Worksheet</button>
+</div>
+
+
+<hr>
+
+<div id="output"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

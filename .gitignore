@@ -1,0 +1,56 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Node Modules (if you add build tools later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary Files
+*.tmp
+*.temp
+*.log
+
+# Build Output (if you add build process later)
+dist/
+build/
+.cache/
+
+# Environment Variables (if you add them)
+.env
+.env.local
+.env.production
+
+# Backup Files
+*.bak
+*.backup
+*~
+
+# Mac specific
+__MACOSX/
+
+# Windows specific
+$RECYCLE.BIN/
+
+# Optional: Uncomment if you don't want to track certain assets
+# images/originals/
+# assets/source-files/

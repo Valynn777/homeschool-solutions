@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View curriculum design samples and interactive learning tools created by Faithful Way Homeschool Solutions.">
+    <title>Portfolio - Faithful Way Homeschool Solutions</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .portfolio-intro {
+            background: var(--color-bg-card);
+            padding: var(--spacing-xl);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-xl);
+            border: 1px solid var(--color-border);
+        }
+
+        .portfolio-intro h2 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .portfolio-section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .portfolio-section h2 {
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        /* Gallery Grid Styles */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin: var(--spacing-xl) 0;
+        }
+
+        .gallery-item {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 4px 20px var(--color-glow);
+            transform: translateY(-4px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: var(--spacing-md);
+            text-align: center;
+            font-weight: 600;
+            color: var(--color-text);
+            background: var(--color-bg-card);
+        }
+
+        /* Gallery Modal Styles */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            overflow: auto;
+        }
+
+        .gallery-modal.active {
+            display: block;
+        }
+
+        .gallery-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10002;
+            transition: var(--transition);
+        }
+
+        .gallery-close:hover {
+            color: var(--color-primary);
+        }
+
+        .gallery-modal-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 60px 80px;
+            position: relative;
+        }
+
+        .gallery-modal-body {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .gallery-modal-body img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-modal-caption {
+            text-align: center;
+            color: white;
+            padding: var(--spacing-lg);
+            font-size: 1.1rem;
+            margin-top: var(--spacing-md);
+        }
+
+        .gallery-prev,
+        .gallery-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(166, 125, 153, 0.8);
+            color: white;
+            border: none;
+            padding: 16px 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            z-index: 10001;
+        }
+
+        .gallery-prev {
+            left: 20px;
+        }
+
+        .gallery-next {
+            right: 20px;
+        }
+
+        .gallery-prev:hover,
+        .gallery-next:hover {
+            background: var(--color-primary);
+            box-shadow: 0 0 20px var(--color-glow);
+        }
+
+        .gallery-counter {
+            text-align: center;
+            color: white;
+            padding: var(--spacing-md);
+            font-size: 1rem;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: var(--border-radius);
+            padding: 10px 20px;
+        }
+
+        /* Interactive Lessons Grid */
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .lesson-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .lesson-card:hover {
+            background: var(--color-bg-card-hover);
+            border-color: var(--color-primary);
+            box-shadow: 0 4px 20px var(--color-glow);
+            transform: translateY(-2px);
+        }
+
+        .lesson-type {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .lesson-type.printable {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            border: 1px solid rgba(76, 175, 80, 0.4);
+        }
+
+        .lesson-type.digital-only {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196f3;
+            border: 1px solid rgba(33, 150, 243, 0.4);
+        }
+
+        .lesson-card h3 {
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.25rem;
+        }
+
+        .lesson-card p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .lesson-link {
+            display: inline-block;
+            color: var(--color-primary);
+            font-weight: 600;
+            border: 2px solid var(--color-primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .lesson-link:hover {
+            background: var(--color-primary);
+            color: white;
+            box-shadow: 0 0 15px var(--color-glow);
+        }
+
+        .format-note {
+            background: rgba(166, 125, 153, 0.1);
+            border-left: 3px solid var(--color-primary);
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .format-note h4 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .format-note ul {
+            margin-left: var(--spacing-lg);
+            color: var(--color-text-muted);
+        }
+
+        .format-note li {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .lessons-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-modal-content {
+                padding: 40px 20px;
+            }
+
+            .gallery-prev,
+            .gallery-next {
+                padding: 12px 16px;
+                font-size: 1.5rem;
+            }
+
+            .gallery-prev {
+                left: 10px;
+            }
+
+            .gallery-next {
+                right: 10px;
+            }
+
+            .gallery-close {
+                right: 20px;
+                font-size: 40px;
+            }
+
+            .gallery-modal-body img {
+                max-height: 70vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="images/logo.png" alt="Faithful Way Homeschool Solutions Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                    <li><a href="tools/tools.html">Tools</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="glow">Curriculum Portfolio</h1>
+                <p class="subtitle">Sample lessons and interactive learning tools</p>
+            </div>
+        </section>
+
+        <section class="about-content">
+            <div class="container">
+                <div class="portfolio-intro">
+                    <h2>Custom Curriculum Design</h2>
+                    <p>With 14 years of homeschooling experience and professional training in Curriculum Development and Learning Theory, I create faith-based, educationally sound materials using proven instructional design methods. Whether you need focused unit studies, comprehensive digital textbooks, or interactive lessons, each project is designed specifically for your family's unique needs and learning goals.</p>
+                    <p>All materials are created collaboratively with parents, incorporating your insights and objectives to ensure lessons resonate with your student's needs, interests, and learning style. Browse the samples below to see the quality and variety of curriculum options available.</p>
+                </div>
+
+                <div class="format-note">
+                    <h4>Curriculum Options</h4>
+                    <ul>
+                        <li><strong>Unit Studies:</strong> Focused 10-30 page studies on specific topics, perfect for in-depth exploration without overwhelming. Available in printable or digital format.</li>
+                        <li><strong>Digital Textbooks:</strong> Comprehensive course materials from elementary through high school level (50-300+ pages), professionally structured and aligned with learning standards.</li>
+                        <li><strong>Interactive Studies:</strong> Digital-only lessons with interactive features such as drag-and-drop activities, instant feedback, simulations, and multimedia content for engaging, self-guided learning.</li>
+                        <li><strong>PWA Learning Hub:</strong> Custom progressive web app that organizes all your student's lessons, tools, and resources in one accessible location—works offline and on any device.</li>
+                    </ul>
+                </div>
+
+                <!-- Interactive Tools Gallery -->
+                <div class="portfolio-section">
+                    <h2>PWA Learning Hub & Interactive Tools</h2>
+                    <p style="color: var(--color-text-muted); margin-bottom: var(--spacing-lg);">See the custom Progressive Web App (PWA) Learning Hub in action—a centralized platform for all your student's lessons, interactive tools, and educational resources. Works offline and on any device for seamless learning anywhere. Click any image to view full size.</p>
+
+                    <div class="gallery-grid">
+                        <div class="gallery-item" onclick="openGalleryModal(0)">
+                            <img src="Portfolio/LearningHub.PNG" alt="Learning Hub Interface">
+                            <div class="gallery-caption">PWA Learning Hub</div>
+                        </div>
+                        <div class="gallery-item" onclick="openGalleryModal(1)">
+                            <img src="Portfolio/mathhub.PNG" alt="Math Hub Interface">
+                            <div class="gallery-caption">Interactive Math Hub</div>
+                        </div>
+                        <div class="gallery-item" onclick="openGalleryModal(2)">
+                            <img src="Portfolio/mathub manipulatives.PNG" alt="Math Manipulatives Interface">
+                            <div class="gallery-caption">Digital Manipulatives</div>
+                        </div>
+                        <div class="gallery-item" onclick="openGalleryModal(3)">
+                            <img src="Portfolio/math tutorial image.PNG" alt="Math Tutorial">
+                            <div class="gallery-caption">Step-by-Step Tutorials</div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Modal -->
+                    <div id="galleryModal" class="gallery-modal">
+                        <span class="gallery-close" onclick="closeGalleryModal()">&times;</span>
+                        <div class="gallery-modal-content">
+                            <button class="gallery-prev" onclick="changeGallerySlide(-1)">&#10094;</button>
+                            <div class="gallery-modal-body">
+                                <img id="galleryModalImage" src="" alt="">
+                                <div id="galleryModalCaption" class="gallery-modal-caption"></div>
+                            </div>
+                            <button class="gallery-next" onclick="changeGallerySlide(1)">&#10095;</button>
+                        </div>
+                        <div class="gallery-counter" id="galleryCounter"></div>
+                    </div>
+                </div>
+
+                <!-- Interactive Lesson Examples -->
+                <div class="portfolio-section">
+                    <h2>Sample Curriculum Materials</h2>
+                    <p style="color: var(--color-text-muted); margin-bottom: var(--spacing-lg);">Click on any lesson below to experience the quality and engagement level of custom curriculum. Examples include unit studies (focused topic exploration), digital textbook pages (comprehensive course materials), and interactive studies (digital-only with advanced features).</p>
+
+                    <div class="lessons-grid">
+                        <div class="lesson-card" onclick="window.open('Portfolio/Lesson_1_Water_Cycle.html', '_blank')">
+                            <span class="lesson-type printable">Unit Study Sample</span>
+                            <h3>The Water Cycle</h3>
+                            <p>Science lesson exploring evaporation, condensation, and precipitation with visual diagrams and assessment questions.</p>
+                            <span class="lesson-link">View Lesson →</span>
+                        </div>
+
+                        <div class="lesson-card" onclick="window.open('Portfolio/Lesson_2_Ancient_Egypt.html', '_blank')">
+                            <span class="lesson-type printable">Digital Textbook Page</span>
+                            <h3>Ancient Egypt</h3>
+                            <p>History lesson covering Egyptian civilization, culture, and contributions with engaging activities.</p>
+                            <span class="lesson-link">View Lesson →</span>
+                        </div>
+
+                        <div class="lesson-card" onclick="window.open('Portfolio/Lesson_3_Scientific_Method.html', '_blank')">
+                            <span class="lesson-type printable">Unit Study Sample</span>
+                            <h3>Scientific Method</h3>
+                            <p>Hands-on introduction to forming hypotheses, conducting experiments, and drawing conclusions.</p>
+                            <span class="lesson-link">View Lesson →</span>
+                        </div>
+
+                        <div class="lesson-card" onclick="window.open('Portfolio/Lesson_4_Solar_System.html', '_blank')">
+                            <span class="lesson-type printable">Digital Textbook Page</span>
+                            <h3>The Solar System</h3>
+                            <p>Astronomy lesson exploring planets, their characteristics, and our place in the universe.</p>
+                            <span class="lesson-link">View Lesson →</span>
+                        </div>
+
+                        <div class="lesson-card" onclick="window.open('Portfolio/Lesson_5_Photosynthesis.html', '_blank')">
+                            <span class="lesson-type printable">Unit Study Sample</span>
+                            <h3>Photosynthesis</h3>
+                            <p>Biology lesson explaining how plants convert sunlight into energy through clear diagrams and activities.</p>
+                            <span class="lesson-link">View Lesson →</span>
+                        </div>
+
+                        <div class="lesson-card" onclick="window.open('Portfolio/Lesson_19_Solomon_Wisdom_and_Idolatry.html', '_blank')">
+                            <span class="lesson-type digital-only">Interactive Study</span>
+                            <h3>Solomon: Wisdom and Idolatry</h3>
+                            <p>4-day interactive Bible study with activities, assessments, and cross-curricular English lessons examining King Solomon's reign and fall.</p>
+                            <span class="lesson-link">View Lesson →</span>
+                        </div>
+
+                        <div class="lesson-card" onclick="window.open('Portfolio/writing_tutor.html', '_blank')">
+                            <span class="lesson-type digital-only">Interactive Study</span>
+                            <h3>Writing Tutor</h3>
+                            <p>Interactive writing practice tool with real-time feedback, progress tracking, and engaging exercises for developing writers.</p>
+                            <span class="lesson-link">Launch Tool →</span>
+                        </div>
+
+                        <div class="lesson-card" onclick="window.open('Portfolio/water_purification_lab_visual.html', '_blank')">
+                            <span class="lesson-type digital-only">Interactive Study</span>
+                            <h3>Water Purification Lab</h3>
+                            <p>Virtual science lab allowing students to conduct water purification experiments with interactive simulations and data collection.</p>
+                            <span class="lesson-link">Launch Lab →</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-intro" style="margin-top: var(--spacing-xl);">
+                    <h2>Ready to Get Started?</h2>
+                    <p>These samples represent the quality and variety of custom curriculum available for your homeschool. Whether you need a focused unit study, a comprehensive digital textbook, interactive studies with advanced features, or a complete PWA Learning Hub, I can design materials that meet your family's specific needs and learning goals.</p>
+                    <p>Due to the intensive nature of custom curriculum design, I work with one family at a time to ensure quality and attention to detail.</p>
+                    <a href="services.html" class="btn btn-primary" style="margin-top: var(--spacing-md); display: inline-block;">Explore Services & Pricing</a>
+                    <a href="contact.html" class="btn btn-secondary" style="margin-top: var(--spacing-md); margin-left: var(--spacing-sm); display: inline-block;">Get in Touch</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Faithful Way Homeschool Solutions. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+    <script>
+        // Gallery Modal functionality
+        const galleryImages = [
+            {
+                src: 'Portfolio/LearningHub.PNG',
+                alt: 'Learning Hub Interface',
+                caption: 'PWA Learning Hub - Custom learning management hub for organized student access to all lessons and tools'
+            },
+            {
+                src: 'Portfolio/mathhub.PNG',
+                alt: 'Math Hub Interface',
+                caption: 'Interactive Math Hub - Comprehensive math learning center with visual tools and practice exercises'
+            },
+            {
+                src: 'Portfolio/mathub manipulatives.PNG',
+                alt: 'Math Manipulatives Interface',
+                caption: 'Digital Manipulatives - Interactive tools for hands-on math exploration and concept visualization'
+            },
+            {
+                src: 'Portfolio/math tutorial image.PNG',
+                alt: 'Math Tutorial',
+                caption: 'Step-by-Step Tutorials - Guided instruction with interactive practice and immediate feedback'
+            }
+        ];
+
+        let currentGalleryIndex = 0;
+
+        function openGalleryModal(index) {
+            currentGalleryIndex = index;
+            showGalleryImage();
+            document.getElementById('galleryModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGalleryModal() {
+            document.getElementById('galleryModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeGallerySlide(direction) {
+            currentGalleryIndex += direction;
+            if (currentGalleryIndex >= galleryImages.length) {
+                currentGalleryIndex = 0;
+            }
+            if (currentGalleryIndex < 0) {
+                currentGalleryIndex = galleryImages.length - 1;
+            }
+            showGalleryImage();
+        }
+
+        function showGalleryImage() {
+            const image = galleryImages[currentGalleryIndex];
+            document.getElementById('galleryModalImage').src = image.src;
+            document.getElementById('galleryModalImage').alt = image.alt;
+            document.getElementById('galleryModalCaption').textContent = image.caption;
+            document.getElementById('galleryCounter').textContent =
+                `${currentGalleryIndex + 1} / ${galleryImages.length}`;
+        }
+
+        // Close modal when clicking outside the image
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('galleryModal');
+            if (event.target === modal) {
+                closeGalleryModal();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('galleryModal');
+            if (modal.classList.contains('active')) {
+                if (event.key === 'ArrowLeft') {
+                    changeGallerySlide(-1);
+                } else if (event.key === 'ArrowRight') {
+                    changeGallerySlide(1);
+                } else if (event.key === 'Escape') {
+                    closeGalleryModal();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

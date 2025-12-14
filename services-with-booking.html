@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homeschool parent support services and scheduling for Faithful Way Homeschool Solutions.">
+    <title>Services & Booking - Faithful Way Homeschool Solutions</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- jsPDF library for PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        /* ============================================
+           Booking System Styles
+           Integrated with existing dark theme
+           ============================================ */
+
+        .booking-system {
+            background-color: var(--color-bg-card);
+            padding: var(--spacing-xl);
+            border-radius: var(--border-radius);
+            border: 2px solid var(--color-accent);
+            box-shadow: 0 0 30px var(--color-glow);
+            margin-top: var(--spacing-xl);
+        }
+
+        .booking-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .step {
+            text-align: center;
+            padding: var(--spacing-md);
+            background-color: var(--color-bg-dark);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--color-border);
+        }
+
+        .step.active {
+            border-color: var(--color-accent);
+            box-shadow: 0 0 20px var(--color-glow);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Calendar Styles */
+        .calendar-container {
+            background-color: var(--color-bg-dark);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .calendar-nav-btn {
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .calendar-nav-btn:hover {
+            background-color: var(--color-primary-dark);
+            box-shadow: 0 0 15px var(--color-glow);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: var(--spacing-xs);
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            padding: var(--spacing-xs);
+            color: var(--color-accent);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .calendar-day:hover:not(.disabled):not(.empty) {
+            background-color: var(--color-bg-card-hover);
+            border-color: var(--color-accent);
+        }
+
+        .calendar-day.available {
+            border-color: var(--color-primary);
+            background-color: rgba(139, 122, 184, 0.2);
+        }
+
+        .calendar-day.selected {
+            background-color: var(--color-primary);
+            border-color: var(--color-accent);
+            color: white;
+            box-shadow: 0 0 15px var(--color-glow);
+        }
+
+        .calendar-day.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .calendar-day.empty {
+            background: transparent;
+            border: none;
+            cursor: default;
+        }
+
+        /* Time Slots */
+        .time-slots-container {
+            display: none;
+            margin-top: var(--spacing-md);
+        }
+
+        .time-slots-container.show {
+            display: block;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
+        }
+
+        .time-slot {
+            padding: var(--spacing-sm);
+            background-color: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .time-slot:hover {
+            border-color: var(--color-accent);
+            background-color: var(--color-bg-card-hover);
+        }
+
+        .time-slot.selected {
+            background-color: var(--color-primary);
+            border-color: var(--color-accent);
+            color: white;
+            box-shadow: 0 0 15px var(--color-glow);
+        }
+
+        /* Selected Appointment Display */
+        .selected-appointment {
+            background-color: rgba(139, 122, 184, 0.2);
+            border: 2px solid var(--color-accent);
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius);
+            margin: var(--spacing-md) 0;
+            display: none;
+        }
+
+        .selected-appointment.show {
+            display: block;
+        }
+
+        .selected-appointment h4 {
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Payment Options */
+        .payment-section {
+            background-color: var(--color-bg-dark);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            margin-top: var(--spacing-lg);
+        }
+
+        .payment-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .payment-btn {
+            display: block;
+            padding: var(--spacing-md);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .payment-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px var(--color-glow-strong);
+        }
+
+        .payment-note {
+            margin-top: var(--spacing-xs);
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
+
+        .advanced-payment {
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background-color: rgba(167, 139, 250, 0.1);
+            border: 1px dashed var(--color-accent);
+            border-radius: var(--border-radius);
+        }
+
+        /* Confirmation Section */
+        .confirmation-section {
+            display: none;
+            background: linear-gradient(135deg, rgba(139, 122, 184, 0.2) 0%, rgba(167, 139, 250, 0.1) 100%);
+            padding: var(--spacing-xl);
+            border-radius: var(--border-radius);
+            border: 2px solid var(--color-accent);
+            text-align: center;
+            margin-top: var(--spacing-lg);
+        }
+
+        .confirmation-section.show {
+            display: block;
+        }
+
+        .confirmation-icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .confirmation-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--spacing-lg);
+        }
+
+        /* Validation Messages */
+        .validation-message {
+            color: #f87171;
+            font-size: 0.85rem;
+            margin-top: var(--spacing-xs);
+            display: none;
+        }
+
+        .validation-message.show {
+            display: block;
+        }
+
+        .form-group.error input,
+        .form-group.error select,
+        .form-group.error textarea {
+            border-color: #f87171;
+        }
+
+        .form-group.success input,
+        .form-group.error select,
+        .form-group.success textarea {
+            border-color: #4ade80;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="images/logo.png" alt="Faithful Way Homeschool Solutions Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services-with-booking.html" class="active">Services</a></li>
+                    <li><a href="tools/tools.html">Tools</a></li>
+                    <li><a href="samples.html">Samples</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="glow">Our Services</h1>
+                <p class="subtitle">Personalized support for your homeschool journey</p>
+            </div>
+        </section>
+
+        <!-- EXISTING SERVICES OVERVIEW (Kept intact) -->
+        <section class="services-overview">
+            <div class="container">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Initial Consultation</h3>
+                        <p class="price">$75 / 60 minutes</p>
+                        <ul>
+                            <li>Discuss your homeschool goals and challenges</li>
+                            <li>Assess your current curriculum and approach</li>
+                            <li>Receive personalized recommendations</li>
+                            <li>Create an action plan tailored to your family</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card featured">
+                        <div class="badge">Most Popular</div>
+                        <h3>Ongoing Support Package</h3>
+                        <p class="price">$200 / month</p>
+                        <ul>
+                            <li>Two 45-minute consultation calls per month</li>
+                            <li>Email support between sessions</li>
+                            <li>Custom curriculum planning assistance</li>
+                            <li>Schedule and routine optimization</li>
+                            <li>Encouragement and accountability</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>Curriculum Planning Session</h3>
+                        <p class="price">$100 / 90 minutes</p>
+                        <ul>
+                            <li>In-depth curriculum review and selection</li>
+                            <li>Subject-specific resource recommendations</li>
+                            <li>Budget-friendly alternatives</li>
+                            <li>Year-long planning roadmap</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>Quick Check-In</h3>
+                        <p class="price">$40 / 30 minutes</p>
+                        <ul>
+                            <li>Perfect for quick questions or concerns</li>
+                            <li>Troubleshooting specific challenges</li>
+                            <li>Mid-year adjustments</li>
+                            <li>Encouragement when you need it most</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW: INTEGRATED BOOKING SYSTEM -->
+        <section class="booking-section">
+            <div class="container">
+                <h2 class="glow">Schedule Your Consultation</h2>
+                <p class="section-intro">Ready to get started? Complete the intake form below and select your preferred appointment time.</p>
+
+                <div class="booking-system">
+                    <!-- Booking Steps Indicator -->
+                    <div class="booking-steps">
+                        <div class="step active" id="step1-indicator">
+                            <div class="step-number">1</div>
+                            <div>Select Date & Time</div>
+                        </div>
+                        <div class="step" id="step2-indicator">
+                            <div class="step-number">2</div>
+                            <div>Complete Intake Form</div>
+                        </div>
+                        <div class="step" id="step3-indicator">
+                            <div class="step-number">3</div>
+                            <div>Submit & Pay</div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 1: Calendar Booking Widget -->
+                    <div id="calendar-booking-section">
+                        <h3>Step 1: Choose Your Appointment Time</h3>
+
+                        <div class="calendar-container">
+                            <div class="calendar-header">
+                                <button class="calendar-nav-btn" id="prev-month">&larr; Previous</button>
+                                <h4 id="current-month-year">January 2025</h4>
+                                <button class="calendar-nav-btn" id="next-month">Next &rarr;</button>
+                            </div>
+
+                            <div class="calendar-grid" id="calendar-grid">
+                                <!-- Calendar will be populated by JavaScript -->
+                            </div>
+
+                            <div class="time-slots-container" id="time-slots-container">
+                                <h4>Available Times for <span id="selected-date-display"></span></h4>
+                                <div class="time-slots" id="time-slots">
+                                    <!-- Time slots will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="selected-appointment" id="selected-appointment-display">
+                            <h4>✓ Selected Appointment</h4>
+                            <p><strong>Date:</strong> <span id="appointment-date"></span></p>
+                            <p><strong>Time:</strong> <span id="appointment-time"></span></p>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: Intake Form -->
+                    <div id="intake-form-section" style="margin-top: 2rem;">
+                        <h3>Step 2: Client Intake Form</h3>
+
+                        <form id="intakeForm" class="intake-form">
+                            <h4>Personal Information</h4>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="parentName">Parent/Guardian Name *</label>
+                                    <input type="text" id="parentName" name="parentName" required placeholder="Full Name">
+                                    <div class="validation-message">Please enter your name</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="clientEmail">Email Address *</label>
+                                    <input type="email" id="clientEmail" name="clientEmail" required placeholder="your@email.com">
+                                    <div class="validation-message">Please enter a valid email address</div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="clientPhone">Phone Number *</label>
+                                    <input type="tel" id="clientPhone" name="clientPhone" required placeholder="(555) 123-4567">
+                                    <div class="validation-message">Please enter a valid phone number</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="childGrade">Child's Grade Level *</label>
+                                    <select id="childGrade" name="childGrade" required>
+                                        <option value="">Select grade</option>
+                                        <option value="Pre-K">Pre-K</option>
+                                        <option value="Kindergarten">Kindergarten</option>
+                                        <option value="1st Grade">1st Grade</option>
+                                        <option value="2nd Grade">2nd Grade</option>
+                                        <option value="3rd Grade">3rd Grade</option>
+                                        <option value="4th Grade">4th Grade</option>
+                                        <option value="5th Grade">5th Grade</option>
+                                        <option value="6th Grade">6th Grade</option>
+                                        <option value="7th Grade">7th Grade</option>
+                                        <option value="8th Grade">8th Grade</option>
+                                        <option value="9th Grade">9th Grade</option>
+                                        <option value="10th Grade">10th Grade</option>
+                                        <option value="11th Grade">11th Grade</option>
+                                        <option value="12th Grade">12th Grade</option>
+                                        <option value="Multiple">Multiple Children</option>
+                                    </select>
+                                    <div class="validation-message">Please select a grade level</div>
+                                </div>
+                            </div>
+
+                            <h4>About Your Homeschool</h4>
+
+                            <div class="form-group">
+                                <label for="strengths">Child's Strengths</label>
+                                <textarea id="strengths" name="strengths" rows="3" placeholder="What does your child do well? What are their interests?"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="challenges">Current Challenges *</label>
+                                <textarea id="challenges" name="challenges" required rows="3" placeholder="What struggles or concerns are you facing?"></textarea>
+                                <div class="validation-message">Please describe your current challenges</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="goals">Goals for This Consultation *</label>
+                                <textarea id="goals" name="goals" required rows="3" placeholder="What would you like to accomplish through this consultation?"></textarea>
+                                <div class="validation-message">Please describe your goals</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subjects">Subjects Needing Help</label>
+                                <input type="text" id="subjects" name="subjects" placeholder="e.g., Math, Writing, Science">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="additionalNotes">Additional Notes</label>
+                                <textarea id="additionalNotes" name="additionalNotes" rows="4" placeholder="Anything else we should know?"></textarea>
+                            </div>
+
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" name="policies" id="policies" required>
+                                    I agree to the consultation policies and understand payment is required to confirm the appointment. *
+                                </label>
+                                <div class="validation-message">You must agree to the policies</div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-large">Continue to Payment</button>
+                        </form>
+                    </div>
+
+                    <!-- STEP 3: Payment Options -->
+                    <div id="payment-section" class="payment-section" style="display: none;">
+                        <h3>Step 3: Complete Your Booking</h3>
+                        <p>Your intake form has been submitted. Please complete payment to confirm your appointment.</p>
+
+                        <div class="selected-appointment show">
+                            <h4>Your Appointment Details</h4>
+                            <p><strong>Date:</strong> <span id="confirm-date"></span></p>
+                            <p><strong>Time:</strong> <span id="confirm-time"></span></p>
+                            <p><strong>Service:</strong> <span id="confirm-service"></span></p>
+                        </div>
+
+                        <h4>Choose Payment Method</h4>
+                        <div class="payment-buttons">
+                            <div>
+                                <a href="#" class="payment-btn" id="stripe-payment">Pay with Stripe</a>
+                                <p class="payment-note">→ Paste your Stripe payment link here</p>
+                            </div>
+                            <div>
+                                <a href="#" class="payment-btn" id="paypal-payment">Pay with PayPal</a>
+                                <p class="payment-note">→ Paste your PayPal.me link here</p>
+                            </div>
+                            <div>
+                                <a href="#" class="payment-btn" id="square-payment">Pay with Square</a>
+                                <p class="payment-note">→ Paste your Square payment link here</p>
+                            </div>
+                        </div>
+
+                        <div class="advanced-payment">
+                            <h4>Advanced: Stripe Checkout via Cloudflare Worker</h4>
+                            <p>For dynamic Stripe checkout sessions, deploy a Cloudflare Worker that creates sessions on-demand.</p>
+                            <p><strong>Worker endpoint:</strong> <code>/api/create-checkout-session</code></p>
+                            <p>See documentation in <code>BOOKING-SYSTEM-DOCS.md</code> for implementation details.</p>
+                        </div>
+                    </div>
+
+                    <!-- Confirmation Section -->
+                    <div id="confirmation-section" class="confirmation-section">
+                        <div class="confirmation-icon">✅</div>
+                        <h2>Thank You!</h2>
+                        <p>Your consultation request has been received. You'll receive a confirmation email shortly with all the details.</p>
+
+                        <div class="confirmation-buttons">
+                            <button onclick="exportToPDF()" class="btn btn-primary">Download as PDF</button>
+                            <button onclick="emailCopy()" class="btn btn-secondary">Email Me a Copy</button>
+                            <a href="index.html" class="btn btn-secondary">Return Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Faithful Way Homeschool Solutions. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="services-with-booking.html">Services</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+    <script src="js/booking-system.js"></script>
+</body>
+</html>

@@ -1,0 +1,2274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Purification Lab | Module 1: Lessons 13-16</title>
+    <style>
+        /* ========================================
+           BASE STYLES - Preserved from original
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Palatino', serif;
+            background: linear-gradient(135deg, #8B9F77 0%, #5A7C5F 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #FAF8F3;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            border: 3px solid #8B7355;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #5A8A9F 0%, #7BA8B5 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 4px solid #4A6F7F;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .biblical-note {
+            background: #FFF9E6;
+            border-left: 6px solid #D4A574;
+            padding: 20px;
+            margin: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .biblical-note strong {
+            color: #8B6914;
+            font-size: 1.1em;
+        }
+
+        .content {
+            padding: 30px;
+            background: #FAF8F3;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 2px solid #E8DCC8;
+        }
+
+        .section h2 {
+            color: #4A6F5F;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #8B9F77;
+            font-size: 1.8em;
+        }
+
+        /* ========================================
+           ENHANCED VISUAL STYLES - NEW
+           ======================================== */
+        
+        /* Canvas container styling */
+        .canvas-container {
+            position: relative;
+            margin: 20px auto;
+            background: #E8DCC8;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .canvas-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        canvas {
+            border: 3px solid #8B7355;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Water source selection - visual cards */
+        .source-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .source-card {
+            background: white;
+            border: 3px solid #C8B89F;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .source-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(90, 138, 159, 0.4);
+            border-color: #5A8A9F;
+        }
+
+        .source-card.selected {
+            background: linear-gradient(135deg, #E8F4F8 0%, #D4E8ED 100%);
+            border-color: #5A8A9F;
+            border-width: 4px;
+        }
+
+        .source-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .source-card h3 {
+            color: #4A6F5F;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .source-card p {
+            color: #6B7F6F;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        /* Drag and drop filter building */
+        .filter-builder {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .material-palette {
+            background: #FFF9E6;
+            padding: 20px;
+            border-radius: 12px;
+            border: 3px solid #D4A574;
+            min-width: 200px;
+        }
+
+        .material-palette h3 {
+            color: #8B6914;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .draggable-material {
+            background: white;
+            border: 2px solid #8B7355;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 8px 0;
+            cursor: grab;
+            text-align: center;
+            transition: all 0.2s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .draggable-material:active {
+            cursor: grabbing;
+            transform: scale(1.05);
+        }
+
+        .draggable-material:hover {
+            background: #F5F5F0;
+            border-color: #5A8A9F;
+        }
+
+        .filter-zone {
+            background: white;
+            border: 3px dashed #8B9F77;
+            border-radius: 12px;
+            padding: 20px;
+            min-width: 250px;
+            min-height: 400px;
+            position: relative;
+        }
+
+        .filter-zone.drag-over {
+            background: #E8F4E8;
+            border-color: #5A8A9F;
+            border-style: solid;
+        }
+
+        .filter-layer {
+            background: linear-gradient(135deg, #E8DCC8 0%, #D4C8B8 100%);
+            border: 2px solid #8B7355;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 8px 0;
+            position: relative;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Interactive buttons with natural styling */
+        .btn {
+            background: linear-gradient(135deg, #8B9F77 0%, #5A7C5F 100%);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px 5px;
+            font-family: 'Georgia', serif;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border: 2px solid transparent;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(90, 124, 95, 0.4);
+            border-color: #6B8F67;
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #9F8B77 0%, #7C685F 100%);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #5A8A9F 0%, #4A7A8F 100%);
+        }
+
+        /* Hold-to-action button for boiling */
+        .hold-button {
+            background: linear-gradient(135deg, #D4A574 0%, #B89454 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hold-button .hold-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: #FFD700;
+            width: 0;
+            transition: width 0.1s linear;
+        }
+
+        /* Step indicator preserved */
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            gap: 10px;
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 15px 10px;
+            background: #E8DCC8;
+            border-radius: 8px;
+            position: relative;
+            border: 2px solid #C8B89F;
+            font-family: 'Georgia', serif;
+        }
+
+        .step.active {
+            background: linear-gradient(135deg, #5A8A9F 0%, #7BA8B5 100%);
+            color: white;
+            font-weight: 600;
+            border-color: #4A6F7F;
+        }
+
+        .step.completed {
+            background: #8B9F77;
+            color: white;
+            border-color: #6B8F67;
+        }
+
+        /* Results panel preserved with enhanced styling */
+        .results-panel {
+            background: #FFF9E6;
+            border: 4px solid #8B9F77;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            display: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .results-panel.show {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .result-item {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: white;
+            border: 2px solid #E8DCC8;
+        }
+
+        .result-item h3 {
+            color: #4A6F5F;
+            margin-bottom: 10px;
+        }
+
+        /* Quality indicators */
+        .quality-indicator {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .quality-safe {
+            background: #D4EDDA;
+            color: #155724;
+            border: 3px solid #8B9F77;
+        }
+
+        .quality-caution {
+            background: #FFF3CD;
+            color: #856404;
+            border: 3px solid #D4A574;
+        }
+
+        .quality-unsafe {
+            background: #F8D7DA;
+            color: #721C24;
+            border: 3px solid #C87F84;
+        }
+
+        /* Badge system preserved */
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #D4A574 0%, #8B6914 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 2px solid #8B6914;
+        }
+
+        .badge.locked {
+            background: #C8B89F;
+            color: #6B7F6F;
+            opacity: 0.6;
+            border-color: #A89F8F;
+        }
+
+        .badge-icon {
+            font-size: 1.5em;
+        }
+
+        /* Feedback messages */
+        .mistake-feedback {
+            background: #FFF3CD;
+            border-left: 6px solid #D4A574;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            display: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .mistake-feedback.show {
+            display: block;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .mistake-feedback h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        /* Instruction box */
+        .instruction-box {
+            background: #E8F4F8;
+            border: 2px solid #5A8A9F;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #2C4F5F;
+        }
+
+        /* Data table preserved */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 2px solid #E8DCC8;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .data-table th {
+            background: #8B9F77;
+            color: white;
+            font-weight: 600;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: #FAF8F3;
+        }
+
+        /* Reflection area preserved */
+        .reflection-area {
+            margin: 25px 0;
+        }
+
+        .reflection-area textarea {
+            width: 100%;
+            padding: 15px;
+            border: 3px solid #C8B89F;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Georgia', serif;
+            min-height: 120px;
+            resize: vertical;
+            background: #FFF9E6;
+        }
+
+        .reflection-area textarea:focus {
+            outline: none;
+            border-color: #5A8A9F;
+            background: white;
+        }
+
+        /* Export section */
+        .export-section {
+            background: #E8F4F8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #5A8A9F;
+        }
+
+        /* Interactive element indicators */
+        .interactive-hint {
+            color: #5A8A9F;
+            font-size: 0.9em;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        /* Loading/processing indicator */
+        .processing {
+            text-align: center;
+            padding: 20px;
+            color: #4A6F5F;
+            font-style: italic;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+
+            .step-indicator {
+                flex-direction: column;
+            }
+
+            .step {
+                margin: 5px 0;
+            }
+
+            .filter-builder {
+                flex-direction: column;
+            }
+
+            .source-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+        }
+
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Low power mode fallback notice */
+        .low-power-notice {
+            background: #FFF3CD;
+            border: 2px solid #D4A574;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💧 Water Purification Laboratory</h1>
+            <p>Module 1: Lessons 13-16 | Learning Yehovah's Design in H₂O Purification</p>
+        </div>
+
+        <div class="biblical-note">
+            <strong>Biblical Foundation:</strong> "He makes springs pour water into the ravines; it flows between the mountains. They give water to all the beasts of the field; the wild donkeys quench their thirst." - Psalm 104:10-11. Yehovah designed water as essential for all life. Today, you'll learn how to purify water using His principles of filtration, settling, and heat.
+        </div>
+
+        <div class="content">
+            <!-- Low power mode notice (hidden by default) -->
+            <div class="low-power-notice" id="lowPowerNotice">
+                <strong>Note:</strong> Your device may be in low-power mode. All interactive features will still work, but animations may be simplified for better performance.
+            </div>
+
+            <!-- Step Indicator -->
+            <div class="step-indicator">
+                <div class="step active" id="step1">1. Collect Water</div>
+                <div class="step" id="step2">2. Assess Quality</div>
+                <div class="step" id="step3">3. Purify Water</div>
+                <div class="step" id="step4">4. Test Results</div>
+            </div>
+
+            <!-- Section 1: Water Source Selection - ENHANCED WITH VISUAL CARDS -->
+            <div class="section" id="section1">
+                <h2>Step 1: Collect Your Water Sample</h2>
+                <p class="instruction-box">
+                    🎯 <strong>Your Task:</strong> Select a water source, then click "Collect Water" to fill your container. Watch as the water flows into your jar!
+                </p>
+
+                <div class="source-grid" id="sourceGrid">
+                    <div class="source-card" data-source="creek" onclick="selectSource('creek')">
+                        <span class="source-icon">🏞️</span>
+                        <h3>Clear Creek</h3>
+                        <p>Moving water from upstream</p>
+                    </div>
+                    <div class="source-card" data-source="pond" onclick="selectSource('pond')">
+                        <span class="source-icon">🦆</span>
+                        <h3>Stagnant Pond</h3>
+                        <p>Still water with algae</p>
+                    </div>
+                    <div class="source-card" data-source="river" onclick="selectSource('river')">
+                        <span class="source-icon">🌊</span>
+                        <h3>Muddy River</h3>
+                        <p>High sediment flow</p>
+                    </div>
+                    <div class="source-card" data-source="rain" onclick="selectSource('rain')">
+                        <span class="source-icon">☔</span>
+                        <h3>Rainwater</h3>
+                        <p>Collected from roof</p>
+                    </div>
+                    <div class="source-card" data-source="spring" onclick="selectSource('spring')">
+                        <span class="source-icon">⛲</span>
+                        <h3>Natural Spring</h3>
+                        <p>Ground water source</p>
+                    </div>
+                </div>
+
+                <!-- CANVAS: Water collection animation -->
+                <div class="canvas-container" id="collectionCanvas" style="display: none;">
+                    <div style="text-align: center;">
+                        <canvas id="waterJar" width="400" height="500"></canvas>
+                        <p class="interactive-hint">Watch your jar fill with water from the selected source!</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn" id="collectBtn" onclick="collectWater()" disabled>
+                        🫙 Collect Water from Source
+                    </button>
+                </div>
+            </div>
+
+            <!-- Section 2: Assessment Results - PRESERVED WITH ENHANCED VISUALS -->
+            <div class="section" id="section2" style="display: none;">
+                <h2>Step 2: Assess Water Quality</h2>
+                
+                <!-- CANVAS: Visual water sample with microbes -->
+                <div class="canvas-container" style="text-align: center;">
+                    <canvas id="waterSample" width="600" height="400"></canvas>
+                    <p class="interactive-hint">🔬 Microscopic view showing contaminants in your water sample</p>
+                </div>
+
+                <div class="results-panel" id="assessmentResults">
+                    <div class="result-item" id="contaminantList"></div>
+                    <div class="result-item" id="riskLevel"></div>
+                    <div class="result-item" id="recommendation"></div>
+                </div>
+                <div style="text-align: center;">
+                    <button class="btn" onclick="proceedToPurification()">Choose Purification Method →</button>
+                </div>
+            </div>
+
+            <!-- Section 3: Purification Method - COMPLETELY REDESIGNED -->
+            <div class="section" id="section3" style="display: none;">
+                <h2>Step 3: Purify Your Water</h2>
+                <p class="instruction-box">
+                    🎯 <strong>Your Task:</strong> Choose a purification method and complete the hands-on simulation. Each method requires different actions!
+                </p>
+
+                <!-- Method selection tabs -->
+                <div style="text-align: center; margin: 20px 0;">
+                    <button class="btn" onclick="selectMethod('filter')">🪨 Build Natural Filter</button>
+                    <button class="btn" onclick="selectMethod('boiling')">🔥 Boil Water</button>
+                    <button class="btn" onclick="selectMethod('solar')">☀️ Solar Disinfection</button>
+                    <button class="btn" onclick="selectMethod('chemical')">💊 Chemical Treatment</button>
+                    <button class="btn" onclick="selectMethod('cloth')">🧵 Cloth Filtration</button>
+                </div>
+
+                <!-- INTERACTIVE METHOD 1: Natural Filter Builder -->
+                <div id="filterMethod" style="display: none;">
+                    <h3 style="color: #4A6F5F; margin: 20px 0;">Build Your Natural Filter</h3>
+                    <p class="instruction-box">
+                        Drag materials from the palette to build your filter. <strong>Order matters!</strong> Layers should go from coarse (bottom) to fine (top).
+                    </p>
+                    
+                    <div class="filter-builder">
+                        <div class="material-palette">
+                            <h3>Available Materials</h3>
+                            <div class="draggable-material" draggable="true" data-material="gravel">
+                                🪨 Gravel (Coarse)
+                            </div>
+                            <div class="draggable-material" draggable="true" data-material="sand">
+                                🏖️ Sand (Medium)
+                            </div>
+                            <div class="draggable-material" draggable="true" data-material="charcoal">
+                                ⚫ Activated Charcoal
+                            </div>
+                            <div class="draggable-material" draggable="true" data-material="cloth">
+                                🧵 Cloth (Fine)
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 style="color: #4A6F5F;">Filter Container</h3>
+                            <div class="filter-zone" id="filterZone">
+                                <p style="text-align: center; color: #6B7F6F; margin-top: 50px;">
+                                    Drop materials here<br>
+                                    (Start with coarse material at bottom)
+                                </p>
+                            </div>
+                            <button class="btn btn-secondary" onclick="runFilterSimulation()" style="margin-top: 15px; width: 100%;">
+                                💧 Pour Water Through Filter
+                            </button>
+                        </div>
+
+                        <!-- CANVAS: Filtration animation -->
+                        <div style="text-align: center;">
+                            <canvas id="filtrationCanvas" width="300" height="500"></canvas>
+                            <p class="interactive-hint">Watch water flow through your filter layers!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INTERACTIVE METHOD 2: Boiling Simulation -->
+                <div id="boilingMethod" style="display: none;">
+                    <h3 style="color: #4A6F5F; margin: 20px 0;">Boil Your Water</h3>
+                    <p class="instruction-box">
+                        <strong>Hold</strong> the "Apply Heat" button to heat the water. Watch the thermometer rise. Keep boiling for at least 1 minute after reaching 212°F (100°C).
+                    </p>
+                    
+                    <div style="text-align: center;">
+                        <!-- CANVAS: Boiling pot visualization -->
+                        <canvas id="boilingCanvas" width="500" height="500"></canvas>
+                        <p class="interactive-hint">🔥 Hold the button to apply heat continuously</p>
+                        
+                        <div style="margin: 20px 0;">
+                            <button class="btn hold-button" id="heatBtn" 
+                                    onmousedown="startHeating()" 
+                                    onmouseup="stopHeating()" 
+                                    onmouseleave="stopHeating()"
+                                    ontouchstart="startHeating()"
+                                    ontouchend="stopHeating()">
+                                🔥 Hold to Apply Heat
+                                <div class="hold-progress" id="heatProgress"></div>
+                            </button>
+                        </div>
+
+                        <div style="font-size: 1.2em; color: #4A6F5F; margin: 15px 0;">
+                            <div>🌡️ Temperature: <strong><span id="tempDisplay">65°F</span></strong></div>
+                            <div>⏱️ Boiling Time: <strong><span id="boilTimeDisplay">0:00</span></strong></div>
+                        </div>
+
+                        <button class="btn btn-success" onclick="completeBoiling()" style="margin-top: 15px;">
+                            ✅ Finish Boiling Process
+                        </button>
+                    </div>
+                </div>
+
+                <!-- INTERACTIVE METHOD 3: Solar Disinfection -->
+                <div id="solarMethod" style="display: none;">
+                    <h3 style="color: #4A6F5F; margin: 20px 0;">Solar Disinfection (SODIS)</h3>
+                    <p class="instruction-box">
+                        Place your water bottle in sunlight. Click "Advance Time" to move the sun across the sky. UV rays need 6+ hours to disinfect water.
+                    </p>
+                    
+                    <div style="text-align: center;">
+                        <!-- CANVAS: Solar/sun arc visualization -->
+                        <canvas id="solarCanvas" width="600" height="400"></canvas>
+                        <p class="interactive-hint">☀️ Watch the sun move across the sky and disinfect your water</p>
+                        
+                        <div style="margin: 20px 0;">
+                            <div style="font-size: 1.2em; color: #4A6F5F; margin: 15px 0;">
+                                <div>🕐 Exposure Time: <strong><span id="solarTimeDisplay">0 hours</span></strong></div>
+                                <div>☀️ UV Intensity: <strong><span id="uvDisplay">0%</span></strong></div>
+                            </div>
+
+                            <button class="btn" onclick="advanceSolarTime()">
+                                ⏩ Advance Time (+1 hour)
+                            </button>
+                            <button class="btn btn-success" onclick="completeSolar()">
+                                ✅ Retrieve Water
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INTERACTIVE METHOD 4: Chemical Treatment -->
+                <div id="chemicalMethod" style="display: none;">
+                    <h3 style="color: #4A6F5F; margin: 20px 0;">Chemical Treatment</h3>
+                    <p class="instruction-box">
+                        Drag purification tablets into the water jar. <strong>Warning:</strong> Too many tablets can make water unsafe to drink!
+                    </p>
+                    
+                    <div style="text-align: center;">
+                        <!-- CANVAS: Chemical drop visualization -->
+                        <canvas id="chemicalCanvas" width="500" height="500"></canvas>
+                        
+                        <div style="margin: 20px 0;">
+                            <div class="material-palette" style="display: inline-block; min-width: 300px;">
+                                <h3>Purification Tablets</h3>
+                                <div class="draggable-material" draggable="true" data-chemical="tablet" onclick="addChemicalTablet()">
+                                    💊 Iodine Tablet (Click to add)
+                                </div>
+                                <p style="margin-top: 10px; color: #6B7F6F;">
+                                    Tablets added: <strong><span id="tabletCount">0</span></strong><br>
+                                    Recommended: 1-2 per liter
+                                </p>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-secondary" onclick="resetChemicals()" style="margin: 10px;">
+                            🔄 Reset Tablets
+                        </button>
+                        <button class="btn btn-success" onclick="completeChemical()">
+                            ✅ Wait & Test (30 min)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- INTERACTIVE METHOD 5: Cloth Filtration (Simple) -->
+                <div id="clothMethod" style="display: none;">
+                    <h3 style="color: #4A6F5F; margin: 20px 0;">Cloth Filtration</h3>
+                    <p class="instruction-box">
+                        Pour water through clean cloth to remove large particles. This method is quick but limited in effectiveness.
+                    </p>
+                    
+                    <div style="text-align: center;">
+                        <canvas id="clothCanvas" width="500" height="400"></canvas>
+                        <p class="interactive-hint">Simple filtration removes visible particles only</p>
+                        
+                        <button class="btn btn-success" onclick="runClothFiltration()" style="margin-top: 20px;">
+                            💧 Pour Through Cloth
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mistake-feedback" id="mistakeFeedback"></div>
+            </div>
+
+            <!-- Section 4: Results - ENHANCED WITH VISUAL COMPARISON -->
+            <div class="section" id="section4" style="display: none;">
+                <h2>Step 4: Test Purification Results</h2>
+                
+                <!-- CANVAS: Before/After comparison -->
+                <div style="text-align: center; margin: 20px 0;">
+                    <canvas id="comparisonCanvas" width="700" height="400"></canvas>
+                    <p class="interactive-hint">🔬 Before and after purification - visual and microscopic comparison</p>
+                </div>
+
+                <div class="results-panel show">
+                    <div class="result-item">
+                        <h3>Final Water Quality:</h3>
+                        <div id="finalQuality"></div>
+                    </div>
+
+                    <div class="result-item">
+                        <h3>Effectiveness Analysis:</h3>
+                        <div id="effectiveness"></div>
+                    </div>
+
+                    <div class="result-item">
+                        <h3>Safety Recommendation:</h3>
+                        <div id="safetyRec"></div>
+                    </div>
+                </div>
+
+                <h3 style="color: #4A6F5F; margin-top: 30px;">Your Trial Data:</h3>
+                <table class="data-table" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Trial #</th>
+                            <th>Source</th>
+                            <th>Method</th>
+                            <th>Initial Clarity</th>
+                            <th>Final Quality</th>
+                            <th>Safe to Drink?</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataTableBody">
+                    </tbody>
+                </table>
+
+                <div class="reflection-area">
+                    <h3>Reflection & Observations:</h3>
+                    <label for="observations">What did you learn about water purification? How does this reflect Yehovah's design for clean water in creation?</label>
+                    <textarea id="observations" placeholder="Write your observations here..."></textarea>
+                </div>
+
+                <div class="export-section">
+                    <h3>📊 Export Your Data</h3>
+                    <p>Download your trial data as CSV for your science notebook.</p>
+                    <button class="btn btn-success" onclick="exportCSV()">📥 Download CSV File</button>
+                </div>
+
+                <div style="text-align: center;">
+                    <button class="btn" onclick="newTrial()">🔄 Run New Trial</button>
+                </div>
+            </div>
+
+            <!-- Badges Section - PRESERVED -->
+            <div class="section">
+                <h2>🏆 Achievement Badges</h2>
+                <div class="badge-container" id="badgeContainer">
+                    <div class="badge locked" id="badge1">
+                        <span class="badge-icon">🔬</span>
+                        <span>First Assessment</span>
+                    </div>
+                    <div class="badge locked" id="badge2">
+                        <span class="badge-icon">💧</span>
+                        <span>Purification Expert</span>
+                    </div>
+                    <div class="badge locked" id="badge3">
+                        <span class="badge-icon">✅</span>
+                        <span>Safe Water Achieved</span>
+                    </div>
+                    <div class="badge locked" id="badge4">
+                        <span class="badge-icon">📊</span>
+                        <span>Data Collector</span>
+                    </div>
+                    <div class="badge locked" id="badge5">
+                        <span class="badge-icon">🎯</span>
+                        <span>Mastery: 5 Successful Trials</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ========================================
+           PRESERVED DATA STRUCTURES & LOGIC
+           ======================================== */
+        
+        // Data storage (preserved from original)
+        let trialData = [];
+        let currentTrial = {
+            trialNumber: 1,
+            source: '',
+            temperature: 65,
+            clarity: 5,
+            contaminants: [],
+            riskLevel: '',
+            method: '',
+            methodDuration: 0,
+            finalQuality: '',
+            safe: false
+        };
+        let badges = {
+            badge1: false,
+            badge2: false,
+            badge3: false,
+            badge4: false,
+            badge5: false
+        };
+
+        // Water source database (preserved)
+        const waterSources = {
+            creek: {
+                name: "Clear Creek",
+                baseContaminants: ["bacteria", "protozoa", "sediment-low"],
+                riskFactor: 0.4,
+                clarity: 3,
+                color: '#87CEEB'
+            },
+            pond: {
+                name: "Stagnant Pond",
+                baseContaminants: ["bacteria", "protozoa", "algae", "sediment-medium"],
+                riskFactor: 0.7,
+                clarity: 6,
+                color: '#6B8E7F'
+            },
+            river: {
+                name: "Muddy River",
+                baseContaminants: ["bacteria", "protozoa", "sediment-high", "agricultural-runoff"],
+                riskFactor: 0.8,
+                clarity: 8,
+                color: '#8B7355'
+            },
+            rain: {
+                name: "Rainwater",
+                baseContaminants: ["dust", "bird-droppings", "sediment-low"],
+                riskFactor: 0.3,
+                clarity: 2,
+                color: '#B0E0E6'
+            },
+            spring: {
+                name: "Natural Spring",
+                baseContaminants: ["minerals", "possible-bacteria"],
+                riskFactor: 0.2,
+                clarity: 2,
+                color: '#AFEEEE'
+            }
+        };
+
+        // Purification effectiveness database (preserved)
+        const methods = {
+            boiling: {
+                name: "Boiling",
+                killsBacteria: true,
+                killsProtozoa: true,
+                removesParticles: false,
+                removesChemicals: false,
+                minDuration: 1
+            },
+            filter: {
+                name: "Natural Filter",
+                killsBacteria: false,
+                killsProtozoa: true,
+                removesParticles: true,
+                removesChemicals: false,
+                effectiveness: 0.7
+            },
+            solar: {
+                name: "Solar Disinfection",
+                killsBacteria: true,
+                killsProtozoa: false,
+                removesParticles: false,
+                removesChemicals: false,
+                minDuration: 6
+            },
+            chemical: {
+                name: "Chemical Treatment",
+                killsBacteria: true,
+                killsProtozoa: false,
+                removesParticles: false,
+                removesChemicals: false,
+                effectiveness: 0.8
+            },
+            cloth: {
+                name: "Cloth Filtration",
+                killsBacteria: false,
+                killsProtozoa: false,
+                removesParticles: true,
+                removesChemicals: false,
+                effectiveness: 0.3
+            }
+        };
+
+        /* ========================================
+           NEW: CANVAS RENDERING & ANIMATION SYSTEM
+           ======================================== */
+
+        let canvasContexts = {};
+        let animationFrames = {};
+        let currentMethod = '';
+        let selectedSource = null;
+
+        // Initialize all canvas contexts
+        function initializeCanvases() {
+            const canvasIds = ['waterJar', 'waterSample', 'filtrationCanvas', 'boilingCanvas', 
+                             'solarCanvas', 'chemicalCanvas', 'clothCanvas', 'comparisonCanvas'];
+            
+            canvasIds.forEach(id => {
+                const canvas = document.getElementById(id);
+                if (canvas) {
+                    canvasContexts[id] = canvas.getContext('2d');
+                }
+            });
+        }
+
+        // NEW: Source selection with visual feedback
+        function selectSource(source) {
+            selectedSource = source;
+            
+            // Update visual selection
+            document.querySelectorAll('.source-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelector(`[data-source="${source}"]`).classList.add('selected');
+            
+            // Enable collect button
+            document.getElementById('collectBtn').disabled = false;
+            
+            // Update current trial
+            currentTrial.source = source;
+            const sourceData = waterSources[source];
+            currentTrial.clarity = sourceData.clarity;
+        }
+
+        // NEW: Animated water collection
+        function collectWater() {
+            document.getElementById('collectionCanvas').style.display = 'block';
+            
+            const canvas = document.getElementById('waterJar');
+            const ctx = canvasContexts.waterJar;
+            const sourceData = waterSources[selectedSource];
+            
+            let fillLevel = 0;
+            const maxFill = 380;
+            
+            function animateFill() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw jar container
+                ctx.strokeStyle = '#8B7355';
+                ctx.lineWidth = 4;
+                ctx.beginPath();
+                ctx.moveTo(150, 50);
+                ctx.lineTo(120, 450);
+                ctx.lineTo(280, 450);
+                ctx.lineTo(250, 50);
+                ctx.closePath();
+                ctx.stroke();
+                
+                // Draw jar opening
+                ctx.beginPath();
+                ctx.ellipse(200, 50, 50, 10, 0, 0, Math.PI * 2);
+                ctx.stroke();
+                
+                // Draw water level
+                if (fillLevel < maxFill) {
+                    fillLevel += 3;
+                    
+                    // Water color based on source
+                    const waterColor = sourceData.color;
+                    const opacity = 0.7;
+                    ctx.fillStyle = waterColor + Math.round(opacity * 255).toString(16);
+                    
+                    // Draw water
+                    ctx.beginPath();
+                    ctx.moveTo(122, 450 - fillLevel);
+                    ctx.lineTo(122, 448);
+                    ctx.lineTo(278, 448);
+                    ctx.lineTo(278, 450 - fillLevel);
+                    ctx.closePath();
+                    ctx.fill();
+                    
+                    // Add particles for murky water
+                    if (sourceData.clarity > 4) {
+                        ctx.fillStyle = 'rgba(139, 115, 85, 0.4)';
+                        for (let i = 0; i < sourceData.clarity * 3; i++) {
+                            const x = 140 + Math.random() * 120;
+                            const y = 450 - fillLevel + Math.random() * fillLevel;
+                            ctx.beginPath();
+                            ctx.arc(x, y, 2, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                    }
+                    
+                    requestAnimationFrame(animateFill);
+                } else {
+                    // Collection complete
+                    setTimeout(() => {
+                        assessWater();
+                    }, 500);
+                }
+            }
+            
+            animateFill();
+        }
+
+        // PRESERVED: Assessment logic with NEW visual rendering
+        function assessWater() {
+            const source = selectedSource;
+            const sourceData = waterSources[source];
+            
+            // Store trial data (preserved logic)
+            currentTrial.contaminants = [...sourceData.baseContaminants];
+            
+            // Calculate risk level (preserved logic)
+            let riskScore = sourceData.riskFactor + (currentTrial.clarity / 20);
+            if (riskScore > 0.7) {
+                currentTrial.riskLevel = 'high';
+            } else if (riskScore > 0.4) {
+                currentTrial.riskLevel = 'medium';
+            } else {
+                currentTrial.riskLevel = 'low';
+            }
+            
+            // NEW: Draw water sample with microbes
+            drawWaterSampleWithMicrobes(currentTrial.clarity, currentTrial.contaminants);
+            
+            // Display results (preserved)
+            displayAssessment();
+            
+            // Update UI (preserved)
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step1').classList.add('completed');
+            document.getElementById('step2').classList.add('active');
+            document.getElementById('section2').style.display = 'block';
+            document.getElementById('assessmentResults').classList.add('show');
+            
+            // Scroll to section
+            document.getElementById('section2').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Award badge (preserved)
+            unlockBadge('badge1');
+        }
+
+        // NEW: Draw water sample with visible microbes
+        function drawWaterSampleWithMicrobes(clarity, contaminants) {
+            const canvas = document.getElementById('waterSample');
+            const ctx = canvasContexts.waterSample;
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw microscope slide background
+            ctx.fillStyle = '#E8DCC8';
+            ctx.fillRect(50, 50, 500, 300);
+            
+            ctx.strokeStyle = '#8B7355';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(50, 50, 500, 300);
+            
+            // Draw water sample area
+            const sourceData = waterSources[selectedSource];
+            ctx.fillStyle = sourceData.color + '99';
+            ctx.fillRect(75, 75, 450, 250);
+            
+            // Draw sediment particles
+            if (clarity > 3) {
+                ctx.fillStyle = 'rgba(139, 115, 85, 0.6)';
+                for (let i = 0; i < clarity * 10; i++) {
+                    const x = 75 + Math.random() * 450;
+                    const y = 75 + Math.random() * 250;
+                    const size = Math.random() * 4 + 1;
+                    ctx.beginPath();
+                    ctx.arc(x, y, size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            
+            // Draw microbes (bacteria)
+            if (contaminants.includes('bacteria')) {
+                ctx.fillStyle = 'rgba(200, 50, 50, 0.8)';
+                for (let i = 0; i < 30; i++) {
+                    const x = 75 + Math.random() * 450;
+                    const y = 75 + Math.random() * 250;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 3, 0, Math.PI * 2);
+                    ctx.fill();
+                    // Draw flagella
+                    ctx.strokeStyle = 'rgba(200, 50, 50, 0.5)';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(x + 10, y - 5);
+                    ctx.stroke();
+                }
+            }
+            
+            // Draw protozoa
+            if (contaminants.includes('protozoa')) {
+                ctx.fillStyle = 'rgba(100, 100, 200, 0.8)';
+                for (let i = 0; i < 15; i++) {
+                    const x = 75 + Math.random() * 450;
+                    const y = 75 + Math.random() * 250;
+                    ctx.beginPath();
+                    ctx.ellipse(x, y, 6, 4, Math.random() * Math.PI, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            
+            // Draw algae
+            if (contaminants.includes('algae')) {
+                ctx.strokeStyle = 'rgba(50, 150, 50, 0.7)';
+                ctx.lineWidth = 2;
+                for (let i = 0; i < 20; i++) {
+                    const x = 75 + Math.random() * 450;
+                    const y = 75 + Math.random() * 250;
+                    ctx.beginPath();
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(x + 20, y + 15);
+                    ctx.stroke();
+                }
+            }
+            
+            // Add label
+            ctx.fillStyle = '#4A6F5F';
+            ctx.font = 'bold 16px Georgia';
+            ctx.fillText('🔬 Microscopic View (400x magnification)', 150, 370);
+        }
+
+        // PRESERVED: Display assessment function
+        function displayAssessment() {
+            const contaminantText = currentTrial.contaminants
+                .map(c => c.replace(/-/g, ' '))
+                .join(', ');
+
+            document.getElementById('contaminantList').innerHTML = `
+                <h3>Potential Contaminants Detected:</h3>
+                <p style="color: #C87F84; font-weight: 600;">${contaminantText}</p>
+            `;
+
+            let riskClass = '';
+            let riskText = '';
+            if (currentTrial.riskLevel === 'high') {
+                riskClass = 'quality-unsafe';
+                riskText = 'HIGH RISK - Multiple purification steps needed';
+            } else if (currentTrial.riskLevel === 'medium') {
+                riskClass = 'quality-caution';
+                riskText = 'MODERATE RISK - Purification recommended';
+            } else {
+                riskClass = 'quality-safe';
+                riskText = 'LOW RISK - Basic purification sufficient';
+            }
+
+            document.getElementById('riskLevel').innerHTML = `
+                <h3>Risk Assessment:</h3>
+                <span class="quality-indicator ${riskClass}">${riskText}</span>
+            `;
+
+            let recommendation = '';
+            if (currentTrial.contaminants.includes('bacteria')) {
+                recommendation += '• Boiling or chemical treatment essential<br>';
+            }
+            if (currentTrial.contaminants.includes('sediment-high')) {
+                recommendation += '• Pre-filter through cloth or natural filter<br>';
+            }
+            if (currentTrial.clarity > 7) {
+                recommendation += '• Allow settling time before treatment<br>';
+            }
+
+            document.getElementById('recommendation').innerHTML = `
+                <h3>Recommended Actions:</h3>
+                ${recommendation}
+            `;
+        }
+
+        // PRESERVED: Proceed to purification
+        function proceedToPurification() {
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step2').classList.add('completed');
+            document.getElementById('step3').classList.add('active');
+            document.getElementById('section3').style.display = 'block';
+            document.getElementById('section3').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // NEW: Method selection handler
+        function selectMethod(method) {
+            currentMethod = method;
+            currentTrial.method = method;
+            
+            // Hide all method panels
+            document.querySelectorAll('#filterMethod, #boilingMethod, #solarMethod, #chemicalMethod, #clothMethod')
+                .forEach(el => el.style.display = 'none');
+            
+            // Show selected method
+            document.getElementById(method + 'Method').style.display = 'block';
+            
+            // Initialize method-specific canvas
+            if (method === 'boiling') {
+                initializeBoilingCanvas();
+            } else if (method === 'solar') {
+                initializeSolarCanvas();
+            } else if (method === 'chemical') {
+                initializeChemicalCanvas();
+            }
+        }
+
+        /* ========================================
+           FILTER BUILDING - DRAG AND DROP SYSTEM
+           ======================================== */
+
+        let filterLayers = [];
+
+        // Initialize drag and drop for filter building
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCanvases();
+            
+            // Drag and drop handlers
+            const draggables = document.querySelectorAll('.draggable-material');
+            const filterZone = document.getElementById('filterZone');
+            
+            draggables.forEach(item => {
+                item.addEventListener('dragstart', handleDragStart);
+            });
+            
+            if (filterZone) {
+                filterZone.addEventListener('dragover', handleDragOver);
+                filterZone.addEventListener('drop', handleDrop);
+                filterZone.addEventListener('dragleave', handleDragLeave);
+            }
+        });
+
+        function handleDragStart(e) {
+            e.dataTransfer.setData('material', e.target.dataset.material);
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            
+            const material = e.dataTransfer.getData('material');
+            addFilterLayer(material);
+        }
+
+        function addFilterLayer(material) {
+            const materialNames = {
+                gravel: '🪨 Gravel Layer',
+                sand: '🏖️ Sand Layer',
+                charcoal: '⚫ Charcoal Layer',
+                cloth: '🧵 Cloth Layer'
+            };
+            
+            filterLayers.push(material);
+            
+            const filterZone = document.getElementById('filterZone');
+            const layerDiv = document.createElement('div');
+            layerDiv.className = 'filter-layer';
+            layerDiv.innerHTML = `${materialNames[material]} <small>(Layer ${filterLayers.length})</small>`;
+            filterZone.appendChild(layerDiv);
+            
+            // Clear placeholder text
+            if (filterLayers.length === 1) {
+                filterZone.querySelector('p').style.display = 'none';
+            }
+        }
+
+        // NEW: Run filter simulation
+        function runFilterSimulation() {
+            if (filterLayers.length === 0) {
+                showMistake([{
+                    title: 'No Filter Built',
+                    message: 'You need to add filter materials first! Drag materials from the palette to build your filter.',
+                    correction: 'Start with coarse materials (gravel) at the bottom, then add finer materials (sand, charcoal, cloth) on top.'
+                }]);
+                return;
+            }
+            
+            // Check filter order
+            const mistakes = checkFilterOrder();
+            if (mistakes.length > 0) {
+                showMistake(mistakes);
+                return;
+            }
+            
+            // Animate filtration
+            animateWaterFiltration();
+        }
+
+        function checkFilterOrder() {
+            const mistakes = [];
+            const correctOrder = ['gravel', 'sand', 'charcoal', 'cloth'];
+            
+            // Check if cloth is at bottom (wrong!)
+            if (filterLayers[0] === 'cloth') {
+                mistakes.push({
+                    title: 'Filter Order Incorrect',
+                    message: 'Cloth at the bottom will clog immediately! Fine materials should be on TOP.',
+                    correction: 'Correct order (bottom to top): Gravel → Sand → Charcoal → Cloth'
+                });
+            }
+            
+            // Check if no coarse material at bottom
+            if (filterLayers[0] !== 'gravel' && filterLayers.length > 2) {
+                mistakes.push({
+                    title: 'Missing Coarse Base Layer',
+                    message: 'Filters need coarse material (gravel) at the bottom for support and initial filtration.',
+                    correction: 'Start with gravel as your first layer.'
+                });
+            }
+            
+            return mistakes;
+        }
+
+        // NEW: Animate water flowing through filter
+        function animateWaterFiltration() {
+            const canvas = document.getElementById('filtrationCanvas');
+            const ctx = canvasContexts.filtrationCanvas;
+            
+            let dropPosition = 0;
+            const maxDrop = 450;
+            let currentClarity = currentTrial.clarity;
+            
+            function animateDrop() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw filter layers
+                const layerHeight = 60;
+                let yPos = 100;
+                
+                filterLayers.forEach((layer, index) => {
+                    // Layer colors
+                    const colors = {
+                        gravel: '#A89F8F',
+                        sand: '#E8DCC8',
+                        charcoal: '#4A4A4A',
+                        cloth: '#FFFFFF'
+                    };
+                    
+                    ctx.fillStyle = colors[layer];
+                    ctx.fillRect(50, yPos, 200, layerHeight);
+                    ctx.strokeStyle = '#8B7355';
+                    ctx.lineWidth = 2;
+                    ctx.strokeRect(50, yPos, 200, layerHeight);
+                    
+                    yPos += layerHeight;
+                });
+                
+                // Draw water drop
+                if (dropPosition < maxDrop) {
+                    dropPosition += 4;
+                    
+                    // Water gets clearer as it passes through layers
+                    const clearnessImprovement = Math.min(dropPosition / maxDrop, 1);
+                    currentClarity = Math.max(1, currentTrial.clarity * (1 - clearnessImprovement * 0.7));
+                    
+                    // Draw water droplet
+                    const sourceData = waterSources[selectedSource];
+                    ctx.fillStyle = sourceData.color;
+                    ctx.globalAlpha = 0.8 - (clearnessImprovement * 0.3);
+                    
+                    ctx.beginPath();
+                    ctx.arc(150, 50 + dropPosition, 20, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.globalAlpha = 1;
+                    
+                    // Add particles that decrease with filtration
+                    if (currentClarity > 2) {
+                        ctx.fillStyle = 'rgba(139, 115, 85, 0.5)';
+                        for (let i = 0; i < currentClarity * 2; i++) {
+                            const px = 150 + (Math.random() - 0.5) * 30;
+                            const py = 50 + dropPosition + (Math.random() - 0.5) * 30;
+                            ctx.beginPath();
+                            ctx.arc(px, py, 1, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                    }
+                    
+                    requestAnimationFrame(animateDrop);
+                } else {
+                    // Filtration complete
+                    completeFilter();
+                }
+            }
+            
+            animateDrop();
+        }
+
+        function completeFilter() {
+            // Calculate effectiveness based on layers
+            let effectiveness = 0.3; // Base
+            if (filterLayers.includes('gravel')) effectiveness += 0.1;
+            if (filterLayers.includes('sand')) effectiveness += 0.2;
+            if (filterLayers.includes('charcoal')) effectiveness += 0.3;
+            if (filterLayers.includes('cloth')) effectiveness += 0.1;
+            
+            currentTrial.effectiveness = Math.min(effectiveness, 0.9);
+            currentTrial.methodDuration = 0; // Instant for filter
+            
+            finalizePurification();
+        }
+
+        /* ========================================
+           BOILING SIMULATION - HOLD TO HEAT
+           ======================================== */
+
+        let boilingTemp = 65; // Starting temp in Fahrenheit
+        let boilingTime = 0; // Seconds at boiling
+        let isHeating = false;
+        let heatingInterval = null;
+        let boilingInterval = null;
+
+        function initializeBoilingCanvas() {
+            boilingTemp = 65;
+            boilingTime = 0;
+            drawBoilingPot();
+        }
+
+        function drawBoilingPot() {
+            const canvas = document.getElementById('boilingCanvas');
+            const ctx = canvasContexts.boilingCanvas;
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw pot
+            ctx.fillStyle = '#6B7F6F';
+            ctx.fillRect(150, 250, 200, 150);
+            ctx.strokeStyle = '#4A4A4A';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(150, 250, 200, 150);
+            
+            // Draw water in pot
+            const sourceData = waterSources[selectedSource];
+            ctx.fillStyle = sourceData.color + 'CC';
+            ctx.fillRect(160, 270, 180, 120);
+            
+            // Draw thermometer
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(380, 200, 40, 200);
+            ctx.strokeStyle = '#8B7355';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(380, 200, 40, 200);
+            
+            // Temperature fill (red)
+            const tempPercent = Math.min((boilingTemp - 32) / (212 - 32), 1);
+            const fillHeight = 180 * tempPercent;
+            ctx.fillStyle = boilingTemp >= 212 ? '#FF4444' : '#FF8844';
+            ctx.fillRect(385, 395 - fillHeight, 30, fillHeight);
+            
+            // Temperature text
+            ctx.fillStyle = '#4A6F5F';
+            ctx.font = 'bold 18px Georgia';
+            ctx.fillText(`${Math.round(boilingTemp)}°F`, 370, 230);
+            
+            // Draw flame if heating
+            if (isHeating) {
+                drawFlame(ctx);
+            }
+            
+            // Draw steam if boiling
+            if (boilingTemp >= 212) {
+                drawSteam(ctx);
+            }
+        }
+
+        function drawFlame(ctx) {
+            // Animated flame
+            ctx.fillStyle = 'rgba(255, 150, 0, 0.8)';
+            for (let i = 0; i < 5; i++) {
+                const x = 220 + i * 20;
+                const flicker = Math.random() * 10;
+                ctx.beginPath();
+                ctx.moveTo(x, 420);
+                ctx.lineTo(x - 10, 450);
+                ctx.lineTo(x + 10, 450);
+                ctx.closePath();
+                ctx.fill();
+                
+                // Inner yellow flame
+                ctx.fillStyle = 'rgba(255, 255, 100, 0.9)';
+                ctx.beginPath();
+                ctx.moveTo(x, 430 + flicker);
+                ctx.lineTo(x - 5, 450);
+                ctx.lineTo(x + 5, 450);
+                ctx.closePath();
+                ctx.fill();
+            }
+        }
+
+        function drawSteam(ctx) {
+            // Rising steam
+            ctx.fillStyle = 'rgba(200, 220, 240, 0.6)';
+            for (let i = 0; i < 10; i++) {
+                const x = 170 + Math.random() * 160;
+                const y = 250 - (Math.random() * 80);
+                const size = 10 + Math.random() * 20;
+                ctx.beginPath();
+                ctx.arc(x, y, size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function startHeating() {
+            isHeating = true;
+            
+            heatingInterval = setInterval(() => {
+                if (boilingTemp < 212) {
+                    boilingTemp += 2;
+                } else {
+                    boilingTime += 0.1;
+                }
+                
+                drawBoilingPot();
+                document.getElementById('tempDisplay').textContent = Math.round(boilingTemp) + '°F';
+                
+                if (boilingTemp >= 212) {
+                    const minutes = Math.floor(boilingTime / 60);
+                    const seconds = Math.floor(boilingTime % 60);
+                    document.getElementById('boilTimeDisplay').textContent = 
+                        `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                }
+            }, 100);
+        }
+
+        function stopHeating() {
+            isHeating = false;
+            if (heatingInterval) {
+                clearInterval(heatingInterval);
+                heatingInterval = null;
+            }
+            drawBoilingPot();
+        }
+
+        function completeBoiling() {
+            stopHeating();
+            
+            // Check if boiled long enough
+            if (boilingTemp < 212) {
+                showMistake([{
+                    title: 'Water Not Hot Enough',
+                    message: `You stopped at ${Math.round(boilingTemp)}°F. Water must reach 212°F (100°C) to kill microorganisms.`,
+                    correction: 'Hold the heat button longer until water reaches a rolling boil at 212°F.'
+                }]);
+                return;
+            }
+            
+            if (boilingTime < 60) {
+                showMistake([{
+                    title: 'Insufficient Boiling Time',
+                    message: `You only boiled for ${Math.round(boilingTime)} seconds. Water must boil for at least 1 minute.`,
+                    correction: 'Continue boiling for at least 1 full minute after reaching 212°F (3 minutes at high altitude).'
+                }]);
+                return;
+            }
+            
+            // Success!
+            currentTrial.effectiveness = 0.95;
+            currentTrial.methodDuration = boilingTime / 60; // Convert to minutes
+            finalizePurification();
+        }
+
+        /* ========================================
+           SOLAR DISINFECTION SIMULATION
+           ======================================== */
+
+        let solarHours = 0;
+        let sunPosition = 0;
+
+        function initializeSolarCanvas() {
+            solarHours = 0;
+            sunPosition = 0;
+            drawSolarScene();
+        }
+
+        function drawSolarScene() {
+            const canvas = document.getElementById('solarCanvas');
+            const ctx = canvasContexts.solarCanvas;
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw sky gradient
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, '#87CEEB');
+            gradient.addColorStop(1, '#E8F4F8');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 600, 400);
+            
+            // Draw sun arc
+            const sunX = 100 + (sunPosition / 12) * 400;
+            const sunY = 100 + Math.sin((1 - sunPosition / 12) * Math.PI) * -50;
+            
+            // Sun glow
+            const sunGlow = ctx.createRadialGradient(sunX, sunY, 10, sunX, sunY, 50);
+            sunGlow.addColorStop(0, 'rgba(255, 255, 150, 1)');
+            sunGlow.addColorStop(1, 'rgba(255, 255, 150, 0)');
+            ctx.fillStyle = sunGlow;
+            ctx.fillRect(sunX - 50, sunY - 50, 100, 100);
+            
+            // Sun
+            ctx.fillStyle = '#FFD700';
+            ctx.beginPath();
+            ctx.arc(sunX, sunY, 30, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Draw ground
+            ctx.fillStyle = '#8B9F77';
+            ctx.fillRect(0, 300, 600, 100);
+            
+            // Draw water bottle
+            ctx.fillStyle = 'rgba(180, 220, 240, 0.7)';
+            ctx.fillRect(250, 250, 100, 150);
+            ctx.strokeStyle = '#5A8A9F';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(250, 250, 100, 150);
+            
+            // Draw water inside
+            const sourceData = waterSources[selectedSource];
+            ctx.fillStyle = sourceData.color + '99';
+            ctx.fillRect(255, 260, 90, 130);
+            
+            // UV rays hitting bottle
+            if (solarHours > 0) {
+                ctx.strokeStyle = 'rgba(255, 255, 150, 0.5)';
+                ctx.lineWidth = 2;
+                for (let i = 0; i < 5; i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(sunX, sunY);
+                    ctx.lineTo(280 + i * 10, 260);
+                    ctx.stroke();
+                }
+            }
+            
+            // Time display
+            ctx.fillStyle = '#4A6F5F';
+            ctx.font = 'bold 20px Georgia';
+            ctx.fillText(`Time: ${solarHours}:00`, 250, 230);
+        }
+
+        function advanceSolarTime() {
+            solarHours++;
+            sunPosition = solarHours;
+            
+            document.getElementById('solarTimeDisplay').textContent = `${solarHours} hours`;
+            
+            const uvIntensity = Math.min((solarHours / 6) * 100, 100);
+            document.getElementById('uvDisplay').textContent = `${Math.round(uvIntensity)}%`;
+            
+            drawSolarScene();
+        }
+
+        function completeSolar() {
+            if (solarHours < 6) {
+                showMistake([{
+                    title: 'Insufficient Sun Exposure',
+                    message: `Only ${solarHours} hours of exposure. SODIS requires at least 6 hours of direct sunlight.`,
+                    correction: 'Continue advancing time until you reach 6+ hours of exposure. UV rays need time to deactivate pathogens.'
+                }]);
+                return;
+            }
+            
+            currentTrial.effectiveness = 0.75 + (Math.min(solarHours - 6, 4) * 0.05);
+            currentTrial.methodDuration = solarHours;
+            finalizePurification();
+        }
+
+        /* ========================================
+           CHEMICAL TREATMENT SIMULATION
+           ======================================== */
+
+        let tabletCount = 0;
+
+        function initializeChemicalCanvas() {
+            tabletCount = 0;
+            document.getElementById('tabletCount').textContent = '0';
+            drawChemicalJar();
+        }
+
+        function drawChemicalJar() {
+            const canvas = document.getElementById('chemicalCanvas');
+            const ctx = canvasContexts.chemicalCanvas;
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw jar
+            ctx.strokeStyle = '#8B7355';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(150, 100);
+            ctx.lineTo(120, 450);
+            ctx.lineTo(280, 450);
+            ctx.lineTo(250, 100);
+            ctx.closePath();
+            ctx.stroke();
+            
+            // Draw water
+            const sourceData = waterSources[selectedSource];
+            let waterColor = sourceData.color;
+            
+            // Tint water based on tablets
+            if (tabletCount > 0) {
+                waterColor = '#D4A574'; // Iodine tint
+            }
+            if (tabletCount > 3) {
+                waterColor = '#8B6914'; // Too much iodine
+            }
+            
+            ctx.fillStyle = waterColor + 'CC';
+            ctx.beginPath();
+            ctx.moveTo(122, 150);
+            ctx.lineTo(122, 448);
+            ctx.lineTo(278, 448);
+            ctx.lineTo(278, 150);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Draw tablets dissolving
+            for (let i = 0; i < tabletCount; i++) {
+                const y = 400 - (i * 30);
+                ctx.fillStyle = 'rgba(180, 140, 100, 0.8)';
+                ctx.beginPath();
+                ctx.arc(200, y, 8, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Dissolution effect
+                ctx.strokeStyle = 'rgba(180, 140, 100, 0.3)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(200, y, 15, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+        }
+
+        function addChemicalTablet() {
+            tabletCount++;
+            document.getElementById('tabletCount').textContent = tabletCount;
+            drawChemicalJar();
+        }
+
+        function resetChemicals() {
+            tabletCount = 0;
+            document.getElementById('tabletCount').textContent = '0';
+            drawChemicalJar();
+        }
+
+        function completeChemical() {
+            if (tabletCount === 0) {
+                showMistake([{
+                    title: 'No Tablets Added',
+                    message: 'You need to add at least 1 purification tablet to treat the water.',
+                    correction: 'Click the tablet button to add iodine tablets to your water.'
+                }]);
+                return;
+            }
+            
+            if (tabletCount > 3) {
+                showMistake([{
+                    title: 'Too Many Tablets!',
+                    message: `You added ${tabletCount} tablets. This makes water unsafe to drink due to excessive iodine. Can cause health problems.`,
+                    correction: 'Use only 1-2 tablets per liter of water. Follow package directions carefully.'
+                }]);
+                currentTrial.effectiveness = 0.4; // Reduced due to over-treatment
+            } else {
+                currentTrial.effectiveness = 0.8;
+            }
+            
+            currentTrial.methodDuration = 30; // 30 minutes wait time
+            finalizePurification();
+        }
+
+        /* ========================================
+           CLOTH FILTRATION (SIMPLE)
+           ======================================== */
+
+        function runClothFiltration() {
+            const canvas = document.getElementById('clothCanvas');
+            const ctx = canvasContexts.clothCanvas;
+            
+            // Simple animation
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw cloth
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(100, 150, 300, 20);
+            ctx.strokeStyle = '#8B7355';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(100, 150, 300, 20);
+            
+            // Draw water pouring through
+            const sourceData = waterSources[selectedSource];
+            ctx.fillStyle = sourceData.color + '99';
+            ctx.fillRect(200, 50, 100, 100);
+            
+            // After "filtration"
+            setTimeout(() => {
+                ctx.fillStyle = sourceData.color + 'BB';
+                ctx.fillRect(200, 200, 100, 150);
+                
+                ctx.fillStyle = '#4A6F5F';
+                ctx.font = 'bold 16px Georgia';
+                ctx.fillText('Large particles removed', 150, 380);
+                
+                setTimeout(() => {
+                    currentTrial.effectiveness = 0.3;
+                    currentTrial.methodDuration = 0;
+                    finalizePurification();
+                }, 1000);
+            }, 1500);
+        }
+
+        /* ========================================
+           FINALIZE PURIFICATION & SHOW RESULTS
+           ======================================== */
+
+        function finalizePurification() {
+            // Determine final quality based on effectiveness
+            const effectiveness = currentTrial.effectiveness;
+            
+            if (effectiveness >= 0.9) {
+                currentTrial.finalQuality = 'safe';
+                currentTrial.safe = true;
+            } else if (effectiveness >= 0.7) {
+                currentTrial.finalQuality = 'mostly-safe';
+                currentTrial.safe = false;
+            } else {
+                currentTrial.finalQuality = 'unsafe';
+                currentTrial.safe = false;
+            }
+            
+            // Save trial
+            trialData.push({...currentTrial});
+            
+            // Draw before/after comparison
+            drawComparisonCanvas();
+            
+            // Display results
+            displayResults();
+            
+            // Update UI
+            document.getElementById('step3').classList.remove('active');
+            document.getElementById('step3').classList.add('completed');
+            document.getElementById('step4').classList.add('active');
+            document.getElementById('section4').style.display = 'block';
+            document.getElementById('section4').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Award badges
+            unlockBadge('badge2');
+            if (currentTrial.safe) {
+                unlockBadge('badge3');
+            }
+            if (trialData.length >= 3) {
+                unlockBadge('badge4');
+            }
+            if (trialData.filter(t => t.safe).length >= 5) {
+                unlockBadge('badge5');
+            }
+        }
+
+        // NEW: Draw before/after comparison canvas
+        function drawComparisonCanvas() {
+            const canvas = document.getElementById('comparisonCanvas');
+            const ctx = canvasContexts.comparisonCanvas;
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const sourceData = waterSources[selectedSource];
+            
+            // Left side - BEFORE
+            ctx.fillStyle = '#E8DCC8';
+            ctx.fillRect(20, 20, 320, 360);
+            ctx.strokeStyle = '#8B7355';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(20, 20, 320, 360);
+            
+            ctx.fillStyle = '#4A6F5F';
+            ctx.font = 'bold 20px Georgia';
+            ctx.fillText('BEFORE Purification', 70, 50);
+            
+            // Draw dirty water
+            ctx.fillStyle = sourceData.color + '99';
+            ctx.fillRect(70, 100, 220, 250);
+            
+            // Add contaminants
+            ctx.fillStyle = 'rgba(139, 115, 85, 0.6)';
+            for (let i = 0; i < currentTrial.clarity * 15; i++) {
+                const x = 70 + Math.random() * 220;
+                const y = 100 + Math.random() * 250;
+                ctx.beginPath();
+                ctx.arc(x, y, 3, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            // Add microbes
+            ctx.fillStyle = 'rgba(200, 50, 50, 0.8)';
+            for (let i = 0; i < 20; i++) {
+                const x = 70 + Math.random() * 220;
+                const y = 100 + Math.random() * 250;
+                ctx.beginPath();
+                ctx.arc(x, y, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            // Right side - AFTER
+            ctx.fillStyle = '#E8F4F8';
+            ctx.fillRect(360, 20, 320, 360);
+            ctx.strokeStyle = '#5A8A9F';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(360, 20, 320, 360);
+            
+            ctx.fillStyle = '#4A6F5F';
+            ctx.fillText('AFTER Purification', 410, 50);
+            
+            // Draw clean water
+            const cleanColor = currentTrial.safe ? '#B0E0E6' : sourceData.color;
+            ctx.fillStyle = cleanColor + 'CC';
+            ctx.fillRect(410, 100, 220, 250);
+            
+            // Reduced contaminants based on effectiveness
+            const remainingParticles = Math.floor((1 - currentTrial.effectiveness) * currentTrial.clarity * 15);
+            ctx.fillStyle = 'rgba(139, 115, 85, 0.3)';
+            for (let i = 0; i < remainingParticles; i++) {
+                const x = 410 + Math.random() * 220;
+                const y = 100 + Math.random() * 250;
+                ctx.beginPath();
+                ctx.arc(x, y, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            // Reduced microbes
+            const remainingMicrobes = Math.floor((1 - currentTrial.effectiveness) * 20);
+            ctx.fillStyle = 'rgba(200, 50, 50, 0.4)';
+            for (let i = 0; i < remainingMicrobes; i++) {
+                const x = 410 + Math.random() * 220;
+                const y = 100 + Math.random() * 250;
+                ctx.beginPath();
+                ctx.arc(x, y, 1, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // PRESERVED: Display results function
+        function displayResults() {
+            const effectiveness = Math.round(currentTrial.effectiveness * 100);
+            
+            let qualityHTML = '';
+            if (currentTrial.safe) {
+                qualityHTML = `<span class="quality-indicator quality-safe">✅ SAFE TO DRINK (${effectiveness}% effective)</span>`;
+            } else if (currentTrial.finalQuality === 'mostly-safe') {
+                qualityHTML = `<span class="quality-indicator quality-caution">⚠️ MOSTLY SAFE - Use caution (${effectiveness}% effective)</span>`;
+            } else {
+                qualityHTML = `<span class="quality-indicator quality-unsafe">❌ UNSAFE - Do not drink (${effectiveness}% effective)</span>`;
+            }
+
+            document.getElementById('finalQuality').innerHTML = qualityHTML;
+
+            let effectivenessText = '';
+            if (effectiveness >= 95) {
+                effectivenessText = `Excellent purification! Your method effectively removed/killed ${effectiveness}% of contaminants. This water is safe for drinking.`;
+            } else if (effectiveness >= 70) {
+                effectivenessText = `Good purification (${effectiveness}% effective), but some risk remains. Consider a second purification step or avoid if safer water is available.`;
+            } else {
+                effectivenessText = `Purification was only ${effectiveness}% effective. Significant contamination remains. Try a different method or combine multiple methods.`;
+            }
+
+            document.getElementById('effectiveness').innerHTML = `<p>${effectivenessText}</p>`;
+
+            let safetyText = '';
+            if (currentTrial.safe) {
+                safetyText = 'This water has been adequately purified and is safe for consumption. Store in a clean container.';
+            } else {
+                safetyText = 'This water still contains potential contaminants. Do NOT drink without further treatment. Consider combining methods (e.g., filter + boil).';
+            }
+
+            document.getElementById('safetyRec').innerHTML = `<p style="font-weight: 600;">${safetyText}</p>`;
+
+            // Update data table
+            updateDataTable();
+        }
+
+        // PRESERVED: Update data table
+        function updateDataTable() {
+            const tbody = document.getElementById('dataTableBody');
+            tbody.innerHTML = '';
+
+            trialData.forEach(trial => {
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td>${trial.trialNumber}</td>
+                    <td>${waterSources[trial.source].name}</td>
+                    <td>${methods[trial.method].name}</td>
+                    <td>${trial.clarity}/10</td>
+                    <td>${trial.finalQuality}</td>
+                    <td>${trial.safe ? '✅ Yes' : '❌ No'}</td>
+                `;
+            });
+        }
+
+        // PRESERVED: Show mistake feedback
+        function showMistake(mistakes) {
+            let html = '<h3>⚠️ Purification Error Detected</h3>';
+            mistakes.forEach(m => {
+                html += `
+                    <p><strong>${m.title}:</strong> ${m.message}</p>
+                    <p style="color: #5A8A9F;"><strong>Correction:</strong> ${m.correction}</p>
+                    <hr style="margin: 10px 0; border-color: #D4A574;">
+                `;
+            });
+
+            document.getElementById('mistakeFeedback').innerHTML = html;
+            document.getElementById('mistakeFeedback').classList.add('show');
+
+            setTimeout(() => {
+                document.getElementById('mistakeFeedback').classList.remove('show');
+            }, 10000);
+        }
+
+        // PRESERVED: Badge system
+        function unlockBadge(badgeId) {
+            if (!badges[badgeId]) {
+                badges[badgeId] = true;
+                const badge = document.getElementById(badgeId);
+                badge.classList.remove('locked');
+                badge.style.animation = 'slideIn 0.5s';
+            }
+        }
+
+        // PRESERVED: New trial function
+        function newTrial() {
+            // Increment trial number
+            currentTrial = {
+                trialNumber: trialData.length + 1,
+                source: '',
+                temperature: 65,
+                clarity: 5,
+                contaminants: [],
+                riskLevel: '',
+                method: '',
+                methodDuration: 0,
+                finalQuality: '',
+                safe: false
+            };
+
+            // Reset selections
+            selectedSource = null;
+            filterLayers = [];
+            boilingTemp = 65;
+            boilingTime = 0;
+            solarHours = 0;
+            sunPosition = 0;
+            tabletCount = 0;
+
+            // Reset UI
+            document.querySelectorAll('.source-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            document.getElementById('collectBtn').disabled = true;
+            document.getElementById('collectionCanvas').style.display = 'none';
+
+            // Reset steps
+            document.getElementById('step1').classList.add('active');
+            document.getElementById('step1').classList.remove('completed');
+            document.getElementById('step2').classList.remove('active', 'completed');
+            document.getElementById('step3').classList.remove('active', 'completed');
+            document.getElementById('step4').classList.remove('active', 'completed');
+
+            // Hide sections
+            document.getElementById('section2').style.display = 'none';
+            document.getElementById('section3').style.display = 'none';
+            document.getElementById('section4').style.display = 'none';
+
+            // Scroll to top
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // PRESERVED: CSV export function
+        function exportCSV() {
+            let csv = 'Trial,Source,Temperature,Clarity,Method,Duration,Effectiveness,Safe\n';
+            
+            trialData.forEach(trial => {
+                csv += `${trial.trialNumber},`;
+                csv += `${waterSources[trial.source].name},`;
+                csv += `${trial.temperature}°F,`;
+                csv += `${trial.clarity}/10,`;
+                csv += `${methods[trial.method].name},`;
+                csv += `${trial.methodDuration || 'N/A'},`;
+                csv += `${Math.round(trial.effectiveness * 100)}%,`;
+                csv += `${trial.safe ? 'Yes' : 'No'}\n`;
+            });
+
+            // Add observations
+            const observations = document.getElementById('observations').value;
+            if (observations) {
+                csv += `\nReflections:\n"${observations.replace(/"/g, '""')}"`;
+            }
+
+            // Create download
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Water_Purification_Lab_Data_${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

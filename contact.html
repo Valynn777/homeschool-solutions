@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Faithful Way Homeschool Solutions - Get in touch with us today.">
+    <title>Contact - Faithful Way Homeschool Solutions</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="images/logo.png" alt="Faithful Way Homeschool Solutions Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="tools/tools.html">Tools</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="glow">Get In Touch</h1>
+                <p class="subtitle">Have questions? We'd love to hear from you.</p>
+            </div>
+        </section>
+
+        <section class="contact-content">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <h2>Let's Connect</h2>
+                        <p>Whether you have questions about our services, need help with your homeschool journey, or just want to say hello, we're here for you.</p>
+
+                        <div class="info-item">
+                            <h4>Response Time</h4>
+                            <p>We typically respond within 24-48 hours during business days.</p>
+                        </div>
+
+                        <div class="info-item">
+                            <h4>Ready to Schedule?</h4>
+                            <p>If you're ready to book a consultation, visit our <a href="services.html" class="text-link">Services page</a> to complete the intake form.</p>
+                        </div>
+
+                        <div class="info-item">
+                            <h4>Live Chat (Optional)</h4>
+                            <p class="note">Note: Live chat integration can be added here using services like Tidio, Crisp, or Chatra. Simply add their embed code before the closing &lt;/body&gt; tag.</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Your Name *</label>
+                                <input type="text" id="name" name="name" required placeholder="Enter your name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Your Email *</label>
+                                <input type="email" id="email" name="email" required placeholder="your@email.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" placeholder="What's this about?">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Your Message *</label>
+                                <textarea id="message" name="message" required rows="6" placeholder="Tell us what's on your mind..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+
+                        <div id="formStatus" class="form-status" style="display: none;"></div>
+
+                        <div class="form-note">
+                            <p><strong>Setup Instructions:</strong></p>
+                            <ul>
+                                <li>Replace <code>YOUR_FORM_ID</code> in the form action with your Formspree form ID</li>
+                                <li>Or use Cloudflare Workers for a serverless email solution</li>
+                                <li>The form will work with any email service that accepts POST requests</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Faithful Way Homeschool Solutions. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+    <!--
+    Optional: Add live chat service embed code here
+    Example for Tidio:
+    <script src="//code.tidio.co/YOUR_TIDIO_KEY.js" async></script>
+    -->
+</body>
+</html>

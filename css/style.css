@@ -1,0 +1,1253 @@
+/* ============================================
+   Faithful Way Homeschool Solutions
+   Dark Theme with Subtle Glowing Accents
+   ============================================ */
+
+/* CSS Variables for Easy Customization */
+:root {
+    --color-bg-dark: #0a0a0f;
+    --color-bg-card: #1a1a24;
+    --color-bg-card-hover: #252535;
+    --color-primary: #a67d99;
+    --color-primary-dark: #7d5572;
+    --color-accent: #c499b3;
+    --color-text: #e5e5e5;
+    --color-text-muted: #a0a0b0;
+    --color-border: #2a2a3a;
+    --color-glow: rgba(196, 153, 179, 0.4);
+    --color-glow-strong: rgba(196, 153, 179, 0.7);
+
+    --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-heading: 'Georgia', serif;
+
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
+}
+
+/* ============================================
+   Global Styles
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-bg-dark);
+    color: var(--color-text);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text);
+}
+
+h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+p {
+    margin-bottom: var(--spacing-sm);
+}
+
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--color-text);
+}
+
+.glow {
+    text-shadow: 0 0 20px var(--color-glow), 0 0 40px var(--color-glow);
+}
+
+.text-link {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+.text-link:hover {
+    color: var(--color-text);
+}
+
+/* ============================================
+   Header & Navigation
+   ============================================ */
+
+header {
+    background-color: var(--color-bg-card);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--spacing-sm) 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.logo {
+    position: relative;
+    padding: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    background: radial-gradient(ellipse 400px 300px at top left,
+        rgba(196, 153, 179, 0.2) 0%,
+        rgba(196, 153, 179, 0.1) 30%,
+        transparent 70%);
+    border-radius: var(--border-radius);
+}
+
+.logo:hover {
+    background: radial-gradient(ellipse 400px 300px at top left,
+        rgba(196, 153, 179, 0.3) 0%,
+        rgba(196, 153, 179, 0.15) 30%,
+        transparent 70%);
+}
+
+.logo img {
+    height: 120px; /* Increased for better visibility */
+    opacity: 1;
+    transition: var(--transition);
+    display: block;
+    border-radius: 12px;
+    /* Glow effect only, no circular background */
+    filter: drop-shadow(0 0 15px rgba(196, 153, 179, 0.5)) drop-shadow(0 0 30px rgba(196, 153, 179, 0.3));
+}
+
+.logo img:hover {
+    filter: drop-shadow(0 0 20px rgba(196, 153, 179, 0.7)) drop-shadow(0 0 40px rgba(196, 153, 179, 0.5));
+    transform: scale(1.05);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+nav a {
+    color: var(--color-text-muted);
+    font-weight: 500;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--color-text);
+    background-color: var(--color-bg-card-hover);
+    box-shadow: 0 0 15px var(--color-glow);
+}
+
+/* ============================================
+   Hero Section
+   ============================================ */
+
+.hero {
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(180deg, var(--color-bg-card) 0%, var(--color-bg-dark) 100%);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.hero h1 {
+    margin-bottom: var(--spacing-md);
+}
+
+.tagline {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-lg);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+
+.btn {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    box-shadow: 0 0 20px var(--color-glow);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    box-shadow: 0 0 30px var(--color-glow-strong);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-accent);
+    color: var(--color-bg-dark);
+    box-shadow: 0 0 20px var(--color-glow);
+}
+
+.btn-large {
+    font-size: 1.1rem;
+    padding: var(--spacing-md) var(--spacing-xl);
+}
+
+.btn-link {
+    color: var(--color-accent);
+    font-weight: 600;
+    display: inline-block;
+    margin-top: var(--spacing-sm);
+}
+
+.btn-link:hover {
+    color: var(--color-text);
+    text-shadow: 0 0 10px var(--color-glow);
+}
+
+/* ============================================
+   Cards & Grid Layouts
+   ============================================ */
+
+.feature-grid,
+.services-grid,
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+.feature-card,
+.service-card,
+.value-item,
+.tool-item,
+.content-card,
+.tool-card {
+    background-color: var(--color-bg-card);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+    transition: var(--transition);
+}
+
+.feature-card:hover,
+.service-card:hover,
+.tool-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 25px var(--color-glow);
+    transform: translateY(-5px);
+}
+
+.content-card {
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ============================================
+   Sections
+   ============================================ */
+
+.features,
+.tools-preview,
+.page-header,
+.about-content,
+.contact-content,
+.services-overview,
+.booking-section,
+.tools-section {
+    padding: var(--spacing-xl) 0;
+}
+
+.page-header {
+    text-align: center;
+    background: linear-gradient(180deg, var(--color-bg-card) 0%, var(--color-bg-dark) 100%);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--spacing-lg) 0;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+}
+
+.section-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-lg);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ============================================
+   Services Page
+   ============================================ */
+
+.service-card {
+    position: relative;
+}
+
+.service-card.featured {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 30px var(--color-glow);
+}
+
+.badge {
+    position: absolute;
+    top: -10px;
+    right: var(--spacing-md);
+    background-color: var(--color-accent);
+    color: var(--color-bg-dark);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.price {
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+}
+
+.service-card ul {
+    list-style: none;
+    margin: var(--spacing-md) 0;
+}
+
+.service-card ul li {
+    padding: var(--spacing-xs) 0;
+    padding-left: var(--spacing-md);
+    position: relative;
+}
+
+.service-card ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: bold;
+}
+
+.services-list {
+    list-style: none;
+    margin: var(--spacing-md) 0;
+}
+
+.services-list li {
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.services-list li:last-child {
+    border-bottom: none;
+}
+
+/* ============================================
+   Forms
+   ============================================ */
+
+.contact-wrapper,
+.intake-form-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: var(--spacing-xl);
+}
+
+.contact-info {
+    background-color: var(--color-bg-card);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+    height: fit-content;
+}
+
+.info-item {
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-item h4 {
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-xs);
+}
+
+.contact-form-container,
+.intake-form-container {
+    background-color: var(--color-bg-card);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+}
+
+.contact-form,
+.intake-form,
+.tool-form {
+    width: 100%;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: var(--spacing-sm);
+    background-color: var(--color-bg-dark);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    color: var(--color-text);
+    font-family: var(--font-primary);
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 15px var(--color-glow);
+}
+
+.form-group small {
+    display: block;
+    margin-top: var(--spacing-xs);
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+}
+
+.form-note {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background-color: var(--color-bg-dark);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+}
+
+.form-note code {
+    background-color: var(--color-bg-card);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--color-accent);
+}
+
+.form-note ul,
+.form-note ol {
+    margin-left: var(--spacing-lg);
+    margin-top: var(--spacing-sm);
+}
+
+.form-note li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.setup-note {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border);
+}
+
+.form-status {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+.form-status.success {
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+}
+
+.form-status.error {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+}
+
+.note {
+    font-style: italic;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.coming-soon {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-style: italic;
+    padding: var(--spacing-lg);
+}
+
+/* ============================================
+   Tools Page
+   ============================================ */
+
+.tool-card {
+    margin-bottom: var(--spacing-xl);
+}
+
+.tool-header {
+    margin-bottom: var(--spacing-lg);
+}
+
+.tool-header h2 {
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-xs);
+}
+
+.tool-form {
+    margin-bottom: var(--spacing-lg);
+}
+
+.activity-entry {
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md);
+    background-color: var(--color-bg-dark);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+}
+
+.tool-output {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background-color: var(--color-bg-dark);
+    border: 2px solid var(--color-accent);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 30px var(--color-glow);
+}
+
+.output-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.output-logo {
+    position: relative;
+    padding: var(--spacing-xs);
+    background: radial-gradient(circle, rgba(196, 153, 179, 0.15) 0%, rgba(196, 153, 179, 0.08) 40%, transparent 70%);
+    border-radius: 50%;
+}
+
+.output-logo img {
+    height: 40px;
+    opacity: 1;
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(196, 153, 179, 0.4));
+}
+
+.coming-soon-card {
+    text-align: center;
+    border-style: dashed;
+}
+
+.coming-soon-card ul {
+    list-style: none;
+    margin: var(--spacing-md) 0;
+    color: var(--color-text-muted);
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+
+footer {
+    background-color: var(--color-bg-card);
+    border-top: 1px solid var(--color-border);
+    padding: var(--spacing-lg) 0;
+    margin-top: var(--spacing-xl);
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.footer-links {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.footer-links a {
+    color: var(--color-text-muted);
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--color-accent);
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+.tools-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+}
+
+.tool-item {
+    background-color: var(--color-bg-card);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+}
+
+.tool-item h4 {
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-xs);
+}
+
+.values-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    footer .container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    .hero,
+    .features,
+    .tools-preview,
+    .page-header,
+    .about-content,
+    .contact-content,
+    .services-overview,
+    .booking-section,
+    .tools-section {
+        padding: var(--spacing-lg) 0;
+    }
+}
+
+/* ============================================
+   Print Styles for Tools
+   ============================================ */
+
+/* ============================================
+   Print Styles - Professional Formatting
+   ============================================ */
+
+@media print {
+    /* Hide UI elements when printing */
+    header,
+    footer,
+    nav,
+    .btn,
+    .btn-primary,
+    .btn-secondary,
+    .tool-form,
+    .coming-soon-card,
+    .tool-header,
+    .page-header,
+    button {
+        display: none !important;
+    }
+
+    /* Force page breaks between tool outputs */
+    .tool-card {
+        page-break-after: always;
+        page-break-inside: avoid;
+        margin-bottom: 0;
+    }
+
+    .tool-output {
+        display: block !important;
+        border: none;
+        box-shadow: none;
+        page-break-before: always;
+        page-break-inside: avoid;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Ensure each tool prints on its own page */
+    #lessonPlanOutput {
+        page-break-before: always;
+    }
+
+    #scheduleOutput {
+        page-break-before: always;
+    }
+
+    /* Schedule content should fit properly */
+    .schedule-content {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+
+    /* Only add page break when explicitly specified */
+    .schedule-content[style*="page-break-after: always"] {
+        page-break-after: always;
+    }
+
+    /* Basic print layout */
+    body {
+        background-color: white;
+        color: black;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    /* Content styling for print */
+    .lesson-plan-content,
+    .schedule-content {
+        background-color: white;
+        color: black;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Headers */
+    h1, h2, h3, h4, h5, h6 {
+        color: black;
+        page-break-after: avoid;
+    }
+
+    /* Logo in output header */
+    .output-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #7d5572;
+        page-break-after: avoid;
+    }
+
+    .output-header h3 {
+        margin: 0;
+        color: #7d5572;
+    }
+
+    .output-logo img {
+        height: 60px;
+        width: auto;
+        opacity: 0.8;
+    }
+
+    /* Table styling for print */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        page-break-inside: auto;
+        background-color: white;
+        color: black;
+        font-size: 11pt;
+    }
+
+    thead {
+        display: table-header-group;
+        page-break-inside: avoid;
+        page-break-after: avoid;
+    }
+
+    tbody {
+        display: table-row-group;
+    }
+
+    tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+
+    th {
+        background-color: #7d5572 !important;
+        color: white !important;
+        padding: 8px !important;
+        border: 1px solid #333 !important;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    td {
+        padding: 8px !important;
+        border: 1px solid #666 !important;
+        background-color: white !important;
+        color: black !important;
+    }
+
+    /* Checkbox styling for print */
+    .checkbox-print {
+        font-size: 16pt;
+        font-weight: bold;
+        color: black;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid black;
+        text-align: center;
+        line-height: 18px;
+        margin: 0 auto;
+    }
+
+    /* Notes section */
+    .schedule-notes,
+    .plan-section {
+        page-break-inside: avoid;
+        margin-top: 15px;
+    }
+
+    .schedule-notes h4,
+    .plan-section h4 {
+        color: #7d5572;
+        margin-bottom: 8px;
+    }
+
+    .schedule-notes > div,
+    .plan-section > div {
+        border: 1px solid #999;
+        min-height: 80px;
+        padding: 10px;
+        background-color: white;
+    }
+
+    /* Lists in lesson plans */
+    .plan-section ul,
+    .plan-section ol {
+        margin-left: 20px;
+        color: black;
+    }
+
+    .plan-section li {
+        margin-bottom: 6px;
+        color: black;
+    }
+
+    /* Footer */
+    .schedule-footer,
+    .plan-footer {
+        margin-top: 20px;
+        padding-top: 10px;
+        border-top: 1px solid #999;
+        font-size: 9pt;
+        color: #666;
+        text-align: center;
+    }
+
+    /* Meta information */
+    .plan-meta {
+        background-color: #f5f5f5;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+
+    .plan-meta p {
+        margin: 4px 0;
+        color: black;
+    }
+
+    /* Ensure proper spacing */
+    p {
+        margin-bottom: 8px;
+        color: black;
+    }
+
+    /* Lesson plan specific print styles */
+    .lesson-plan-content {
+        page-break-after: auto;
+        orphans: 3;
+        widows: 3;
+    }
+
+    .lesson-plan-content .plan-section {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        margin-bottom: 20px;
+    }
+
+    .lesson-plan-content h4 {
+        page-break-after: avoid;
+        break-after: avoid;
+        margin-top: 15px;
+    }
+
+    /* Override inline styles for print */
+    .lesson-plan-content * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
+    /* Keep background colors in print */
+    .plan-section {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Page setup */
+    @page {
+        size: letter;
+        margin: 0.75in;
+    }
+
+    /* Remove any background colors and shadows */
+    * {
+        background-color: white !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    /* Exception for headers and specific elements */
+    th, .output-header h3, .schedule-notes h4, .plan-section h4 {
+        background-color: inherit !important;
+    }
+
+    /* Print optimization */
+    @page {
+        margin: 0.75in;
+        size: letter portrait;
+    }
+
+    /* Prevent orphans and widows */
+    p, li {
+        orphans: 3;
+        widows: 3;
+    }
+}
+
+/* ============================================
+   Samples Page Styles
+   ============================================ */
+
+.samples-intro {
+    padding: var(--spacing-xl) 0;
+}
+
+.sample-family-info {
+    background-color: var(--color-bg-dark);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--color-accent);
+    margin: var(--spacing-lg) 0;
+}
+
+.sample-family-info h3 {
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-sm);
+}
+
+.sample-family-info ul {
+    list-style: none;
+    margin: 0;
+}
+
+.sample-family-info ul li {
+    padding: var(--spacing-xs) 0;
+    color: var(--color-text-muted);
+}
+
+.disclaimer {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background-color: rgba(196, 153, 179, 0.1);
+    border: 1px solid var(--color-accent);
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.samples-download {
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(180deg, var(--color-bg-dark) 0%, var(--color-bg-card) 100%);
+}
+
+.download-card {
+    background-color: var(--color-bg-card);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius);
+    border: 2px solid var(--color-accent);
+    box-shadow: 0 0 40px var(--color-glow);
+    text-align: center;
+    position: relative;
+}
+
+.download-card h2 {
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-md);
+    font-size: 2rem;
+}
+
+.packet-includes {
+    list-style: none;
+    margin: var(--spacing-lg) 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-sm);
+    text-align: left;
+}
+
+.packet-includes li {
+    padding: var(--spacing-sm);
+    background-color: var(--color-bg-dark);
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--color-accent);
+}
+
+.packet-includes li::before {
+    content: "✓ ";
+    color: var(--color-accent);
+    font-weight: bold;
+    margin-right: var(--spacing-xs);
+}
+
+.file-info {
+    margin-top: var(--spacing-md);
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.individual-samples {
+    padding: var(--spacing-xl) 0;
+}
+
+.samples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.sample-card {
+    background-color: var(--color-bg-card);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+    transition: var(--transition);
+    position: relative;
+    padding-top: 3rem;
+}
+
+.sample-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 25px var(--color-glow);
+    transform: translateY(-5px);
+}
+
+.sample-number {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white;
+    box-shadow: 0 0 15px var(--color-glow);
+}
+
+.sample-card h3 {
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-sm);
+}
+
+.sample-meta {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    margin: var(--spacing-md) 0;
+}
+
+.meta-item {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: var(--color-bg-dark);
+    border-radius: var(--border-radius);
+}
+
+.samples-cta {
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(180deg, var(--color-bg-card) 0%, var(--color-bg-dark) 100%);
+}
+
+.cta-card {
+    background-color: var(--color-bg-card);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius);
+    border: 2px solid var(--color-primary);
+    text-align: center;
+    box-shadow: 0 0 30px var(--color-glow);
+}
+
+.cta-card h2 {
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-md);
+}
+}
