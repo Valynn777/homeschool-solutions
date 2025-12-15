@@ -54,3 +54,7 @@ $RECYCLE.BIN/
 # Optional: Uncomment if you don't want to track certain assets
 # images/originals/
 # assets/source-files/
+
+# Private folders - not tracked in GitHub
+PWA Learning Hub/
+Summary and client doc generator/
