@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Homeschool Support Document Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="panel">
+      <h1>Homeschool Support Document Generator</h1>
+
+      <!-- Upload Logo -->
+      <label>Upload Logo</label>
+      <input id="logoInput" type="file" accept="image/*">
+
+      <!-- Title / Subtitle / State -->
+      <div class="triple">
+        <div>
+          <label>Document Title</label>
+          <input id="titleInput" type="text" value="Homeschool Support Summary">
+        </div>
+
+        <div>
+          <label>Subtitle</label>
+          <input id="subtitleInput" type="text" value="Faithful Way Homeschool Solutions">
+        </div>
+
+        <div>
+          <label>State</label>
+          <input id="stateInput" type="text" value="Texas">
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="buttons">
+        <button id="addSectionBtn">➕ Add Section</button>
+        <button id="exportPDFBtn">⬇ Export to PDF</button>
+      </div>
+
+      <!-- Editor -->
+      <h2>Edit Sections</h2>
+      <div id="editor"></div>
+    </div>
+
+    <!-- Preview Panel -->
+    <div class="panel">
+      <h2>Document Preview</h2>
+      <div id="document-preview" class="preview"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

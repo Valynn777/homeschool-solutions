@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Summary Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        /* --- General Page Styles --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #333; /* Dark background to make the "Paper" pop */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- Control Panel (Hidden in PDF) --- */
+        .controls {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            justify-content: space-between;
+        }
+
+        .btn {
+            background-color: #6a1b9a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .btn:hover { background-color: #4a148c; }
+
+        .upload-group { display: flex; flex-direction: column; }
+        .upload-group label { font-size: 12px; font-weight: bold; color: #555; margin-bottom: 4px; }
+
+        /* --- The Paper Document (Visual Template) --- */
+        #print-container {
+            background-color: white;
+            width: 8.5in;  /* Standard Letter Size width */
+            min-height: 11in;
+            padding: 0.5in;
+            box-sizing: border-box;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        /* --- Editable Areas Highlight --- */
+        /* Shows a subtle yellow border when you hover over text so you know you can edit it */
+        [contenteditable="true"]:hover {
+            outline: 2px dashed #ffd700;
+            background-color: rgba(255, 255, 0, 0.05);
+            cursor: text;
+        }
+
+        /* --- Document Design (Matching your Style) --- */
+        .header {
+            display: flex;
+            align-items: center;
+            border-bottom: 3px solid #6a1b9a;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .logo-area {
+            width: 150px;
+            height: 150px;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ddd; /* Dashed line until logo is uploaded */
+            border-radius: 50%;
+            overflow: hidden;
+            background: #f3e5f5;
+        }
+
+        .logo-area img {
+            max-width: 100%;
+            max-height: 100%;
+            display: none; /* Hidden until uploaded */
+        }
+
+        .header-text { flex: 1; }
+        .header-text h1 { margin: 0; color: #4a148c; font-size: 28px; }
+        .header-text h2 { margin: 5px 0 0; color: #7b1fa2; font-size: 18px; font-weight: normal; }
+        .client-info { margin-top: 10px; color: #555; font-style: italic; }
+
+        .section {
+            background-color: #f9f9f9;
+            border-left: 5px solid #6a1b9a;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .section h3 {
+            margin-top: 0;
+            color: #4a148c;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .content-text {
+            color: #333;
+            line-height: 1.6;
+        }
+        .content-text p {
+            margin: 10px 0;
+        }
+        .content-text p:first-child {
+            margin-top: 0;
+        }
+        .content-text p:last-child {
+            margin-bottom: 0;
+        }
+        ul {
+            margin-top: 5px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+        /* Preserve formatting in contenteditable */
+        [contenteditable="true"] p {
+            margin: 10px 0;
+        }
+        [contenteditable="true"] ul,
+        [contenteditable="true"] ol {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        [contenteditable="true"] li {
+            margin-bottom: 8px;
+        }
+        /* Indentation support */
+        .indent-1 { margin-left: 20px; }
+        .indent-2 { margin-left: 40px; }
+        .indent-3 { margin-left: 60px; }
+
+        .columns {
+            display: flex;
+            gap: 20px;
+        }
+        .col-50 { flex: 1; }
+
+        /* --- Styles specifically for the PDF Export --- */
+        @media print {
+            body { background: white; margin: 0; padding: 0; }
+            .controls { display: none !important; }
+            #print-container { box-shadow: none; padding: 0; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls" data-html2canvas-ignore="true">
+        <div class="upload-group">
+            <label>1. Upload Your Logo</label>
+            <input type="file" id="logo-input" accept="image/*">
+        </div>
+        <div style="flex: 1;">
+            <strong>Instructions:</strong> Click any text below to edit it. Use the formatting buttons or keyboard shortcuts:<br>
+            <small style="color: #666;">
+                • <strong>Ctrl+B</strong> = Bold | <strong>Ctrl+I</strong> = Italic | <strong>Ctrl+U</strong> = Underline<br>
+                • Select text and click buttons to format
+            </small>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center; padding: 10px; background: #f5f5f5; border-radius: 6px;">
+            <button class="btn" style="padding: 8px 12px; font-size: 14px;" onclick="formatText('insertUnorderedList')" title="Bullet List">• List</button>
+            <button class="btn" style="padding: 8px 12px; font-size: 14px;" onclick="formatText('bold')" title="Bold"><b>B</b></button>
+            <button class="btn" style="padding: 8px 12px; font-size: 14px;" onclick="formatText('italic')" title="Italic"><i>I</i></button>
+        </div>
+        <button class="btn" onclick="downloadPDF()">2. Download PDF</button>
+    </div>
+
+    <div id="print-container">
+        
+        <div class="header">
+            <div class="logo-area">
+                <img id="logo-display" src="" alt="Logo">
+                <span id="logo-placeholder" style="color:#aaa; font-size: 12px; text-align:center;">Logo Will<br>Appear Here</span>
+            </div>
+            <div class="header-text">
+                <h1 contenteditable="true">Homeschool Support Summary</h1>
+                <h2 contenteditable="true">Faithful Way Homeschool Solutions</h2>
+                <div class="client-info" contenteditable="true">
+                    Date: October 25, 2025<br>
+                    Client Family: The Smith Family
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3 contenteditable="true">Purpose of This Summary</h3>
+            <div class="content-text" contenteditable="true">
+                This support summary gives a clear understanding of Texas homeschool requirements, considerations for choosing curriculum, and a personalized plan based on goals and learning style. Everything is designed to make the planning process easier.
+            </div>
+        </div>
+
+        <div class="section">
+            <h3 contenteditable="true">Texas Homeschool Requirements</h3>
+            <div class="content-text" contenteditable="true">
+                <p>A homeschool in Texas must be conducted in a bona fide manner using a curriculum that includes reading, spelling, grammar, mathematics, and good citizenship.</p>
+                <ul>
+                    <li><strong>No Notice of Intent</strong> is required.</li>
+                    <li><strong>No Testing</strong> is required by the state.</li>
+                    <li>Visual elements (books, workbooks, charts) must be used.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="columns">
+            <div class="col-50 section">
+                <h3 contenteditable="true">Parent's Preferences</h3>
+                <div class="content-text" contenteditable="true">
+                    <ul>
+                        <li>Biblically based curriculum</li>
+                        <li>Visual/Kinesthetic learning style</li>
+                        <li>Short lessons, not overwhelming</li>
+                        <li>Hands-on activities</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-50 section">
+                <h3 contenteditable="true">Student Focus Areas</h3>
+                <div class="content-text" contenteditable="true">
+                    <ul>
+                        <li>Reading confidence</li>
+                        <li>Math fact memorization</li>
+                        <li>Handwriting stamina</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; text-align: center; color: #666; font-size: 0.9em;" contenteditable="true">
+            <em>"Train up a child in the way he should go..." - Proverbs 22:6</em>
+        </div>
+
+    </div>
+
+    <script>
+        // --- FORMATTING FUNCTION ---
+        function formatText(command) {
+            document.execCommand(command, false, null);
+        }
+
+        // --- LOGIC 1: Handle Logo Upload ---
+        const logoInput = document.getElementById('logo-input');
+        const logoDisplay = document.getElementById('logo-display');
+        const logoPlaceholder = document.getElementById('logo-placeholder');
+
+        logoInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    // Set the image source to the uploaded file
+                    logoDisplay.src = e.target.result;
+                    logoDisplay.style.display = 'block';
+                    // Hide the "Logo Will Appear Here" text
+                    logoPlaceholder.style.display = 'none';
+                    // Remove the dashed border for a cleaner look
+                    document.querySelector('.logo-area').style.border = 'none';
+                    document.querySelector('.logo-area').style.backgroundColor = 'transparent';
+                }
+                
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // --- LOGIC 2: Handle PDF Export ---
+        function downloadPDF() {
+            // Select the element we want to turn into a PDF
+            const element = document.getElementById('print-container');
+
+            // Options for the PDF generation
+            const opt = {
+                margin:       [0.5, 0.5, 0.5, 0.5], // Top, Left, Bottom, Right margins in inches
+                filename:     'Support_Summary.pdf',
+                image:        { type: 'jpeg', quality: 0.98 }, // High quality images
+                html2canvas:  {
+                    scale: 3, // Higher scale = sharper text and better quality
+                    useCORS: true, // Allow cross-origin images
+                    logging: false,
+                    letterRendering: true, // Better text rendering
+                    allowTaint: true,
+                    scrollY: 0,
+                    scrollX: 0,
+                    windowWidth: element.scrollWidth,
+                    windowHeight: element.scrollHeight
+                },
+                jsPDF:        {
+                    unit: 'in',
+                    format: 'letter',
+                    orientation: 'portrait',
+                    compress: true // Compress PDF for smaller file size
+                },
+                pagebreak:    {
+                    mode: ['avoid-all', 'css', 'legacy'], // Better page break handling
+                    before: '.section', // Avoid breaking sections
+                    after: '.section'
+                }
+            };
+
+            // Run the conversion
+            // Note: We use .save() to trigger the download
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+</html>
