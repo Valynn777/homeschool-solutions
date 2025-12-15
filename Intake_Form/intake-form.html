@@ -1025,16 +1025,16 @@
             const formattedData = formatIntakeData(data);
 
             try {
-                // Submit to Cloudflare Worker
-                const response = await fetch('/api/submit-intake', {
+                // Submit to Formspree
+                const response = await fetch('https://formspree.io/f/xnnerobo', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        formData: data,
-                        formattedHTML: formattedData.html,
-                        formattedText: formattedData.text
+                        ...data,
+                        _subject: `New Intake Form: ${data.parent_name || 'New Client'}`,
+                        formattedData: formattedData.text
                     })
                 });
 
