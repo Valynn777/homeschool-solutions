@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation Intake - Faithful Way Homeschool Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f0f6 0%, #e8dff0 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(107, 73, 104, 0.15);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #7d5572 0%, #634456 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 180px;
+            height: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        .form-content {
+            padding: 40px 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f0e6f6;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            color: #7d5572;
+            font-size: 22px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: "";
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4a4a4a;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0d0e8;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #7d5572;
+            box-shadow: 0 0 0 3px rgba(125, 85, 114, 0.1);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #7d5572;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .child-block {
+            background: #faf8fc;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border: 2px solid #e8dff0;
+        }
+
+        .child-block h3 {
+            color: #7d5572;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .add-child-btn {
+            background: #D4A5A5;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .add-child-btn:hover {
+            background: #c69595;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 165, 165, 0.3);
+        }
+
+        .remove-child-btn {
+            background: #e57373;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .remove-child-btn:hover {
+            background: #d65c5c;
+        }
+
+        .submit-section {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #7d5572 0%, #634456 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(125, 85, 114, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(125, 85, 114, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .required {
+            color: #e57373;
+            margin-left: 3px;
+        }
+
+        .help-text {
+            font-size: 13px;
+            color: #777;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-content {
+                padding: 30px 20px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+        }
+
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(125, 85, 114, 0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .success-message {
+            display: none;
+            background: #4caf50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .error-message {
+            display: none;
+            background: #f44336;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <div class="loading-text">Submitting your intake form...</div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <img src="Faithful Way Homeschool Solutions Logo.png" alt="Faithful Way Homeschool Solutions" class="logo" id="logoImg">
+            <h1>Parent Support Intake Questionnaire</h1>
+            <p>Thank you for choosing Faithful Way Homeschool Solutions! Please complete this form so we can provide personalized guidance during your parent support session. All curriculum design work is based solely on your input - there is no direct contact with your child.</p>
+        </div>
+
+        <div class="form-content">
+            <div class="success-message" id="successMessage">
+                Success: Your intake form has been submitted successfully! You'll receive a copy via email shortly.
+            </div>
+            <div class="error-message" id="errorMessage">
+                Error: There was an error submitting your form. Please try again or contact us directly.
+            </div>
+
+            <form id="intakeForm">
+                <!-- Section 1: Parent Information -->
+                <div class="section">
+                    <h2 class="section-title">Parent/Guardian Information</h2>
+
+                    <div class="form-group">
+                        <label>Parent/Guardian Name <span class="required">*</span></label>
+                        <input type="text" name="parent_name" required>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Email Address <span class="required">*</span></label>
+                            <input type="email" name="parent_email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Phone Number <span class="required">*</span></label>
+                            <input type="tel" name="parent_phone" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <label>State/Location <span class="required">*</span></label>
+                            <input type="text" name="state_location" required>
+                            <div class="help-text">We need your state for homeschool law guidance</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Preferred Contact Method <span class="required">*</span></label>
+                            <select name="contact_method" required>
+                                <option value="">Select...</option>
+                                <option value="email">Email</option>
+                                <option value="phone">Phone</option>
+                                <option value="text">Text</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Homeschool Status <span class="required">*</span></label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" id="status1" name="homeschool_status" value="Actively homeschooling now" required>
+                                <label for="status1">Actively homeschooling now</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="status2" name="homeschool_status" value="Planning to start homeschooling">
+                                <label for="status2">Planning to start homeschooling</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="status3" name="homeschool_status" value="Considering homeschooling (still deciding)">
+                                <label for="status3">Considering homeschooling (still deciding)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="status4" name="homeschool_status" value="Taking a break/considering returning">
+                                <label for="status4">Taking a break/considering returning</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>How long have you been homeschooling?</label>
+                        <select name="homeschool_duration">
+                            <option value="">Select...</option>
+                            <option value="Not started yet">Not started yet</option>
+                            <option value="Less than 1 year">Less than 1 year</option>
+                            <option value="1-2 years">1-2 years</option>
+                            <option value="3-5 years">3-5 years</option>
+                            <option value="5+ years">5+ years</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Section 2: Services Needed -->
+                <div class="section">
+                    <h2 class="section-title">Services Needed</h2>
+
+                    <div class="form-group">
+                        <label>What areas do you need help with? <span class="required">*</span> (Check all that apply)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="service1" name="services[]" value="Understanding my state's homeschool laws and requirements">
+                                <label for="service1">Understanding my state's homeschool laws and requirements</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="service2" name="services[]" value="Help with compliance, record-keeping, and portfolio documentation">
+                                <label for="service2">Help with compliance, record-keeping, and portfolio documentation</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="service3" name="services[]" value="Custom curriculum design and recommendations">
+                                <label for="service3">Custom curriculum design and recommendations</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="service4" name="services[]" value="High school planning and transcript preparation">
+                                <label for="service4">High school planning and transcript preparation</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="service5" name="services[]" value="Mid-year curriculum changes or adjustments">
+                                <label for="service5">Mid-year curriculum changes or adjustments</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="service6" name="services[]" value="Ongoing support and quarterly check-ins">
+                                <label for="service6">Ongoing support and quarterly check-ins</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="service7" name="services[]" value="General homeschool guidance and encouragement">
+                                <label for="service7">General homeschool guidance and encouragement</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Other services needed:</label>
+                        <input type="text" name="services_other" placeholder="Please specify...">
+                    </div>
+                </div>
+
+                <!-- Section 3: Children/Students -->
+                <div class="section">
+                    <h2 class="section-title">Children/Students</h2>
+
+                    <div id="childrenContainer">
+                        <!-- Child blocks will be added here dynamically -->
+                    </div>
+
+                    <button type="button" class="add-child-btn" onclick="addChild()">+ Add Another Child</button>
+                </div>
+
+                <!-- Section 4: Educational Philosophy -->
+                <div class="section">
+                    <h2 class="section-title">Educational Philosophy & Approach</h2>
+
+                    <div class="form-group">
+                        <label>What homeschool approach are you interested in? (Check all that apply)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="approach1" name="approach[]" value="Classical Education">
+                                <label for="approach1">Classical Education (grammar, logic, rhetoric stages)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="approach2" name="approach[]" value="Charlotte Mason">
+                                <label for="approach2">Charlotte Mason (living books, nature study, narration)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="approach3" name="approach[]" value="Traditional/Textbook">
+                                <label for="approach3">Traditional/Textbook approach</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="approach4" name="approach[]" value="Unit Studies">
+                                <label for="approach4">Unit Studies (theme-based learning)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="approach5" name="approach[]" value="Unschooling">
+                                <label for="approach5">Unschooling or child-led learning</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="approach6" name="approach[]" value="Montessori">
+                                <label for="approach6">Montessori-inspired</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="approach7" name="approach[]" value="Eclectic">
+                                <label for="approach7">Eclectic (mix of multiple approaches)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="approach8" name="approach[]" value="Not sure">
+                                <label for="approach8">Not sure yet / Need guidance</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>How important is faith integration in your homeschool? <span class="required">*</span></label>
+                        <select name="faith_integration" required>
+                            <option value="">Select...</option>
+                            <option value="Very important">Very important - Faith should be woven throughout all subjects</option>
+                            <option value="Important">Important - I want Bible study and Christian worldview materials</option>
+                            <option value="Somewhat important">Somewhat important - Open to faith-based resources</option>
+                            <option value="Not a priority">Not a priority</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>What describes you as a homeschool parent? (Check all that apply)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="teaching1" name="teaching_style[]" value="Prefer structured lesson plans">
+                                <label for="teaching1">I prefer structured, step-by-step lesson plans</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="teaching2" name="teaching_style[]" value="Like flexibility">
+                                <label for="teaching2">I like flexibility and freedom to adapt</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="teaching3" name="teaching_style[]" value="Want low-prep curriculum">
+                                <label for="teaching3">I want low-prep, open-and-go curriculum</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="teaching4" name="teaching_style[]" value="Enjoy planning custom lessons">
+                                <label for="teaching4">I enjoy planning and creating custom lessons</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="teaching5" name="teaching_style[]" value="Prefer independent work">
+                                <label for="teaching5">I prefer independent student work (less hands-on teaching)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="teaching6" name="teaching_style[]" value="Enjoy interactive teaching">
+                                <label for="teaching6">I enjoy interactive, hands-on teaching</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="teaching7" name="teaching_style[]" value="Need curriculum to teach me">
+                                <label for="teaching7">I need curriculum that teaches me so I can teach my child</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Practical Constraints -->
+                <div class="section">
+                    <h2 class="section-title">Practical Constraints & Considerations</h2>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Daily time commitment for homeschooling <span class="required">*</span></label>
+                            <select name="time_commitment" required>
+                                <option value="">Select...</option>
+                                <option value="1-2 hours">1-2 hours (relaxed, part-time)</option>
+                                <option value="3-4 hours">3-4 hours (moderate, standard)</option>
+                                <option value="5-6 hours">5-6 hours (full traditional school day)</option>
+                                <option value="Flexible">Flexible/varies by day</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Annual curriculum budget per child <span class="required">*</span></label>
+                            <select name="budget" required>
+                                <option value="">Select...</option>
+                                <option value="Under $300">Under $300 (budget-conscious)</option>
+                                <option value="$300-$600">$300-$600 (moderate budget)</option>
+                                <option value="$600-$1,000">$600-$1,000 (flexible budget)</option>
+                                <option value="$1,000+">$1,000+ (premium budget)</option>
+                                <option value="Not a concern">Budget is not a primary concern</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Current Curriculum (if applicable)</label>
+                        <textarea name="current_curriculum" placeholder="List any curriculum or resources you're currently using..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>What's working well with your current approach?</label>
+                        <textarea name="whats_working" placeholder="Share what's been successful..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>What's NOT working or needs to change?</label>
+                        <textarea name="whats_not_working" placeholder="Share your challenges and frustrations..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Section 6: State Requirements -->
+                <div class="section">
+                    <h2 class="section-title">State Requirements & Compliance</h2>
+
+                    <div class="form-group">
+                        <label>Do you know your state's homeschool laws? <span class="required">*</span></label>
+                        <select name="knows_laws" required>
+                            <option value="">Select...</option>
+                            <option value="Yes, familiar and compliant">Yes, I'm familiar and compliant</option>
+                            <option value="Somewhat familiar">Somewhat familiar, but need clarification</option>
+                            <option value="No, need help">No, I need help understanding what's required</option>
+                            <option value="Not sure if compliant">I'm not sure if I'm meeting all requirements</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Do you need help with any of the following? (Check all that apply)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="compliance1" name="compliance_help[]" value="Filing notices/paperwork">
+                                <label for="compliance1">Filing required notices or paperwork</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="compliance2" name="compliance_help[]" value="Portfolio creation">
+                                <label for="compliance2">Portfolio creation and documentation</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="compliance3" name="compliance_help[]" value="Record-keeping">
+                                <label for="compliance3">Record-keeping systems</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="compliance4" name="compliance_help[]" value="Testing requirements">
+                                <label for="compliance4">Understanding testing or assessment requirements</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="compliance5" name="compliance_help[]" value="Transcript preparation">
+                                <label for="compliance5">Transcript preparation (high school)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="compliance6" name="compliance_help[]" value="None">
+                                <label for="compliance6">None - I have this covered</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 7: Goals -->
+                <div class="section">
+                    <h2 class="section-title">Goals & Desired Outcomes</h2>
+
+                    <div class="form-group">
+                        <label>What do you hope to achieve? <span class="required">*</span> (Check all that apply)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="goal1" name="goals[]" value="Find the right curriculum">
+                                <label for="goal1">Find the right curriculum for my family</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="goal2" name="goals[]" value="Get organized">
+                                <label for="goal2">Get organized and create a plan</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="goal3" name="goals[]" value="Gain confidence">
+                                <label for="goal3">Gain confidence in my homeschool decisions</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="goal4" name="goals[]" value="Solve challenges">
+                                <label for="goal4">Solve specific challenges we're facing</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="goal5" name="goals[]" value="Understand requirements">
+                                <label for="goal5">Understand state requirements and stay compliant</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="goal6" name="goals[]" value="High school planning">
+                                <label for="goal6">Plan for high school or transcript needs</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="goal7" name="goals[]" value="Get encouragement">
+                                <label for="goal7">Get encouragement and support</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Other goals:</label>
+                        <input type="text" name="goals_other" placeholder="Please specify...">
+                    </div>
+
+                    <div class="form-group">
+                        <label>What would make this consultation a success for you? <span class="required">*</span></label>
+                        <textarea name="success_definition" required placeholder="Share your hopes and expectations..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Timeline/Urgency <span class="required">*</span></label>
+                        <select name="timeline" required>
+                            <option value="">Select...</option>
+                            <option value="No rush">No rush - just planning ahead</option>
+                            <option value="Starting soon">Starting soon (within 1-2 months)</option>
+                            <option value="Immediate">Need to start immediately</option>
+                            <option value="Mid-year ASAP">Mid-year change needed ASAP</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Section 8: Additional Details -->
+                <div class="section">
+                    <h2 class="section-title">Additional Details</h2>
+
+                    <div class="form-group">
+                        <label>Is there anything else you'd like us to know?</label>
+                        <div class="help-text">This is your space to share anything that doesn't fit above - including social/emotional considerations, family circumstances, specific concerns, or any other details that would help us serve you better.</div>
+                        <textarea name="additional_details" placeholder="Share anything else we should know..." style="min-height: 150px;"></textarea>
+                    </div>
+                </div>
+
+                <!-- Section 9: Scheduling -->
+                <div class="section">
+                    <h2 class="section-title">Scheduling Preferences</h2>
+
+                    <div class="form-group">
+                        <label>Preferred consultation days</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="day1" name="preferred_days[]" value="Weekdays">
+                                <label for="day1">Weekdays</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="day2" name="preferred_days[]" value="Weekends">
+                                <label for="day2">Weekends</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="day3" name="preferred_days[]" value="Either">
+                                <label for="day3">Either</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Preferred time of day</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="time1" name="preferred_times[]" value="Morning">
+                                <label for="time1">Morning</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="time2" name="preferred_times[]" value="Afternoon">
+                                <label for="time2">Afternoon</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="time3" name="preferred_times[]" value="Evening">
+                                <label for="time3">Evening</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="time4" name="preferred_times[]" value="Flexible">
+                                <label for="time4">Flexible</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Dates or times to avoid</label>
+                        <textarea name="avoid_times" placeholder="List any specific dates or times you're unavailable..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Section 10: Agreement -->
+                <div class="section">
+                    <h2 class="section-title">Agreement & Consent</h2>
+
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="consent1" name="consent_accurate" required>
+                            <label for="consent1">I confirm that the information provided is accurate to the best of my knowledge. <span class="required">*</span></label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="consent2" name="consent_confidential" required>
+                            <label for="consent2">I understand this information will be kept confidential and used solely for providing homeschool consulting services. <span class="required">*</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Section -->
+                <div class="submit-section">
+                    <button type="submit" class="submit-btn">Submit Intake Form</button>
+                    <div class="help-text" style="margin-top: 15px;">You'll receive a confirmation email with a copy of your responses.</div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let childCount = 0;
+
+        // Initialize with one child
+        window.addEventListener('DOMContentLoaded', function() {
+            addChild();
+        });
+
+        function addChild() {
+            childCount++;
+            const container = document.getElementById('childrenContainer');
+
+            const childBlock = document.createElement('div');
+            childBlock.className = 'child-block';
+            childBlock.id = `child-${childCount}`;
+
+            childBlock.innerHTML = `
+                <h3>Child #${childCount}</h3>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label>First Name <span class="required">*</span></label>
+                        <input type="text" name="child_${childCount}_name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Current Grade Level or Age <span class="required">*</span></label>
+                        <input type="text" name="child_${childCount}_grade" required placeholder="e.g., 3rd grade or Age 8">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Subject Areas Needing Focus <span class="required">*</span> (Check all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_subject1" name="child_${childCount}_subjects[]" value="Reading & Literature">
+                            <label for="child_${childCount}_subject1">Reading & Literature</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_subject2" name="child_${childCount}_subjects[]" value="Writing & Composition">
+                            <label for="child_${childCount}_subject2">Writing & Composition</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_subject3" name="child_${childCount}_subjects[]" value="Grammar & Language Arts">
+                            <label for="child_${childCount}_subject3">Grammar & Language Arts</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_subject4" name="child_${childCount}_subjects[]" value="Mathematics">
+                            <label for="child_${childCount}_subject4">Mathematics</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_subject5" name="child_${childCount}_subjects[]" value="Science">
+                            <label for="child_${childCount}_subject5">Science</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_subject6" name="child_${childCount}_subjects[]" value="History & Social Studies">
+                            <label for="child_${childCount}_subject6">History & Social Studies</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_subject7" name="child_${childCount}_subjects[]" value="Foreign Language">
+                            <label for="child_${childCount}_subject7">Foreign Language</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_subject8" name="child_${childCount}_subjects[]" value="Bible & Faith Studies">
+                            <label for="child_${childCount}_subject8">Bible & Faith Studies</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_subject9" name="child_${childCount}_subjects[]" value="Arts">
+                            <label for="child_${childCount}_subject9">Arts (Music, Art, Drama)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_subject10" name="child_${childCount}_subjects[]" value="Physical Education">
+                            <label for="child_${childCount}_subject10">Physical Education</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_subject11" name="child_${childCount}_subjects[]" value="Life Skills">
+                            <label for="child_${childCount}_subject11">Life Skills & Practical Learning</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_subject12" name="child_${childCount}_subjects[]" value="Electives">
+                            <label for="child_${childCount}_subject12">Electives/Special Interests</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_subject13" name="child_${childCount}_subjects[]" value="All subjects">
+                            <label for="child_${childCount}_subject13">All subjects (comprehensive curriculum needed)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Notes on Curriculum Needs</label>
+                    <textarea name="child_${childCount}_curriculum_notes" placeholder="Any specific details about this child's curriculum needs..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Learning Style Preferences (Check all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_visual" name="child_${childCount}_learning[]" value="Visual">
+                            <label for="child_${childCount}_visual">Visual (loves pictures, charts, diagrams, videos)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_auditory" name="child_${childCount}_learning[]" value="Auditory">
+                            <label for="child_${childCount}_auditory">Auditory (learns from listening, discussions, read-alouds)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_kinesthetic" name="child_${childCount}_learning[]" value="Kinesthetic">
+                            <label for="child_${childCount}_kinesthetic">Kinesthetic (needs hands-on activities, movement)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="child_${childCount}_reading" name="child_${childCount}_learning[]" value="Reading/Writing">
+                            <label for="child_${childCount}_reading">Reading/Writing (loves books, writing, note-taking)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Learning Strengths</label>
+                    <textarea name="child_${childCount}_strengths" placeholder="What subjects or skills does this child excel in?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Learning Challenges</label>
+                    <textarea name="child_${childCount}_challenges" placeholder="What subjects or skills does this child find challenging?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Special Needs or Accommodations</label>
+                    <textarea name="child_${childCount}_special_needs" placeholder="Learning differences, special needs, or accommodations needed..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Current Academic Status</label>
+                    <select name="child_${childCount}_academic_status">
+                        <option value="">Select...</option>
+                        <option value="Above grade level">Above grade level</option>
+                        <option value="At grade level">At grade level</option>
+                        <option value="Below grade level">Below grade level (needs support)</option>
+                        <option value="Mixed">Mixed (strong in some areas, struggling in others)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Interests & Hobbies (for custom curriculum integration)</label>
+                    <textarea name="child_${childCount}_interests" placeholder="Interests, hobbies, and passions we can incorporate into learning..."></textarea>
+                    <div class="help-text">Only fill this out if you're seeking custom curriculum design</div>
+                </div>
+
+                ${childCount > 1 ? `<button type="button" class="remove-child-btn" onclick="removeChild(${childCount})">Remove This Child</button>` : ''}
+            `;
+
+            container.appendChild(childBlock);
+        }
+
+        function removeChild(id) {
+            const childBlock = document.getElementById(`child-${id}`);
+            if (childBlock) {
+                childBlock.remove();
+                renumberChildren();
+            }
+        }
+
+        function renumberChildren() {
+            const container = document.getElementById('childrenContainer');
+            const children = container.querySelectorAll('.child-block');
+            children.forEach((child, index) => {
+                const h3 = child.querySelector('h3');
+                if (h3) {
+                    h3.textContent = `Child #${index + 1}`;
+                }
+            });
+        }
+
+        // Form submission
+        document.getElementById('intakeForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Check that at least one service is selected
+            const services = document.querySelectorAll('input[name="services[]"]:checked');
+            if (services.length === 0) {
+                alert('Please select at least one service you need help with.');
+                return;
+            }
+
+            // Check that at least one goal is selected
+            const goals = document.querySelectorAll('input[name="goals[]"]:checked');
+            if (goals.length === 0) {
+                alert('Please select at least one goal you hope to achieve.');
+                return;
+            }
+
+            // Validate that each child has at least one subject selected
+            const childBlocks = document.querySelectorAll('.child-block');
+            for (let i = 0; i < childBlocks.length; i++) {
+                const childNum = i + 1;
+                const subjects = document.querySelectorAll(`input[name="child_${childNum}_subjects[]"]:checked`);
+                if (subjects.length === 0) {
+                    alert(`Please select at least one subject area for Child #${childNum}.`);
+                    return;
+                }
+            }
+
+            // Show loading overlay
+            document.getElementById('loadingOverlay').classList.add('active');
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {};
+
+            // Convert FormData to object, handling arrays properly
+            for (let [key, value] of formData.entries()) {
+                if (key.includes('[]')) {
+                    const cleanKey = key.replace('[]', '');
+                    if (!data[cleanKey]) {
+                        data[cleanKey] = [];
+                    }
+                    data[cleanKey].push(value);
+                } else {
+                    data[key] = value;
+                }
+            }
+
+            // Format the data nicely
+            const formattedData = formatIntakeData(data);
+
+            try {
+                // Submit to Cloudflare Worker
+                const response = await fetch('/api/submit-intake', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        formData: data,
+                        formattedHTML: formattedData.html,
+                        formattedText: formattedData.text
+                    })
+                });
+
+                if (response.ok) {
+                    document.getElementById('loadingOverlay').classList.remove('active');
+                    document.getElementById('successMessage').style.display = 'block';
+                    document.getElementById('intakeForm').style.display = 'none';
+                    window.scrollTo(0, 0);
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('loadingOverlay').classList.remove('active');
+                document.getElementById('errorMessage').style.display = 'block';
+                window.scrollTo(0, 0);
+            }
+        });
+
+        function formatIntakeData(data) {
+            // Generate HTML formatted version
+            let html = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; padding: 20px; background: linear-gradient(135deg, #7d5572 0%, #634456 100%); color: white; border-radius: 10px; margin-bottom: 30px; }
+        .logo { max-width: 150px; margin-bottom: 15px; }
+        .section { margin-bottom: 30px; padding: 20px; background: #faf8fc; border-radius: 8px; border-left: 4px solid #7d5572; }
+        .section-title { color: #7d5572; font-size: 20px; font-weight: bold; margin-bottom: 15px; }
+        .field { margin-bottom: 15px; }
+        .label { font-weight: bold; color: #7d5572; display: block; margin-bottom: 5px; }
+        .value { color: #333; padding-left: 10px; }
+        .child-block { background: white; padding: 15px; margin: 15px 0; border-radius: 8px; border: 2px solid #e8dff0; }
+        ul { margin: 5px 0; padding-left: 25px; }
+        li { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="cid:logo" alt="Faithful Way Homeschool Solutions" class="logo">
+        <h1>Parent Support Intake Questionnaire</h1>
+        <p>Client Submission</p>
+    </div>
+`;
+
+            let text = `FAITHFUL WAY HOMESCHOOL SOLUTIONS
+PARENT SUPPORT INTAKE QUESTIONNAIRE
+Client Submission
+================================================================================
+
+`;
+
+            // Parent Information
+            html += `<div class="section">
+                <div class="section-title">Parent/Guardian Information</div>
+                <div class="field"><span class="label">Name:</span> <span class="value">${data.parent_name || 'N/A'}</span></div>
+                <div class="field"><span class="label">Email:</span> <span class="value">${data.parent_email || 'N/A'}</span></div>
+                <div class="field"><span class="label">Phone:</span> <span class="value">${data.parent_phone || 'N/A'}</span></div>
+                <div class="field"><span class="label">State:</span> <span class="value">${data.state_location || 'N/A'}</span></div>
+                <div class="field"><span class="label">Preferred Contact:</span> <span class="value">${data.contact_method || 'N/A'}</span></div>
+                <div class="field"><span class="label">Homeschool Status:</span> <span class="value">${data.homeschool_status || 'N/A'}</span></div>
+                <div class="field"><span class="label">Duration:</span> <span class="value">${data.homeschool_duration || 'N/A'}</span></div>
+            </div>`;
+
+            text += `PARENT/GUARDIAN INFORMATION
+Name: ${data.parent_name || 'N/A'}
+Email: ${data.parent_email || 'N/A'}
+Phone: ${data.parent_phone || 'N/A'}
+State: ${data.state_location || 'N/A'}
+Preferred Contact: ${data.contact_method || 'N/A'}
+Homeschool Status: ${data.homeschool_status || 'N/A'}
+Duration: ${data.homeschool_duration || 'N/A'}
+
+`;
+
+            // Services Needed
+            html += `<div class="section">
+                <div class="section-title">Services Needed</div>
+                <ul>`;
+
+            text += `SERVICES NEEDED\n`;
+
+            if (data.services && data.services.length > 0) {
+                data.services.forEach(service => {
+                    html += `<li>${service}</li>`;
+                    text += `• ${service}\n`;
+                });
+            }
+
+            if (data.services_other) {
+                html += `<li>Other: ${data.services_other}</li>`;
+                text += `• Other: ${data.services_other}\n`;
+            }
+
+            html += `</ul></div>`;
+            text += `\n`;
+
+            // Children
+            html += `<div class="section"><div class="section-title">Children/Students</div>`;
+            text += `CHILDREN/STUDENTS\n`;
+
+            // Find all children
+            const childNumbers = Object.keys(data).filter(key => key.match(/^child_\d+_name$/)).map(key => key.match(/\d+/)[0]);
+
+            childNumbers.forEach(num => {
+                const childName = data[`child_${num}_name`] || 'N/A';
+                const childGrade = data[`child_${num}_grade`] || 'N/A';
+
+                html += `<div class="child-block">
+                    <h3>${childName} (${childGrade})</h3>
+                    <div class="field"><span class="label">Subject Areas Needing Focus:</span>
+                        <ul>`;
+
+                text += `\nChild: ${childName} (${childGrade})\n`;
+                text += `Subject Areas Needing Focus:\n`;
+
+                const subjects = data[`child_${num}_subjects`] || [];
+                if (subjects.length > 0) {
+                    subjects.forEach(subject => {
+                        html += `<li>${subject}</li>`;
+                        text += `  • ${subject}\n`;
+                    });
+                } else {
+                    html += `<li>None specified</li>`;
+                    text += `  • None specified\n`;
+                }
+
+                html += `</ul></div>`;
+
+                if (data[`child_${num}_curriculum_notes`]) {
+                    html += `<div class="field"><span class="label">Curriculum Notes:</span> <span class="value">${data[`child_${num}_curriculum_notes`]}</span></div>`;
+                    text += `Curriculum Notes: ${data[`child_${num}_curriculum_notes`]}\n`;
+                }
+
+                html += `<div class="field"><span class="label">Learning Styles:</span>`;
+                text += `Learning Styles: `;
+
+                const learning = data[`child_${num}_learning`] || [];
+                if (learning.length > 0) {
+                    html += `<span class="value">${learning.join(', ')}</span>`;
+                    text += `${learning.join(', ')}\n`;
+                } else {
+                    html += `<span class="value">Not specified</span>`;
+                    text += `Not specified\n`;
+                }
+
+                html += `</div>`;
+
+                if (data[`child_${num}_strengths`]) {
+                    html += `<div class="field"><span class="label">Strengths:</span> <span class="value">${data[`child_${num}_strengths`]}</span></div>`;
+                    text += `Strengths: ${data[`child_${num}_strengths`]}\n`;
+                }
+
+                if (data[`child_${num}_challenges`]) {
+                    html += `<div class="field"><span class="label">Challenges:</span> <span class="value">${data[`child_${num}_challenges`]}</span></div>`;
+                    text += `Challenges: ${data[`child_${num}_challenges`]}\n`;
+                }
+
+                if (data[`child_${num}_special_needs`]) {
+                    html += `<div class="field"><span class="label">Special Needs:</span> <span class="value">${data[`child_${num}_special_needs`]}</span></div>`;
+                    text += `Special Needs: ${data[`child_${num}_special_needs`]}\n`;
+                }
+
+                if (data[`child_${num}_academic_status`]) {
+                    html += `<div class="field"><span class="label">Academic Status:</span> <span class="value">${data[`child_${num}_academic_status`]}</span></div>`;
+                    text += `Academic Status: ${data[`child_${num}_academic_status`]}\n`;
+                }
+
+                if (data[`child_${num}_interests`]) {
+                    html += `<div class="field"><span class="label">Interests & Hobbies:</span> <span class="value">${data[`child_${num}_interests`]}</span></div>`;
+                    text += `Interests & Hobbies: ${data[`child_${num}_interests`]}\n`;
+                }
+
+                html += `</div>`;
+            });
+
+            html += `</div>`;
+            text += `\n`;
+
+            // Educational Philosophy
+            html += `<div class="section">
+                <div class="section-title">Educational Philosophy & Approach</div>
+                <div class="field"><span class="label">Approaches:</span><ul>`;
+
+            text += `EDUCATIONAL PHILOSOPHY & APPROACH\nApproaches:\n`;
+
+            const approaches = data.approach || [];
+            if (approaches.length > 0) {
+                approaches.forEach(approach => {
+                    html += `<li>${approach}</li>`;
+                    text += `• ${approach}\n`;
+                });
+            }
+
+            html += `</ul></div>
+                <div class="field"><span class="label">Faith Integration:</span> <span class="value">${data.faith_integration || 'N/A'}</span></div>
+                <div class="field"><span class="label">Teaching Style:</span><ul>`;
+
+            text += `Faith Integration: ${data.faith_integration || 'N/A'}\nTeaching Style:\n`;
+
+            const teachingStyles = data.teaching_style || [];
+            if (teachingStyles.length > 0) {
+                teachingStyles.forEach(style => {
+                    html += `<li>${style}</li>`;
+                    text += `• ${style}\n`;
+                });
+            }
+
+            html += `</ul></div></div>`;
+            text += `\n`;
+
+            // Practical Constraints
+            html += `<div class="section">
+                <div class="section-title">Practical Constraints</div>
+                <div class="field"><span class="label">Time Commitment:</span> <span class="value">${data.time_commitment || 'N/A'}</span></div>
+                <div class="field"><span class="label">Budget:</span> <span class="value">${data.budget || 'N/A'}</span></div>`;
+
+            text += `PRACTICAL CONSTRAINTS\nTime Commitment: ${data.time_commitment || 'N/A'}\nBudget: ${data.budget || 'N/A'}\n`;
+
+            if (data.current_curriculum) {
+                html += `<div class="field"><span class="label">Current Curriculum:</span> <span class="value">${data.current_curriculum}</span></div>`;
+                text += `Current Curriculum: ${data.current_curriculum}\n`;
+            }
+
+            if (data.whats_working) {
+                html += `<div class="field"><span class="label">What's Working:</span> <span class="value">${data.whats_working}</span></div>`;
+                text += `What's Working: ${data.whats_working}\n`;
+            }
+
+            if (data.whats_not_working) {
+                html += `<div class="field"><span class="label">What's NOT Working:</span> <span class="value">${data.whats_not_working}</span></div>`;
+                text += `What's NOT Working: ${data.whats_not_working}\n`;
+            }
+
+            html += `</div>`;
+            text += `\n`;
+
+            // State Requirements
+            html += `<div class="section">
+                <div class="section-title">State Requirements & Compliance</div>
+                <div class="field"><span class="label">Knowledge of Laws:</span> <span class="value">${data.knows_laws || 'N/A'}</span></div>
+                <div class="field"><span class="label">Compliance Help Needed:</span><ul>`;
+
+            text += `STATE REQUIREMENTS & COMPLIANCE\nKnowledge of Laws: ${data.knows_laws || 'N/A'}\nCompliance Help Needed:\n`;
+
+            const complianceHelp = data.compliance_help || [];
+            if (complianceHelp.length > 0) {
+                complianceHelp.forEach(help => {
+                    html += `<li>${help}</li>`;
+                    text += `• ${help}\n`;
+                });
+            }
+
+            html += `</ul></div></div>`;
+            text += `\n`;
+
+            // Goals
+            html += `<div class="section">
+                <div class="section-title">Goals & Desired Outcomes</div>
+                <div class="field"><span class="label">Goals:</span><ul>`;
+
+            text += `GOALS & DESIRED OUTCOMES\nGoals:\n`;
+
+            const goals = data.goals || [];
+            if (goals.length > 0) {
+                goals.forEach(goal => {
+                    html += `<li>${goal}</li>`;
+                    text += `• ${goal}\n`;
+                });
+            }
+
+            if (data.goals_other) {
+                html += `<li>Other: ${data.goals_other}</li>`;
+                text += `• Other: ${data.goals_other}\n`;
+            }
+
+            html += `</ul></div>`;
+
+            if (data.success_definition) {
+                html += `<div class="field"><span class="label">Success Definition:</span> <span class="value">${data.success_definition}</span></div>`;
+                text += `Success Definition: ${data.success_definition}\n`;
+            }
+
+            html += `<div class="field"><span class="label">Timeline:</span> <span class="value">${data.timeline || 'N/A'}</span></div>
+            </div>`;
+
+            text += `Timeline: ${data.timeline || 'N/A'}\n\n`;
+
+            // Additional Details
+            if (data.additional_details) {
+                html += `<div class="section">
+                    <div class="section-title">Additional Details</div>
+                    <div class="value">${data.additional_details}</div>
+                </div>`;
+
+                text += `ADDITIONAL DETAILS\n${data.additional_details}\n\n`;
+            }
+
+            // Scheduling
+            html += `<div class="section">
+                <div class="section-title">Scheduling Preferences</div>`;
+
+            text += `SCHEDULING PREFERENCES\n`;
+
+            const preferredDays = data.preferred_days || [];
+            if (preferredDays.length > 0) {
+                html += `<div class="field"><span class="label">Preferred Days:</span> <span class="value">${preferredDays.join(', ')}</span></div>`;
+                text += `Preferred Days: ${preferredDays.join(', ')}\n`;
+            }
+
+            const preferredTimes = data.preferred_times || [];
+            if (preferredTimes.length > 0) {
+                html += `<div class="field"><span class="label">Preferred Times:</span> <span class="value">${preferredTimes.join(', ')}</span></div>`;
+                text += `Preferred Times: ${preferredTimes.join(', ')}\n`;
+            }
+
+            if (data.avoid_times) {
+                html += `<div class="field"><span class="label">Times to Avoid:</span> <span class="value">${data.avoid_times}</span></div>`;
+                text += `Times to Avoid: ${data.avoid_times}\n`;
+            }
+
+            html += `</div>`;
+            text += `\n`;
+
+            html += `
+    <div style="text-align: center; margin-top: 40px; padding: 20px; background: #f5f0f6; border-radius: 8px;">
+        <p style="color: #7d5572; font-weight: bold;">Thank you for choosing Faithful Way Homeschool Solutions!</p>
+        <p>We'll be in touch soon to schedule your parent support session.</p>
+        <p style="font-size: 14px; color: #777;">faithfulwayhomeschoolsolutions@protonmail.com</p>
+    </div>
+</body>
+</html>`;
+
+            text += `================================================================================\nThank you for choosing Faithful Way Homeschool Solutions!\nWe'll be in touch soon to schedule your parent support session.\n\nfaithfulwayhomeschoolsolutions@protonmail.com\n================================================================================`;
+
+            return { html, text };
+        }
+    </script>
+</body>
+</html>
+`;
