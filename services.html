@@ -87,20 +87,37 @@
                 </div>
 
                 <h2 style="text-align: center; margin-top: 4rem; margin-bottom: 1rem;">Custom Curriculum Design</h2>
+
+                <div style="background-color: rgba(196, 153, 179, 0.15); border: 2px solid #c499b3; border-radius: 8px; padding: 1.5rem; margin: 0 auto 2rem; max-width: 900px;">
+                    <p style="text-align: center; margin-bottom: 1rem; color: #555; font-size: 0.95rem;">
+                        <strong style="color: #7d5572;">Please Note:</strong> Purchasing custom curriculum is not required to receive homeschool parent support services. Parent support sessions are available independently to help you with curriculum selection, planning, encouragement, and guidance.
+                    </p>
+                </div>
+
                 <p style="text-align: center; max-width: 800px; margin: 0 auto 1rem; color: #666;">
                     Faith-based, professionally designed curriculum materials created specifically for your family using evidence-based instructional design methods. Due to the intensive nature of custom curriculum design, I work with one family at a time on these projects.
                 </p>
                 <p style="text-align: center; max-width: 800px; margin: 0 auto 1rem; color: #888; font-size: 0.9rem;">
                     All curriculum is designed using professional instructional design methods, incorporating AI-assisted tools under careful oversight and customization to ensure high-quality, faith-based learning materials tailored specifically to your family.
                 </p>
-                <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; color: #666; font-size: 0.95rem;">
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 1rem; color: #666; font-size: 0.95rem;">
                     <strong>All materials are delivered digitally,</strong> allowing your child to work online, offline on your computer, or print materials as needed — giving you flexibility and convenience without sacrificing educational quality. Want printed copies? I can order them for you — pay the printing cost plus a $20+ handling fee (depending on complexity of order).
+                </p>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; color: #777; font-size: 0.9rem; font-style: italic;">
+                    I create materials that align with my faith values and Biblical worldview. While I'm happy to work with families of various faith backgrounds, I kindly reserve the right to decline requests that don't align with my convictions. This ensures I can provide you with authentic, heartfelt materials that reflect my expertise and beliefs.
                 </p>
 
                 <div style="max-width: 1000px; margin: 0 auto;">
-                    <h3 style="text-align: center; margin-bottom: 1.5rem; color: #7d5572;">Curriculum Pricing</h3>
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <button onclick="togglePricing()" id="pricingToggle" style="background: linear-gradient(135deg, #7d5572 0%, #634456 100%); color: white; border: none; padding: 15px 30px; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 10px rgba(125, 85, 114, 0.3); transition: all 0.3s ease;">
+                            <span id="toggleIcon">▼</span> View Curriculum Pricing Details
+                        </button>
+                    </div>
 
-                    <div style="overflow-x: auto;">
+                    <div id="pricingContent" style="display: none;">
+                        <h3 style="text-align: center; margin-bottom: 1.5rem; color: #7d5572;">Curriculum Pricing</h3>
+
+                        <div style="overflow-x: auto;">
                         <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 2px solid #7d5572;">
                             <thead>
                                 <tr style="background: linear-gradient(135deg, #7d5572 0%, #634456 100%); color: white;">
@@ -200,12 +217,13 @@
                             Otherwise, you can receive the Learning Hub (if desired) with your digital materials and load/assign yourself to save that extra cost.
                         </p>
                     </div>
-                </div>
 
-                <div style="background-color: rgba(125, 85, 114, 0.1); border-left: 4px solid #7d5572; padding: 1.5rem; margin-top: 2rem; border-radius: 4px;">
-                    <h4 style="margin-top: 0; color: #7d5572;">Custom Curriculum Process</h4>
-                    <p>I work with one family at a time on custom curriculum projects to ensure quality and attention to detail. Timeline varies based on project scope, but most unit studies take 2-3 weeks and textbooks take 4-8 weeks to complete.</p>
-                    <p style="margin-bottom: 0;"><strong>Getting Started:</strong> Schedule an Initial Parent Support Session or Curriculum Selection Session to discuss your needs, and we'll create a custom proposal based on your specific requirements.</p>
+                    <div style="background-color: rgba(125, 85, 114, 0.1); border-left: 4px solid #7d5572; padding: 1.5rem; margin-top: 2rem; border-radius: 4px;">
+                        <h4 style="margin-top: 0; color: #7d5572;">Custom Curriculum Process</h4>
+                        <p>I work with one family at a time on custom curriculum projects to ensure quality and attention to detail. Timeline varies based on project scope, but most unit studies take 2-3 weeks and textbooks take 4-8 weeks to complete.</p>
+                        <p style="margin-bottom: 0;"><strong>Getting Started:</strong> Schedule an Initial Parent Support Session or Curriculum Selection Session to discuss your needs, and we'll create a custom proposal based on your specific requirements.</p>
+                    </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -286,6 +304,23 @@
             }
         }
 
+        // Toggle curriculum pricing visibility
+        function togglePricing() {
+            const content = document.getElementById('pricingContent');
+            const icon = document.getElementById('toggleIcon');
+            const button = document.getElementById('pricingToggle');
+
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.textContent = '▲';
+                button.innerHTML = '<span id="toggleIcon">▲</span> Hide Curriculum Pricing Details';
+            } else {
+                content.style.display = 'none';
+                icon.textContent = '▼';
+                button.innerHTML = '<span id="toggleIcon">▼</span> View Curriculum Pricing Details';
+            }
+        }
+
         // Redirect to intake form after Calendly booking is completed
         function isCalendlyEvent(e) {
             return e.origin === "https://calendly.com" && e.data.event && e.data.event.indexOf('calendly.') === 0;
@@ -294,8 +329,10 @@
         window.addEventListener('message', function(e) {
             if (isCalendlyEvent(e)) {
                 if (e.data.event === 'calendly.event_scheduled') {
-                    // Redirect to intake form after successful booking
-                    window.location.href = 'Intake_Form/intake-form.html';
+                    // Wait 3 seconds to allow user to see Calendly confirmation, then redirect
+                    setTimeout(function() {
+                        window.location.href = 'Intake_Form/intake-form.html';
+                    }, 3000);
                 }
             }
         });
