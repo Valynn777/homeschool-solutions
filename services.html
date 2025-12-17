@@ -88,6 +88,13 @@
 
                 <h2 style="text-align: center; margin-top: 4rem; margin-bottom: 1rem;">Custom Curriculum Design</h2>
 
+                <div style="text-align: center; margin-bottom: 1rem;">
+                    <button onclick="openPDFModal()" style="background: linear-gradient(135deg, #c499b3 0%, #a77d96 100%); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.15); transition: all 0.2s ease;">
+                        📄 View Sample Documentation
+                    </button>
+                    <div style="font-size: 0.75rem; color: #888; margin-top: 0.5rem;">Partial sample of support summary you'll receive</div>
+                </div>
+
                 <div style="background-color: rgba(196, 153, 179, 0.15); border: 2px solid #c499b3; border-radius: 8px; padding: 1.5rem; margin: 0 auto 2rem; max-width: 900px;">
                     <p style="text-align: center; margin-bottom: 1rem; color: #555; font-size: 0.95rem;">
                         <strong style="color: #7d5572;">Please Note:</strong> Purchasing custom curriculum is not required to receive homeschool parent support services. Parent support sessions are available independently to help you with curriculum selection, planning, encouragement, and guidance.
@@ -118,63 +125,63 @@
                         <h3 style="text-align: center; margin-bottom: 1.5rem; color: #7d5572;">Curriculum Pricing</h3>
 
                         <div style="overflow-x: auto;">
-                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 2px solid #7d5572;">
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 2px solid #7d5572; font-size: 0.9rem;">
                             <thead>
                                 <tr style="background: linear-gradient(135deg, #7d5572 0%, #634456 100%); color: white;">
-                                    <th style="padding: 15px; text-align: left; border: 1px solid #5a3d4f; font-weight: 600;">Curriculum Package</th>
-                                    <th style="padding: 15px; text-align: left; border: 1px solid #5a3d4f; font-weight: 600;">One-Time Price</th>
-                                    <th style="padding: 15px; text-align: left; border: 1px solid #5a3d4f; font-weight: 600;">Monthly Price</th>
-                                    <th style="padding: 15px; text-align: left; border: 1px solid #5a3d4f; font-weight: 600;">Notes</th>
+                                    <th style="padding: 10px; text-align: left; border: 1px solid #5a3d4f; font-weight: 600; font-size: 0.85rem;">Curriculum Package</th>
+                                    <th style="padding: 10px; text-align: left; border: 1px solid #5a3d4f; font-weight: 600; font-size: 0.85rem;">One-Time</th>
+                                    <th style="padding: 10px; text-align: left; border: 1px solid #5a3d4f; font-weight: 600; font-size: 0.85rem;">Monthly</th>
+                                    <th style="padding: 10px; text-align: left; border: 1px solid #5a3d4f; font-weight: 600; font-size: 0.85rem;">Notes</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d;"><strong style="color: #7d5572;">Single Subject — Elementary/Middle</strong> <span style="color: #555;">(Digital, no parent materials)</span></td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d; font-weight: 600;">$135–$150</td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d;">—</td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #555; font-size: 0.9rem;"></td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d;"><strong style="color: #7d5572;">Single Subject — Elem/Middle</strong> <span style="color: #666; font-size: 0.85rem;">(Digital)</span></td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d; font-weight: 600;">$135–$150</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d;">—</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #666; font-size: 0.85rem;"></td>
                                 </tr>
                                 <tr style="background-color: #f5f0f6;">
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d;"><strong style="color: #7d5572;">Single Subject — High School</strong> <span style="color: #555;">(Digital, no parent materials)</span></td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d; font-weight: 600;">$185–$200</td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d;">—</td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #555; font-size: 0.9rem;"></td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d;"><strong style="color: #7d5572;">Single Subject — High School</strong> <span style="color: #666; font-size: 0.85rem;">(Digital)</span></td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d; font-weight: 600;">$185–$200</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d;">—</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #666; font-size: 0.85rem;"></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d;"><strong style="color: #7d5572;">Text Only / Low Resource Version</strong> <span style="color: #555;">(Digital - No images/extras)</span></td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d; font-weight: 600;">$90–$100</td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d;">—</td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #555; font-size: 0.9rem;"></td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d;"><strong style="color: #7d5572;">Text Only / Low Resource</strong> <span style="color: #666; font-size: 0.85rem;">(No images)</span></td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d; font-weight: 600;">$90–$100</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d;">—</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #666; font-size: 0.85rem;"></td>
                                 </tr>
                                 <tr style="background-color: #f5f0f6;">
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d;"><strong style="color: #7d5572;">4 Core Subject Bundle</strong> <span style="color: #555;">(No Parent Materials)</span></td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d; font-weight: 600;">$550–$600</td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d;">—</td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #555; font-size: 0.9rem;"></td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d;"><strong style="color: #7d5572;">4 Core Bundle</strong> <span style="color: #666; font-size: 0.85rem;">(No Parent Materials)</span></td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d; font-weight: 600;">$550–$600</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d;">—</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #666; font-size: 0.85rem;"></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d;"><strong style="color: #7d5572;">4 Core Bundle + Parent Materials</strong></td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d; font-weight: 600;">$750–$850</td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d;">—</td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #555; font-size: 0.9rem;"></td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d;"><strong style="color: #7d5572;">4 Core + Parent Materials</strong></td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d; font-weight: 600;">$750–$850</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d;">—</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #666; font-size: 0.85rem;"></td>
                                 </tr>
                                 <tr style="background-color: #f5f0f6;">
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d;"><strong style="color: #7d5572;">4 Core + Parent Materials + Electives</strong></td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d; font-weight: 600;">$850–$950</td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d;">—</td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #555; font-size: 0.9rem;"></td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d;"><strong style="color: #7d5572;">4 Core + Parent + Electives</strong></td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d; font-weight: 600;">$850–$950</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d;">—</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #666; font-size: 0.85rem;"></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d;"><strong style="color: #7d5572;">Monthly Plan — Core 4</strong></td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d;">—</td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d; font-weight: 600;">$45/mo (12 mos)</td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #555; font-size: 0.9rem;">Will only receive one month of material at a time</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d;"><strong style="color: #7d5572;">Monthly — Core 4</strong></td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d;">—</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d; font-weight: 600;">$45/mo</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #666; font-size: 0.85rem;">12 mos, 1 month at a time</td>
                                 </tr>
                                 <tr style="background-color: #f5f0f6;">
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d;"><strong style="color: #7d5572;">Monthly Plan — Each Elective Add On</strong></td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d;">—</td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #2d2d2d; font-weight: 600;">$10/mo per elective</td>
-                                    <td style="padding: 12px; border: 1px solid #c0b0b8; color: #555; font-size: 0.9rem;">Monthly materials delivered 5 days prior to new month beginning</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d;"><strong style="color: #7d5572;">Monthly — Each Elective</strong></td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d;">—</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #2d2d2d; font-weight: 600;">$10/mo</td>
+                                    <td style="padding: 8px; border: 1px solid #c0b0b8; color: #666; font-size: 0.85rem;">Delivered 5 days before month</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -185,29 +192,29 @@
                         <p style="margin-bottom: 1rem;">For $50-$100, I'll preload all your chosen curriculum materials into the app, fully organized and ready for your child to use online or offline. This ensures a seamless experience and saves you setup time.</p>
 
                         <div style="overflow-x: auto;">
-                            <table style="width: 100%; border-collapse: collapse; background: white; border: 2px solid #c499b3; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <table style="width: 100%; border-collapse: collapse; background: white; border: 2px solid #c499b3; box-shadow: 0 2px 8px rgba(0,0,0,0.1); font-size: 0.9rem;">
                                 <thead>
                                     <tr style="background: #c499b3; color: white;">
-                                        <th style="padding: 12px; text-align: left; border: 1px solid #a77d96; font-weight: 600;">Service</th>
-                                        <th style="padding: 12px; text-align: left; border: 1px solid #a77d96; font-weight: 600;">Price</th>
-                                        <th style="padding: 12px; text-align: left; border: 1px solid #a77d96; font-weight: 600;">Notes</th>
+                                        <th style="padding: 8px; text-align: left; border: 1px solid #a77d96; font-weight: 600; font-size: 0.85rem;">Service</th>
+                                        <th style="padding: 8px; text-align: left; border: 1px solid #a77d96; font-weight: 600; font-size: 0.85rem;">Price</th>
+                                        <th style="padding: 8px; text-align: left; border: 1px solid #a77d96; font-weight: 600; font-size: 0.85rem;">Notes</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td style="padding: 10px; border: 1px solid #d4bdc9; color: #2d2d2d; font-weight: 500;">Single subject / small bundle preload</td>
-                                        <td style="padding: 10px; border: 1px solid #d4bdc9; color: #2d2d2d; font-weight: 600;">$50</td>
-                                        <td style="padding: 10px; border: 1px solid #d4bdc9; color: #555; font-size: 0.9rem;">Setup for 1–2 subjects</td>
+                                        <td style="padding: 7px; border: 1px solid #d4bdc9; color: #2d2d2d;">Single subject / small bundle</td>
+                                        <td style="padding: 7px; border: 1px solid #d4bdc9; color: #2d2d2d; font-weight: 600;">$50</td>
+                                        <td style="padding: 7px; border: 1px solid #d4bdc9; color: #666; font-size: 0.85rem;">1–2 subjects</td>
                                     </tr>
                                     <tr style="background-color: #faf8fc;">
-                                        <td style="padding: 10px; border: 1px solid #d4bdc9; color: #2d2d2d; font-weight: 500;">4-core bundle preload</td>
-                                        <td style="padding: 10px; border: 1px solid #d4bdc9; color: #2d2d2d; font-weight: 600;">$75</td>
-                                        <td style="padding: 10px; border: 1px solid #d4bdc9; color: #555; font-size: 0.9rem;">Full core subjects, no electives</td>
+                                        <td style="padding: 7px; border: 1px solid #d4bdc9; color: #2d2d2d;">4-core bundle</td>
+                                        <td style="padding: 7px; border: 1px solid #d4bdc9; color: #2d2d2d; font-weight: 600;">$75</td>
+                                        <td style="padding: 7px; border: 1px solid #d4bdc9; color: #666; font-size: 0.85rem;">Core only, no electives</td>
                                     </tr>
                                     <tr>
-                                        <td style="padding: 10px; border: 1px solid #d4bdc9; color: #2d2d2d; font-weight: 500;">4-core + electives + parent materials preload</td>
-                                        <td style="padding: 10px; border: 1px solid #d4bdc9; color: #2d2d2d; font-weight: 600;">$100</td>
-                                        <td style="padding: 10px; border: 1px solid #d4bdc9; color: #555; font-size: 0.9rem;">Entire curriculum loaded, verified, and tested</td>
+                                        <td style="padding: 7px; border: 1px solid #d4bdc9; color: #2d2d2d;">4-core + electives + parent materials</td>
+                                        <td style="padding: 7px; border: 1px solid #d4bdc9; color: #2d2d2d; font-weight: 600;">$100</td>
+                                        <td style="padding: 7px; border: 1px solid #d4bdc9; color: #666; font-size: 0.85rem;">Full setup, tested</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -269,6 +276,20 @@
         </section>
     </main>
 
+    <!-- PDF Modal -->
+    <div id="pdfModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; overflow: auto;">
+        <div style="position: relative; width: 90%; max-width: 900px; margin: 2rem auto; background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+            <div style="padding: 1.5rem; border-bottom: 2px solid #c499b3; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #7d5572 0%, #634456 100%); color: white; border-radius: 8px 8px 0 0;">
+                <h3 style="margin: 0; font-size: 1.2rem;">Sample Support Summary Documentation</h3>
+                <button onclick="closePDFModal()" style="background: rgba(255,255,255,0.2); border: none; color: white; font-size: 1.5rem; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">&times;</button>
+            </div>
+            <div style="padding: 1rem; background: #f5f5f5;">
+                <p style="margin: 0 0 1rem 0; color: #666; font-size: 0.9rem; text-align: center;"><strong>Note:</strong> This is a partial sample demonstrating the type of comprehensive documentation you'll receive after your support sessions.</p>
+                <iframe src="samples/Homeschool_Support_Summary_Sample.pdf" style="width: 100%; height: 70vh; border: none; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></iframe>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <p>&copy; 2025 Faithful Way Homeschool Solutions. All rights reserved.</p>
@@ -282,6 +303,32 @@
 
     <script src="js/scripts.js"></script>
     <script>
+        // PDF Modal functions
+        function openPDFModal() {
+            document.getElementById('pdfModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePDFModal() {
+            document.getElementById('pdfModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('pdfModal');
+            if (event.target === modal) {
+                closePDFModal();
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closePDFModal();
+            }
+        });
+
         function toggleCalendar() {
             const checkbox = document.getElementById('termsCheckbox');
             const container = document.getElementById('calendlyContainer');
