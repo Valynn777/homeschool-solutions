@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Density: Lead vs Cork
+  </text>
+  <text x="400" y="55" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#7f8c8d">
+    Same size - Different weight!
+  </text>
+
+  <!-- Lead cube -->
+  <g>
+    <!-- 3D cube effect -->
+    <polygon points="150,120 250,120 250,220 150,220" fill="#7f8c8d" stroke="#2c3e50" stroke-width="2"/>
+    <polygon points="250,120 280,95 280,195 250,220" fill="#5d6d7e" stroke="#2c3e50" stroke-width="2"/>
+    <polygon points="150,120 180,95 280,95 250,120" fill="#95a5a6" stroke="#2c3e50" stroke-width="2"/>
+
+    <text x="200" y="105" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+      LEAD
+    </text>
+
+    <!-- Densely packed particles inside -->
+    <circle cx="170" cy="145" r="4" fill="#34495e"/>
+    <circle cx="180" cy="145" r="4" fill="#34495e"/>
+    <circle cx="190" cy="145" r="4" fill="#34495e"/>
+    <circle cx="200" cy="145" r="4" fill="#34495e"/>
+    <circle cx="210" cy="145" r="4" fill="#34495e"/>
+    <circle cx="220" cy="145" r="4" fill="#34495e"/>
+    <circle cx="230" cy="145" r="4" fill="#34495e"/>
+
+    <circle cx="170" cy="155" r="4" fill="#34495e"/>
+    <circle cx="180" cy="155" r="4" fill="#34495e"/>
+    <circle cx="190" cy="155" r="4" fill="#34495e"/>
+    <circle cx="200" cy="155" r="4" fill="#34495e"/>
+    <circle cx="210" cy="155" r="4" fill="#34495e"/>
+    <circle cx="220" cy="155" r="4" fill="#34495e"/>
+    <circle cx="230" cy="155" r="4" fill="#34495e"/>
+
+    <circle cx="170" cy="165" r="4" fill="#34495e"/>
+    <circle cx="180" cy="165" r="4" fill="#34495e"/>
+    <circle cx="190" cy="165" r="4" fill="#34495e"/>
+    <circle cx="200" cy="165" r="4" fill="#34495e"/>
+    <circle cx="210" cy="165" r="4" fill="#34495e"/>
+    <circle cx="220" cy="165" r="4" fill="#34495e"/>
+    <circle cx="230" cy="165" r="4" fill="#34495e"/>
+
+    <circle cx="170" cy="175" r="4" fill="#34495e"/>
+    <circle cx="180" cy="175" r="4" fill="#34495e"/>
+    <circle cx="190" cy="175" r="4" fill="#34495e"/>
+    <circle cx="200" cy="175" r="4" fill="#34495e"/>
+    <circle cx="210" cy="175" r="4" fill="#34495e"/>
+    <circle cx="220" cy="175" r="4" fill="#34495e"/>
+    <circle cx="230" cy="175" r="4" fill="#34495e"/>
+
+    <circle cx="170" cy="185" r="4" fill="#34495e"/>
+    <circle cx="180" cy="185" r="4" fill="#34495e"/>
+    <circle cx="190" cy="185" r="4" fill="#34495e"/>
+    <circle cx="200" cy="185" r="4" fill="#34495e"/>
+    <circle cx="210" cy="185" r="4" fill="#34495e"/>
+    <circle cx="220" cy="185" r="4" fill="#34495e"/>
+    <circle cx="230" cy="185" r="4" fill="#34495e"/>
+
+    <circle cx="170" cy="195" r="4" fill="#34495e"/>
+    <circle cx="180" cy="195" r="4" fill="#34495e"/>
+    <circle cx="190" cy="195" r="4" fill="#34495e"/>
+    <circle cx="200" cy="195" r="4" fill="#34495e"/>
+    <circle cx="210" cy="195" r="4" fill="#34495e"/>
+    <circle cx="220" cy="195" r="4" fill="#34495e"/>
+    <circle cx="230" cy="195" r="4" fill="#34495e"/>
+
+    <text x="200" y="250" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+      Very Heavy
+    </text>
+    <text x="200" y="270" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#7f8c8d">
+      Particles packed
+    </text>
+    <text x="200" y="285" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#7f8c8d">
+      tightly together
+    </text>
+  </g>
+
+  <!-- Cork cube -->
+  <g>
+    <!-- 3D cube effect -->
+    <polygon points="450,120 550,120 550,220 450,220" fill="#d4a574" stroke="#2c3e50" stroke-width="2"/>
+    <polygon points="550,120 580,95 580,195 550,220" fill="#b8936d" stroke="#2c3e50" stroke-width="2"/>
+    <polygon points="450,120 480,95 580,95 550,120" fill="#e8c9a0" stroke="#2c3e50" stroke-width="2"/>
+
+    <text x="500" y="105" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+      CORK
+    </text>
+
+    <!-- Loosely packed particles with visible gaps -->
+    <circle cx="470" cy="150" r="5" fill="#8b6f47"/>
+    <circle cx="490" cy="145" r="5" fill="#8b6f47"/>
+    <circle cx="510" cy="155" r="5" fill="#8b6f47"/>
+    <circle cx="530" cy="150" r="5" fill="#8b6f47"/>
+
+    <circle cx="475" cy="175" r="5" fill="#8b6f47"/>
+    <circle cx="495" cy="170" r="5" fill="#8b6f47"/>
+    <circle cx="515" cy="180" r="5" fill="#8b6f47"/>
+    <circle cx="535" cy="175" r="5" fill="#8b6f47"/>
+
+    <circle cx="470" cy="200" r="5" fill="#8b6f47"/>
+    <circle cx="490" cy="195" r="5" fill="#8b6f47"/>
+    <circle cx="510" cy="205" r="5" fill="#8b6f47"/>
+    <circle cx="530" cy="200" r="5" fill="#8b6f47"/>
+
+    <text x="500" y="250" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+      Very Light
+    </text>
+    <text x="500" y="270" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#7f8c8d">
+      Particles far apart
+    </text>
+    <text x="500" y="285" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#7f8c8d">
+      with lots of gaps
+    </text>
+  </g>
+
+  <!-- Comparison arrow and text -->
+  <g>
+    <path d="M 300 170 L 430 170" stroke="#e74c3c" stroke-width="3" fill="none"/>
+    <path d="M 430 170 L 300 170" stroke="#e74c3c" stroke-width="3" fill="none"/>
+    <polygon points="305,165 295,170 305,175" fill="#e74c3c"/>
+    <polygon points="425,165 435,170 425,175" fill="#e74c3c"/>
+
+    <text x="365" y="160" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#e74c3c">
+      Same Size
+    </text>
+  </g>
+
+  <!-- Bottom comparison -->
+  <text x="400" y="320" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Lead weighs 40× more than cork!
+  </text>
+</svg>

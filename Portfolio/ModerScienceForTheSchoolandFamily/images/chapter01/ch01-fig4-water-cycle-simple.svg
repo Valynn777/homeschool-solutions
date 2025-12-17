@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <!-- Title -->
+  <text x="400" y="35" font-family="Arial, sans-serif" font-size="26" font-weight="bold" text-anchor="middle" fill="#2c5aa0">
+    Water Cycle - "Unstable as Water"
+  </text>
+
+  <text x="400" y="60" font-family="Arial, sans-serif" font-size="15" text-anchor="middle" fill="#555" font-style="italic">
+    Water molecules are always moving, always changing neighbors
+  </text>
+
+  <!-- Sun -->
+  <g id="sun">
+    <circle cx="650" cy="120" r="50" fill="#f39c12" opacity="0.8"/>
+    <circle cx="650" cy="120" r="40" fill="#f1c40f"/>
+    <!-- Sun rays -->
+    <line x1="650" y1="60" x2="650" y2="30" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+    <line x1="700" y1="80" x2="720" y2="60" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+    <line x1="715" y1="120" x2="745" y2="120" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+    <line x1="700" y1="160" x2="720" y2="180" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+    <line x1="600" y1="160" x2="580" y2="180" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+    <line x1="585" y1="120" x2="555" y2="120" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+    <line x1="600" y1="80" x2="580" y2="60" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+
+    <text x="650" y="200" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#e67e22">HEAT</text>
+  </g>
+
+  <!-- Clouds -->
+  <g id="clouds">
+    <ellipse cx="200" cy="140" rx="50" ry="30" fill="#bdc3c7" opacity="0.8"/>
+    <ellipse cx="230" cy="130" rx="45" ry="28" fill="#bdc3c7" opacity="0.8"/>
+    <ellipse cx="260" cy="140" rx="50" ry="30" fill="#bdc3c7" opacity="0.8"/>
+
+    <ellipse cx="450" cy="120" rx="40" ry="25" fill="#95a5a6" opacity="0.8"/>
+    <ellipse cx="480" cy="115" rx="50" ry="30" fill="#95a5a6" opacity="0.8"/>
+    <ellipse cx="510" cy="125" rx="45" ry="28" fill="#95a5a6" opacity="0.8"/>
+
+    <text x="230" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#555">CLOUDS</text>
+  </g>
+
+  <!-- Rain -->
+  <g id="rain">
+    <path d="M 210 170 L 205 200" stroke="#3498db" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 230 175 L 225 205" stroke="#3498db" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 250 170 L 245 200" stroke="#3498db" stroke-width="3" stroke-linecap="round"/>
+
+    <path d="M 460 150 L 455 180" stroke="#3498db" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 480 155 L 475 185" stroke="#3498db" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 500 150 L 495 180" stroke="#3498db" stroke-width="3" stroke-linecap="round"/>
+
+    <text x="350" y="200" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#3498db">PRECIPITATION</text>
+    <text x="350" y="220" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555">(Rain, Snow)</text>
+  </g>
+
+  <!-- Mountain -->
+  <g id="mountain">
+    <path d="M 50 400 L 200 250 L 350 400 Z" fill="#7f8c8d" opacity="0.6"/>
+    <path d="M 200 250 L 230 290 L 170 290 Z" fill="#ecf0f1"/>
+
+    <text x="200" y="370" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#555">Mountain</text>
+  </g>
+
+  <!-- Stream/River -->
+  <g id="stream">
+    <path d="M 250 380 Q 300 390 350 400 Q 400 410 450 400 Q 500 390 550 410"
+          stroke="#3498db" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M 245 385 Q 295 395 345 405 Q 395 415 445 405 Q 495 395 555 415"
+          stroke="#5dade2" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+    <text x="400" y="450" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#3498db">STREAM/RIVER</text>
+  </g>
+
+  <!-- Ocean -->
+  <g id="ocean">
+    <rect x="500" y="400" width="250" height="150" fill="#3498db" opacity="0.4"/>
+    <path d="M 500 410 Q 525 405 550 410 T 600 410 T 650 410 T 700 410 T 750 410"
+          stroke="#2980b9" stroke-width="2" fill="none"/>
+    <path d="M 500 425 Q 525 420 550 425 T 600 425 T 650 425 T 700 425 T 750 425"
+          stroke="#2980b9" stroke-width="2" fill="none" opacity="0.7"/>
+
+    <text x="625" y="470" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#2980b9">OCEAN</text>
+  </g>
+
+  <!-- Ground/Soil -->
+  <rect x="50" y="400" width="450" height="150" fill="#a0522d" opacity="0.3"/>
+  <text x="275" y="530" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555">GROUND</text>
+
+  <!-- Arrows showing cycle -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#e67e22"/>
+    </marker>
+  </defs>
+
+  <!-- 1. Evaporation arrow -->
+  <g id="evaporation-arrow">
+    <path d="M 650 430 L 650 350 Q 650 300 600 250 L 550 200"
+          stroke="#e67e22" stroke-width="4" fill="none" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
+    <text x="680" y="350" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#e67e22">EVAPORATION</text>
+    <text x="680" y="370" font-family="Arial, sans-serif" font-size="11" fill="#e67e22">(water → vapor)</text>
+  </g>
+
+  <!-- 2. Condensation arrow -->
+  <g id="condensation-arrow">
+    <path d="M 470 180 L 380 170 Q 320 165 270 150"
+          stroke="#e67e22" stroke-width="4" fill="none" marker-end="url(#arrowhead)"/>
+    <text x="380" y="155" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#e67e22">CONDENSATION</text>
+  </g>
+
+  <!-- 3. Collection arrow -->
+  <g id="collection-arrow">
+    <path d="M 540 410 L 570 425"
+          stroke="#e67e22" stroke-width="4" fill="none" marker-end="url(#arrowhead)"/>
+    <text x="450" y="485" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#e67e22">COLLECTION</text>
+  </g>
+
+  <!-- Plants -->
+  <g id="plants">
+    <rect x="120" y="370" width="5" height="30" fill="#27ae60"/>
+    <ellipse cx="122" cy="365" rx="8" ry="12" fill="#2ecc71"/>
+
+    <rect x="300" y="380" width="5" height="25" fill="#27ae60"/>
+    <ellipse cx="302" cy="375" rx="8" ry="12" fill="#2ecc71"/>
+
+    <text x="180" y="490" font-family="Arial, sans-serif" font-size="11" fill="#27ae60">Plants absorb water</text>
+  </g>
+
+  <!-- Water droplet in cloud -->
+  <circle cx="240" cy="145" r="4" fill="#3498db" opacity="0.8"/>
+  <circle cx="220" cy="150" r="4" fill="#3498db" opacity="0.8"/>
+  <circle cx="250" cy="152" r="4" fill="#3498db" opacity="0.8"/>
+
+  <!-- Biblical quote -->
+  <text x="400" y="575" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#555" font-style="italic">
+    "All the rivers run into the sea, yet the sea is not full" - Ecclesiastes 1:7
+  </text>
+</svg>

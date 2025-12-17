@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400">
+  <!-- Title -->
+  <text x="450" y="35" font-family="Arial, sans-serif" font-size="26" font-weight="bold" text-anchor="middle" fill="#2c5aa0">
+    The Five Senses - How We Detect Matter
+  </text>
+
+  <!-- SIGHT (Eye) -->
+  <g id="sight">
+    <circle cx="100" cy="150" r="60" fill="#e8f4f8" stroke="#2c5aa0" stroke-width="3"/>
+
+    <!-- Eye -->
+    <ellipse cx="100" cy="150" rx="30" ry="20" fill="white" stroke="#2c5aa0" stroke-width="2"/>
+    <circle cx="100" cy="150" r="12" fill="#3498db"/>
+    <circle cx="100" cy="150" r="6" fill="black"/>
+
+    <text x="100" y="235" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#2c5aa0">SIGHT</text>
+    <text x="100" y="255" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555">Detects light</text>
+    <text x="100" y="270" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">reflected from</text>
+    <text x="100" y="285" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">objects</text>
+  </g>
+
+  <!-- HEARING (Ear) -->
+  <g id="hearing">
+    <circle cx="280" cy="150" r="60" fill="#e8f8f4" stroke="#16a085" stroke-width="3"/>
+
+    <!-- Ear -->
+    <path d="M 260 130 Q 250 140 260 150 Q 250 160 260 170 Q 270 165 270 150 Q 270 135 260 130"
+          fill="#f0c674" stroke="#16a085" stroke-width="2"/>
+    <ellipse cx="272" cy="150" rx="8" ry="15" fill="#f0c674" stroke="#16a085" stroke-width="2"/>
+
+    <text x="280" y="235" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#16a085">HEARING</text>
+    <text x="280" y="255" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555">Detects sound</text>
+    <text x="280" y="270" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">waves (vibrating</text>
+    <text x="280" y="285" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">matter)</text>
+  </g>
+
+  <!-- SMELL (Nose) -->
+  <g id="smell">
+    <circle cx="450" cy="150" r="60" fill="#fff8e8" stroke="#e67e22" stroke-width="3"/>
+
+    <!-- Nose -->
+    <path d="M 445 130 L 440 150 Q 440 160 450 165 Q 460 160 460 150 L 455 130 Q 450 125 445 130"
+          fill="#f0c674" stroke="#e67e22" stroke-width="2"/>
+    <ellipse cx="443" cy="155" rx="3" ry="5" fill="#8b7355"/>
+    <ellipse cx="457" cy="155" rx="3" ry="5" fill="#8b7355"/>
+
+    <text x="450" y="235" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#e67e22">SMELL</text>
+    <text x="450" y="255" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555">Detects tiny</text>
+    <text x="450" y="270" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">particles in air</text>
+    <text x="450" y="285" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">(chemicals)</text>
+  </g>
+
+  <!-- TASTE (Tongue) -->
+  <g id="taste">
+    <circle cx="620" cy="150" r="60" fill="#ffe8f0" stroke="#e74c3c" stroke-width="3"/>
+
+    <!-- Tongue -->
+    <ellipse cx="620" cy="155" rx="25" ry="20" fill="#ff6b9d" stroke="#e74c3c" stroke-width="2"/>
+    <ellipse cx="620" cy="145" rx="22" ry="15" fill="#ff8fb3" opacity="0.8"/>
+
+    <!-- Taste buds (dots) -->
+    <circle cx="610" cy="150" r="2" fill="#c0392b"/>
+    <circle cx="620" cy="148" r="2" fill="#c0392b"/>
+    <circle cx="630" cy="152" r="2" fill="#c0392b"/>
+    <circle cx="615" cy="160" r="2" fill="#c0392b"/>
+    <circle cx="625" cy="158" r="2" fill="#c0392b"/>
+
+    <text x="620" y="235" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#e74c3c">TASTE</text>
+    <text x="620" y="255" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555">Detects dissolved</text>
+    <text x="620" y="270" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">chemicals in</text>
+    <text x="620" y="285" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">food/drink</text>
+  </g>
+
+  <!-- TOUCH (Hand) -->
+  <g id="touch">
+    <circle cx="800" cy="150" r="60" fill="#f0e8ff" stroke="#9b59b6" stroke-width="3"/>
+
+    <!-- Hand -->
+    <rect x="775" y="140" width="15" height="35" fill="#f0c674" stroke="#9b59b6" stroke-width="2" rx="3"/>
+    <rect x="790" y="130" width="8" height="25" fill="#f0c674" stroke="#9b59b6" stroke-width="2" rx="2"/>
+    <rect x="798" y="135" width="8" height="20" fill="#f0c674" stroke="#9b59b6" stroke-width="2" rx="2"/>
+    <rect x="806" y="138" width="8" height="18" fill="#f0c674" stroke="#9b59b6" stroke-width="2" rx="2"/>
+    <rect x="814" y="142" width="7" height="15" fill="#f0c674" stroke="#9b59b6" stroke-width="2" rx="2"/>
+
+    <text x="800" y="235" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#9b59b6">TOUCH</text>
+    <text x="800" y="255" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555">Detects pressure,</text>
+    <text x="800" y="270" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">temperature,</text>
+    <text x="800" y="285" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">texture</text>
+  </g>
+
+  <!-- Bottom explanation -->
+  <rect x="50" y="320" width="800" height="60" fill="#f8f9fa" stroke="#ddd" stroke-width="2" rx="10"/>
+  <text x="450" y="345" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+    All Five Senses Detect MATTER in Different Forms
+  </text>
+  <text x="450" y="365" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555">
+    Matter can be detected by our senses because it interacts with our sensory organs through light, vibration, chemicals, or physical contact.
+  </text>
+</svg>

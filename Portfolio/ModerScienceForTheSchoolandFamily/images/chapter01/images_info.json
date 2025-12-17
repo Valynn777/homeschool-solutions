@@ -1,0 +1,30 @@
+{
+  "chapter": "Chapter 1: Matter",
+  "downloaded": 3,
+  "images": [
+    {
+      "filename": "ch01-fig3-states-of-matter.png",
+      "original_title": "1-phase PT & PVT diagrams-fa.png",
+      "description": "Three states of matter diagram",
+      "license": "CC BY-SA 3.0",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/1-phase_PT_%26_PVT_diagrams-fa.png",
+      "local_path": "..\\TEXTBOOK-HTML\\images\\chapter01\\ch01-fig3-states-of-matter.png"
+    },
+    {
+      "filename": "ch01-fig6-atom-structure.png",
+      "original_title": "Atom1.svg",
+      "description": "Atom structure diagram",
+      "license": "Public domain",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Atom1.svg",
+      "local_path": "..\\TEXTBOOK-HTML\\images\\chapter01\\ch01-fig6-atom-structure.png"
+    },
+    {
+      "filename": "ch01-fig6-alt-atom.png",
+      "original_title": "1 H Bohr model.png",
+      "description": "Atomic model (Bohr)",
+      "license": "CC BY-SA 4.0",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/7/73/1_H_Bohr_model.png",
+      "local_path": "..\\TEXTBOOK-HTML\\images\\chapter01\\ch01-fig6-alt-atom.png"
+    }
+  ]
+}

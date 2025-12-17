@@ -345,6 +345,7 @@
                     <h2>Custom Curriculum Design</h2>
                     <p>With 14 years of homeschooling experience and professional training in Curriculum Development and Learning Theory, I create faith-based, educationally sound materials using proven instructional design methods. Whether you need focused unit studies, comprehensive digital textbooks, or interactive lessons, each project is designed specifically for your family's unique needs and learning goals.</p>
                     <p>All materials are created collaboratively with parents, incorporating your insights and objectives to ensure lessons resonate with your student's needs, interests, and learning style. Browse the samples below to see the quality and variety of curriculum options available.</p>
+                    <p style="background: rgba(166, 125, 153, 0.1); padding: 15px; border-radius: 8px; border-left: 3px solid var(--color-primary); margin-top: 15px;"><strong>Note:</strong> Interactive lessons and tools are best viewed and used on larger screens (tablets, laptops, or desktops) for the optimal learning experience.</p>
                 </div>
 
                 <div class="format-note">
@@ -364,18 +365,22 @@
 
                     <div class="gallery-grid">
                         <div class="gallery-item" onclick="openGalleryModal(0)">
-                            <img src="Portfolio/LearningHub.PNG" alt="Learning Hub Interface">
-                            <div class="gallery-caption">PWA Learning Hub</div>
+                            <img src="Portfolio/LH/LearningHubpic1.PNG" alt="Learning Hub Home">
+                            <div class="gallery-caption">PWA Learning Hub - Home</div>
                         </div>
                         <div class="gallery-item" onclick="openGalleryModal(1)">
-                            <img src="Portfolio/mathhub.PNG" alt="Math Hub Interface">
-                            <div class="gallery-caption">Interactive Math Hub</div>
+                            <img src="Portfolio/LH/LH2.PNG" alt="Learning Hub Features">
+                            <div class="gallery-caption">Learning Hub - Features</div>
                         </div>
                         <div class="gallery-item" onclick="openGalleryModal(2)">
-                            <img src="Portfolio/mathub manipulatives.PNG" alt="Math Manipulatives Interface">
-                            <div class="gallery-caption">Digital Manipulatives</div>
+                            <img src="Portfolio/LH/LH3.PNG" alt="Learning Hub Tools">
+                            <div class="gallery-caption">Learning Hub - Tools</div>
                         </div>
                         <div class="gallery-item" onclick="openGalleryModal(3)">
+                            <img src="Portfolio/LH/LH4.PNG" alt="Learning Hub Interface">
+                            <div class="gallery-caption">Learning Hub - Interface</div>
+                        </div>
+                        <div class="gallery-item" onclick="openGalleryModal(4)">
                             <img src="Portfolio/math tutorial image.PNG" alt="Math Tutorial">
                             <div class="gallery-caption">Step-by-Step Tutorials</div>
                         </div>
@@ -393,6 +398,13 @@
                             <button class="gallery-next" onclick="changeGallerySlide(1)">&#10095;</button>
                         </div>
                         <div class="gallery-counter" id="galleryCounter"></div>
+                    </div>
+
+                    <!-- Math Manipulatives Interactive Demo -->
+                    <div style="margin-top: var(--spacing-xl);">
+                        <h3 style="color: var(--color-accent); margin-bottom: var(--spacing-md);">Try Interactive Math Manipulatives</h3>
+                        <p style="color: var(--color-text-muted); margin-bottom: var(--spacing-md);">Experience the first two topics from our interactive math manipulatives hub. These tools help students visualize and understand mathematical concepts through hands-on digital exploration.</p>
+                        <iframe src="Portfolio/math-manipulatives-hub.html" style="width: 100%; height: 600px; border: 2px solid var(--color-border); border-radius: var(--border-radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></iframe>
                     </div>
                 </div>
 
@@ -437,11 +449,18 @@
                             <span class="lesson-link">View Lesson →</span>
                         </div>
 
-                        <div class="lesson-card" onclick="window.open('Portfolio/Lesson_19_Solomon_Wisdom_and_Idolatry.html', '_blank')">
-                            <span class="lesson-type digital-only">Interactive Study</span>
-                            <h3>Solomon: Wisdom and Idolatry</h3>
-                            <p>4-day interactive Bible study with activities, assessments, and cross-curricular English lessons examining King Solomon's reign and fall.</p>
-                            <span class="lesson-link">View Lesson →</span>
+                        <div class="lesson-card" onclick="window.open('Portfolio/ModerScienceForTheSchoolandFamily/ModernScienceForTheSchoolandFamily_chapter01.html', '_blank')">
+                            <span class="lesson-type printable">Digital Textbook Sample</span>
+                            <h3>Modern Science: Chapter 1 - Matter</h3>
+                            <p>Sample chapter from a faith-based science textbook exploring the nature of matter, spirit, and physical properties from a biblical worldview.</p>
+                            <span class="lesson-link">View Chapter →</span>
+                        </div>
+
+                        <div class="lesson-card" onclick="window.open('Portfolio/Biology_Textbook_The_Cell.html', '_blank')">
+                            <span class="lesson-type printable">Digital Textbook Sample</span>
+                            <h3>Biology: The Cell - God's Marvelous Design</h3>
+                            <p>Faith-based high school biology textbook chapter exploring cellular biology, DNA, and the incredible complexity that points to intelligent design.</p>
+                            <span class="lesson-link">View Chapter →</span>
                         </div>
 
                         <div class="lesson-card" onclick="window.open('Portfolio/writing_tutor.html', '_blank')">
@@ -488,19 +507,24 @@
         // Gallery Modal functionality
         const galleryImages = [
             {
-                src: 'Portfolio/LearningHub.PNG',
+                src: 'Portfolio/LH/LearningHubpic1.PNG',
+                alt: 'Learning Hub Home',
+                caption: 'PWA Learning Hub - Home - Custom learning management hub for organized student access'
+            },
+            {
+                src: 'Portfolio/LH/LH2.PNG',
+                alt: 'Learning Hub Features',
+                caption: 'Learning Hub Features - Comprehensive platform showcasing curriculum organization and tools'
+            },
+            {
+                src: 'Portfolio/LH/LH3.PNG',
+                alt: 'Learning Hub Tools',
+                caption: 'Learning Hub Tools - Interactive educational resources and learning aids'
+            },
+            {
+                src: 'Portfolio/LH/LH4.PNG',
                 alt: 'Learning Hub Interface',
-                caption: 'PWA Learning Hub - Custom learning management hub for organized student access to all lessons and tools'
-            },
-            {
-                src: 'Portfolio/mathhub.PNG',
-                alt: 'Math Hub Interface',
-                caption: 'Interactive Math Hub - Comprehensive math learning center with visual tools and practice exercises'
-            },
-            {
-                src: 'Portfolio/mathub manipulatives.PNG',
-                alt: 'Math Manipulatives Interface',
-                caption: 'Digital Manipulatives - Interactive tools for hands-on math exploration and concept visualization'
+                caption: 'Learning Hub Interface - Seamless navigation and user-friendly design'
             },
             {
                 src: 'Portfolio/math tutorial image.PNG',

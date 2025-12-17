@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#2c5aa0">
+    Matter and Spirit
+  </text>
+  <text x="400" y="65" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#555" font-style="italic">
+    Two distinct aspects of God's creation
+  </text>
+
+  <!-- Dividing line -->
+  <line x1="400" y1="90" x2="400" y2="450" stroke="#95a5a6" stroke-width="3" stroke-dasharray="10,5"/>
+
+  <!-- MATTER (Physical) - LEFT SIDE -->
+  <g id="matter-side">
+    <rect x="30" y="90" width="340" height="360" fill="#e8f4f8" stroke="#2c5aa0" stroke-width="3" rx="15"/>
+
+    <text x="200" y="130" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#2c5aa0">
+      MATTER (Physical)
+    </text>
+
+    <!-- Icons/Representations of Matter -->
+    <!-- Book -->
+    <rect x="60" y="160" width="50" height="40" fill="#8b4513" stroke="#654321" stroke-width="2" rx="3"/>
+    <line x1="85" y1="160" x2="85" y2="200" stroke="#654321" stroke-width="2"/>
+    <text x="90" y="220" font-family="Arial, sans-serif" font-size="11" fill="#555">Book</text>
+
+    <!-- Water drop -->
+    <ellipse cx="180" cy="180" rx="15" ry="20" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+    <text x="180" y="220" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">Water</text>
+
+    <!-- Rock -->
+    <ellipse cx="280" cy="175" rx="25" ry="20" fill="#7f8c8d" stroke="#5d6d7e" stroke-width="2"/>
+    <ellipse cx="295" cy="185" rx="20" ry="15" fill="#95a5a6" stroke="#7f8c8d" stroke-width="2"/>
+    <text x="288" y="220" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">Rock</text>
+
+    <!-- Phone -->
+    <rect x="70" y="250" width="35" height="60" fill="#2c3e50" stroke="#1a252f" stroke-width="2" rx="5"/>
+    <rect x="75" y="255" width="25" height="40" fill="#3498db" opacity="0.3"/>
+    <circle cx="87" cy="303" r="4" fill="#ecf0f1"/>
+    <text x="88" y="330" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">Phone</text>
+
+    <!-- Tree -->
+    <rect x="160" y="280" width="15" height="40" fill="#8b4513"/>
+    <circle cx="167" cy="265" r="25" fill="#27ae60" opacity="0.8"/>
+    <circle cx="180" cy="255" r="20" fill="#2ecc71" opacity="0.8"/>
+    <circle cx="155" cy="255" r="18" fill="#2ecc71" opacity="0.8"/>
+    <text x="168" y="340" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">Tree</text>
+
+    <!-- Human body outline -->
+    <circle cx="280" cy="270" r="15" fill="#f0c674" stroke="#d4a574" stroke-width="2"/>
+    <rect x="270" y="285" width="20" height="30" fill="#5dade2" stroke="#3498db" stroke-width="2" rx="3"/>
+    <line x1="270" y1="290" x2="255" y2="305" stroke="#5dade2" stroke-width="3" stroke-linecap="round"/>
+    <line x1="290" y1="290" x2="305" y2="305" stroke="#5dade2" stroke-width="3" stroke-linecap="round"/>
+    <line x1="270" y1="315" x2="260" y2="335" stroke="#34495e" stroke-width="3" stroke-linecap="round"/>
+    <line x1="290" y1="315" x2="300" y2="335" stroke="#34495e" stroke-width="3" stroke-linecap="round"/>
+    <text x="280" y="355" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">Body</text>
+
+    <!-- Characteristics of Matter -->
+    <rect x="50" y="375" width="300" height="60" fill="white" stroke="#2c5aa0" stroke-width="2" rx="8"/>
+    <text x="200" y="395" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#2c5aa0">
+      Characteristics:
+    </text>
+    <text x="200" y="413" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">
+      • Can be seen, touched, measured
+    </text>
+    <text x="200" y="428" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">
+      • Has mass and takes up space
+    </text>
+  </g>
+
+  <!-- SPIRIT (Immaterial) - RIGHT SIDE -->
+  <g id="spirit-side">
+    <rect x="430" y="90" width="340" height="360" fill="#f8f0ff" stroke="#9b59b6" stroke-width="3" rx="15"/>
+
+    <text x="600" y="130" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#9b59b6">
+      SPIRIT (Immaterial)
+    </text>
+
+    <!-- Icons/Representations of Spirit -->
+    <!-- Thought bubble -->
+    <ellipse cx="500" cy="180" rx="30" ry="20" fill="none" stroke="#9b59b6" stroke-width="2"/>
+    <circle cx="475" cy="195" r="5" fill="none" stroke="#9b59b6" stroke-width="2"/>
+    <circle cx="465" cy="202" r="3" fill="none" stroke="#9b59b6" stroke-width="2"/>
+    <text x="500" y="185" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#555">Idea</text>
+    <text x="500" y="220" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">Thoughts</text>
+
+    <!-- Heart (emotions) -->
+    <path d="M 620 165 Q 620 155 630 155 Q 640 155 640 165 Q 640 180 620 195 Q 600 180 600 165 Q 600 155 610 155 Q 620 155 620 165"
+          fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+    <text x="620" y="220" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">Emotions</text>
+
+    <!-- Light bulb (creativity) -->
+    <circle cx="710" cy="175" r="18" fill="#f39c12" opacity="0.3" stroke="#e67e22" stroke-width="2"/>
+    <rect x="705" y="193" width="10" height="8" fill="#95a5a6" stroke="#7f8c8d" stroke-width="1"/>
+    <line x1="695" y1="165" x2="685" y2="155" stroke="#f39c12" stroke-width="2"/>
+    <line x1="725" y1="165" x2="735" y2="155" stroke="#f39c12" stroke-width="2"/>
+    <line x1="695" y1="185" x2="685" y2="195" stroke="#f39c12" stroke-width="2"/>
+    <line x1="725" y1="185" x2="735" y2="195" stroke="#f39c12" stroke-width="2"/>
+    <text x="710" y="220" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">Creativity</text>
+
+    <!-- Soul representation (person with glow) -->
+    <circle cx="520" cy="275" r="12" fill="#f0c674" stroke="#d4a574" stroke-width="2"/>
+    <rect x="512" y="287" width="16" height="25" fill="#5dade2" stroke="#3498db" stroke-width="2" rx="2"/>
+    <circle cx="520" cy="275" r="25" fill="#9b59b6" opacity="0.2"/>
+    <circle cx="520" cy="275" r="32" fill="#9b59b6" opacity="0.1"/>
+    <text x="520" y="330" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">Soul</text>
+
+    <!-- Choice/Decision (arrows) -->
+    <path d="M 630 270 L 630 300" stroke="#9b59b6" stroke-width="3" marker-end="url(#arrow1)"/>
+    <path d="M 630 270 L 650 295" stroke="#9b59b6" stroke-width="3" marker-end="url(#arrow1)"/>
+    <path d="M 630 270 L 610 295" stroke="#9b59b6" stroke-width="3" marker-end="url(#arrow1)"/>
+    <text x="630" y="260" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">Decision</text>
+    <text x="630" y="330" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">Choices</text>
+
+    <!-- Characteristics of Spirit -->
+    <rect x="450" y="375" width="300" height="60" fill="white" stroke="#9b59b6" stroke-width="2" rx="8"/>
+    <text x="600" y="395" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#9b59b6">
+      Characteristics:
+    </text>
+    <text x="600" y="413" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">
+      • Cannot be seen or touched
+    </text>
+    <text x="600" y="428" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555">
+      • Effects can be observed
+    </text>
+  </g>
+
+  <!-- Biblical Reference at bottom -->
+  <text x="400" y="480" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#555" font-style="italic">
+    Genesis 2:7 - "God formed man of the dust (matter) and breathed into him the breath of life (spirit)"
+  </text>
+
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrow1" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#9b59b6"/>
+    </marker>
+  </defs>
+</svg>

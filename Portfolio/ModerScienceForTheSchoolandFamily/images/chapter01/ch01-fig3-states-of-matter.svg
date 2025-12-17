@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#2c5aa0">
+    Three States of Matter
+  </text>
+
+  <!-- SOLID (Ice) -->
+  <g id="solid">
+    <!-- Panel background -->
+    <rect x="20" y="60" width="240" height="320" fill="#e8f4f8" stroke="#2c5aa0" stroke-width="2" rx="10"/>
+
+    <!-- Label -->
+    <text x="140" y="90" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#2c5aa0">SOLID</text>
+    <text x="140" y="115" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333">(Ice)</text>
+
+    <!-- Ice cube illustration -->
+    <rect x="80" y="130" width="120" height="100" fill="#d0e8f0" stroke="#4a90a4" stroke-width="2"/>
+    <line x1="80" y1="140" x2="200" y2="140" stroke="#b0d0e0" stroke-width="1"/>
+    <line x1="80" y1="160" x2="200" y2="160" stroke="#b0d0e0" stroke-width="1"/>
+    <line x1="80" y1="180" x2="200" y2="180" stroke="#b0d0e0" stroke-width="1"/>
+    <line x1="80" y1="200" x2="200" y2="200" stroke="#b0d0e0" stroke-width="1"/>
+    <line x1="80" y1="220" x2="200" y2="220" stroke="#b0d0e0" stroke-width="1"/>
+
+    <!-- Particle diagram - ordered grid -->
+    <text x="140" y="255" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#555">Particles:</text>
+    <circle cx="90" cy="280" r="8" fill="#2c5aa0"/>
+    <circle cx="115" cy="280" r="8" fill="#2c5aa0"/>
+    <circle cx="140" cy="280" r="8" fill="#2c5aa0"/>
+    <circle cx="165" cy="280" r="8" fill="#2c5aa0"/>
+    <circle cx="190" cy="280" r="8" fill="#2c5aa0"/>
+
+    <circle cx="90" cy="305" r="8" fill="#2c5aa0"/>
+    <circle cx="115" cy="305" r="8" fill="#2c5aa0"/>
+    <circle cx="140" cy="305" r="8" fill="#2c5aa0"/>
+    <circle cx="165" cy="305" r="8" fill="#2c5aa0"/>
+    <circle cx="190" cy="305" r="8" fill="#2c5aa0"/>
+
+    <circle cx="90" cy="330" r="8" fill="#2c5aa0"/>
+    <circle cx="115" cy="330" r="8" fill="#2c5aa0"/>
+    <circle cx="140" cy="330" r="8" fill="#2c5aa0"/>
+    <circle cx="165" cy="330" r="8" fill="#2c5aa0"/>
+    <circle cx="190" cy="330" r="8" fill="#2c5aa0"/>
+
+    <!-- Description -->
+    <text x="140" y="365" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#555">Locked in place</text>
+  </g>
+
+  <!-- LIQUID (Water) -->
+  <g id="liquid">
+    <!-- Panel background -->
+    <rect x="280" y="60" width="240" height="320" fill="#e8f8f4" stroke="#16a085" stroke-width="2" rx="10"/>
+
+    <!-- Label -->
+    <text x="400" y="90" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#16a085">LIQUID</text>
+    <text x="400" y="115" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333">(Water)</text>
+
+    <!-- Glass of water illustration -->
+    <path d="M 340 140 L 340 220 Q 340 230 350 230 L 450 230 Q 460 230 460 220 L 460 140"
+          fill="#b3e0d9" stroke="#16a085" stroke-width="2" fill-opacity="0.6"/>
+    <ellipse cx="400" cy="140" rx="60" ry="15" fill="#b3e0d9" stroke="#16a085" stroke-width="2"/>
+    <ellipse cx="400" cy="140" rx="60" ry="15" fill="#88ccc0" opacity="0.5"/>
+
+    <!-- Particle diagram - close but movable -->
+    <text x="400" y="255" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#555">Particles:</text>
+    <circle cx="350" cy="280" r="8" fill="#16a085"/>
+    <circle cx="375" cy="285" r="8" fill="#16a085"/>
+    <circle cx="395" cy="275" r="8" fill="#16a085"/>
+    <circle cx="420" cy="282" r="8" fill="#16a085"/>
+    <circle cx="445" cy="278" r="8" fill="#16a085"/>
+
+    <circle cx="355" cy="305" r="8" fill="#16a085"/>
+    <circle cx="380" cy="310" r="8" fill="#16a085"/>
+    <circle cx="405" cy="303" r="8" fill="#16a085"/>
+    <circle cx="425" cy="307" r="8" fill="#16a085"/>
+    <circle cx="448" cy="304" r="8" fill="#16a085"/>
+
+    <circle cx="358" cy="330" r="8" fill="#16a085"/>
+    <circle cx="382" cy="328" r="8" fill="#16a085"/>
+    <circle cx="408" cy="332" r="8" fill="#16a085"/>
+    <circle cx="432" cy="327" r="8" fill="#16a085"/>
+    <circle cx="452" cy="333" r="8" fill="#16a085"/>
+
+    <!-- Description -->
+    <text x="400" y="365" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#555">Move freely</text>
+  </g>
+
+  <!-- GAS (Steam) -->
+  <g id="gas">
+    <!-- Panel background -->
+    <rect x="540" y="60" width="240" height="320" fill="#fff8e8" stroke="#e67e22" stroke-width="2" rx="10"/>
+
+    <!-- Label -->
+    <text x="660" y="90" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#e67e22">GAS</text>
+    <text x="660" y="115" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333">(Steam)</text>
+
+    <!-- Steam illustration - wavy lines -->
+    <path d="M 580 180 Q 590 170 600 180 T 620 180" stroke="#e67e22" stroke-width="2" fill="none" opacity="0.7"/>
+    <path d="M 610 160 Q 620 150 630 160 T 650 160" stroke="#e67e22" stroke-width="2" fill="none" opacity="0.7"/>
+    <path d="M 640 140 Q 650 130 660 140 T 680 140" stroke="#e67e22" stroke-width="2" fill="none" opacity="0.7"/>
+    <path d="M 670 170 Q 680 160 690 170 T 710 170" stroke="#e67e22" stroke-width="2" fill="none" opacity="0.7"/>
+    <path d="M 700 150 Q 710 140 720 150 T 740 150" stroke="#e67e22" stroke-width="2" fill="none" opacity="0.7"/>
+
+    <circle cx="600" cy="200" r="6" fill="#e67e22" opacity="0.4"/>
+    <circle cx="650" cy="190" r="5" fill="#e67e22" opacity="0.4"/>
+    <circle cx="690" cy="195" r="7" fill="#e67e22" opacity="0.4"/>
+    <circle cx="620" cy="220" r="5" fill="#e67e22" opacity="0.4"/>
+    <circle cx="710" cy="210" r="6" fill="#e67e22" opacity="0.4"/>
+
+    <!-- Particle diagram - far apart -->
+    <text x="660" y="255" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#555">Particles:</text>
+    <circle cx="570" cy="285" r="8" fill="#e67e22"/>
+    <circle cx="625" cy="275" r="8" fill="#e67e22"/>
+    <circle cx="690" cy="290" r="8" fill="#e67e22"/>
+    <circle cx="745" cy="280" r="8" fill="#e67e22"/>
+
+    <circle cx="590" cy="315" r="8" fill="#e67e22"/>
+    <circle cx="655" cy="305" r="8" fill="#e67e22"/>
+    <circle cx="715" cy="320" r="8" fill="#e67e22"/>
+
+    <circle cx="610" cy="340" r="8" fill="#e67e22"/>
+    <circle cx="680" cy="335" r="8" fill="#e67e22"/>
+    <circle cx="740" cy="345" r="8" fill="#e67e22"/>
+
+    <!-- Description -->
+    <text x="660" y="365" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#555">Far apart, fast</text>
+  </g>
+</svg>

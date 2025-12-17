@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <!-- Title -->
+  <text x="300" y="40" font-family="Arial, sans-serif" font-size="26" font-weight="bold" text-anchor="middle" fill="#2c5aa0">
+    The Atom - Building Block of Matter
+  </text>
+
+  <!-- Nucleus -->
+  <g id="nucleus">
+    <circle cx="300" cy="300" r="50" fill="#e74c3c" opacity="0.3" stroke="#e74c3c" stroke-width="2"/>
+
+    <!-- Protons (red) -->
+    <circle cx="285" cy="285" r="12" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+    <text x="285" y="291" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#fff">P+</text>
+
+    <circle cx="315" cy="285" r="12" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+    <text x="315" y="291" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#fff">P+</text>
+
+    <circle cx="285" cy="315" r="12" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+    <text x="285" y="321" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#fff">P+</text>
+
+    <!-- Neutrons (gray) -->
+    <circle cx="315" cy="315" r="12" fill="#95a5a6" stroke="#7f8c8d" stroke-width="2"/>
+    <text x="315" y="321" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#fff">N</text>
+
+    <circle cx="300" cy="300" r="12" fill="#95a5a6" stroke="#7f8c8d" stroke-width="2"/>
+    <text x="300" y="306" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#fff">N</text>
+
+    <!-- Nucleus label -->
+    <text x="300" y="370" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#e74c3c">NUCLEUS</text>
+    <text x="300" y="390" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#555">(Protons + Neutrons)</text>
+  </g>
+
+  <!-- Electron Orbits -->
+  <g id="orbits">
+    <!-- First orbit -->
+    <ellipse cx="300" cy="300" rx="120" ry="40" fill="none" stroke="#3498db" stroke-width="2" stroke-dasharray="5,3" opacity="0.6"/>
+
+    <!-- Second orbit -->
+    <ellipse cx="300" cy="300" rx="40" ry="120" fill="none" stroke="#3498db" stroke-width="2" stroke-dasharray="5,3" opacity="0.6"/>
+
+    <!-- Third orbit -->
+    <ellipse cx="300" cy="300" rx="100" ry="100" fill="none" stroke="#3498db" stroke-width="2" stroke-dasharray="5,3" opacity="0.6"/>
+  </g>
+
+  <!-- Electrons (blue) -->
+  <g id="electrons">
+    <!-- Orbit 1 electrons -->
+    <circle cx="420" cy="300" r="10" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+    <text x="420" y="305" font-family="Arial, sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#fff">e-</text>
+
+    <circle cx="180" cy="300" r="10" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+    <text x="180" y="305" font-family="Arial, sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#fff">e-</text>
+
+    <!-- Orbit 2 electrons -->
+    <circle cx="300" cy="180" r="10" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+    <text x="300" y="185" font-family="Arial, sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#fff">e-</text>
+
+    <circle cx="300" cy="420" r="10" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+    <text x="300" y="425" font-family="Arial, sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#fff">e-</text>
+
+    <!-- Orbit 3 electrons -->
+    <circle cx="371" cy="229" r="10" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+    <text x="371" y="234" font-family="Arial, sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#fff">e-</text>
+
+    <circle cx="229" cy="371" r="10" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+    <text x="229" y="376" font-family="Arial, sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#fff">e-</text>
+  </g>
+
+  <!-- Electron Cloud label -->
+  <text x="470" y="200" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#3498db">ELECTRON</text>
+  <text x="470" y="218" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#3498db">CLOUD</text>
+  <line x1="440" y1="210" x2="410" y2="250" stroke="#3498db" stroke-width="2" marker-end="url(#arrow-electron)"/>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(50, 450)">
+    <rect x="0" y="0" width="500" height="120" fill="#f8f9fa" stroke="#ddd" stroke-width="2" rx="10"/>
+
+    <text x="250" y="25" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">Key Parts of an Atom</text>
+
+    <!-- Proton -->
+    <circle cx="80" cy="55" r="10" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+    <text x="80" y="60" font-family="Arial, sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#fff">P+</text>
+    <text x="100" y="60" font-family="Arial, sans-serif" font-size="13" fill="#333">PROTON (Positive charge)</text>
+
+    <!-- Neutron -->
+    <circle cx="80" cy="85" r="10" fill="#95a5a6" stroke="#7f8c8d" stroke-width="2"/>
+    <text x="80" y="90" font-family="Arial, sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#fff">N</text>
+    <text x="100" y="90" font-family="Arial, sans-serif" font-size="13" fill="#333">NEUTRON (No charge)</text>
+
+    <!-- Electron -->
+    <circle cx="310" cy="70" r="10" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+    <text x="310" y="75" font-family="Arial, sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#fff">e-</text>
+    <text x="330" y="75" font-family="Arial, sans-serif" font-size="13" fill="#333">ELECTRON (Negative charge)</text>
+
+    <text x="25" y="110" font-family="Arial, sans-serif" font-size="11" font-style="italic" fill="#666">Note: Atoms are INCREDIBLY tiny - millions could fit on this period → .</text>
+  </g>
+
+  <!-- Arrow marker for labels -->
+  <defs>
+    <marker id="arrow-electron" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#3498db"/>
+    </marker>
+  </defs>
+
+  <!-- Additional info -->
+  <text x="300" y="440" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555" font-style="italic">
+    "God created the visible world from invisible components" - Hebrews 11:3
+  </text>
+</svg>

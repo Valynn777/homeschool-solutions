@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300">
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Divisibility of Matter
+  </text>
+
+  <!-- Stage 1: Large block -->
+  <g>
+    <rect x="50" y="80" width="120" height="120" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+    <text x="110" y="210" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#2c3e50">
+      1 piece
+    </text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 180 140 L 220 140" stroke="#e74c3c" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Stage 2: Four pieces -->
+  <g>
+    <rect x="240" y="80" width="55" height="55" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+    <rect x="300" y="80" width="55" height="55" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+    <rect x="240" y="140" width="55" height="55" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+    <rect x="300" y="140" width="55" height="55" fill="#3498db" stroke="#2c3e50" stroke-width="2"/>
+    <text x="297" y="210" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#2c3e50">
+      4 pieces
+    </text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 365 140 L 405 140" stroke="#e74c3c" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Stage 3: Sixteen pieces -->
+  <g>
+    <rect x="425" y="80" width="23" height="23" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+    <rect x="451" y="80" width="23" height="23" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+    <rect x="477" y="80" width="23" height="23" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+    <rect x="503" y="80" width="23" height="23" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+
+    <rect x="425" y="106" width="23" height="23" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+    <rect x="451" y="106" width="23" height="23" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+    <rect x="477" y="106" width="23" height="23" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+    <rect x="503" y="106" width="23" height="23" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+
+    <rect x="425" y="132" width="23" height="23" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+    <rect x="451" y="132" width="23" height="23" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+    <rect x="477" y="132" width="23" height="23" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+    <rect x="503" y="132" width="23" height="23" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+
+    <rect x="425" y="158" width="23" height="23" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+    <rect x="451" y="158" width="23" height="23" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+    <rect x="477" y="158" width="23" height="23" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+    <rect x="503" y="158" width="23" height="23" fill="#3498db" stroke="#2c3e50" stroke-width="1"/>
+
+    <text x="464" y="210" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#2c3e50">
+      16 pieces
+    </text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 535 140 L 575 140" stroke="#e74c3c" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Stage 4: Many tiny pieces (dots) -->
+  <g>
+    <!-- Grid of small circles representing tiny particles -->
+    <circle cx="605" cy="90" r="3" fill="#3498db"/>
+    <circle cx="615" cy="90" r="3" fill="#3498db"/>
+    <circle cx="625" cy="90" r="3" fill="#3498db"/>
+    <circle cx="635" cy="90" r="3" fill="#3498db"/>
+    <circle cx="645" cy="90" r="3" fill="#3498db"/>
+    <circle cx="655" cy="90" r="3" fill="#3498db"/>
+    <circle cx="665" cy="90" r="3" fill="#3498db"/>
+    <circle cx="675" cy="90" r="3" fill="#3498db"/>
+
+    <circle cx="605" cy="102" r="3" fill="#3498db"/>
+    <circle cx="615" cy="102" r="3" fill="#3498db"/>
+    <circle cx="625" cy="102" r="3" fill="#3498db"/>
+    <circle cx="635" cy="102" r="3" fill="#3498db"/>
+    <circle cx="645" cy="102" r="3" fill="#3498db"/>
+    <circle cx="655" cy="102" r="3" fill="#3498db"/>
+    <circle cx="665" cy="102" r="3" fill="#3498db"/>
+    <circle cx="675" cy="102" r="3" fill="#3498db"/>
+
+    <circle cx="605" cy="114" r="3" fill="#3498db"/>
+    <circle cx="615" cy="114" r="3" fill="#3498db"/>
+    <circle cx="625" cy="114" r="3" fill="#3498db"/>
+    <circle cx="635" cy="114" r="3" fill="#3498db"/>
+    <circle cx="645" cy="114" r="3" fill="#3498db"/>
+    <circle cx="655" cy="114" r="3" fill="#3498db"/>
+    <circle cx="665" cy="114" r="3" fill="#3498db"/>
+    <circle cx="675" cy="114" r="3" fill="#3498db"/>
+
+    <circle cx="605" cy="126" r="3" fill="#3498db"/>
+    <circle cx="615" cy="126" r="3" fill="#3498db"/>
+    <circle cx="625" cy="126" r="3" fill="#3498db"/>
+    <circle cx="635" cy="126" r="3" fill="#3498db"/>
+    <circle cx="645" cy="126" r="3" fill="#3498db"/>
+    <circle cx="655" cy="126" r="3" fill="#3498db"/>
+    <circle cx="665" cy="126" r="3" fill="#3498db"/>
+    <circle cx="675" cy="126" r="3" fill="#3498db"/>
+
+    <circle cx="605" cy="138" r="3" fill="#3498db"/>
+    <circle cx="615" cy="138" r="3" fill="#3498db"/>
+    <circle cx="625" cy="138" r="3" fill="#3498db"/>
+    <circle cx="635" cy="138" r="3" fill="#3498db"/>
+    <circle cx="645" cy="138" r="3" fill="#3498db"/>
+    <circle cx="655" cy="138" r="3" fill="#3498db"/>
+    <circle cx="665" cy="138" r="3" fill="#3498db"/>
+    <circle cx="675" cy="138" r="3" fill="#3498db"/>
+
+    <circle cx="605" cy="150" r="3" fill="#3498db"/>
+    <circle cx="615" cy="150" r="3" fill="#3498db"/>
+    <circle cx="625" cy="150" r="3" fill="#3498db"/>
+    <circle cx="635" cy="150" r="3" fill="#3498db"/>
+    <circle cx="645" cy="150" r="3" fill="#3498db"/>
+    <circle cx="655" cy="150" r="3" fill="#3498db"/>
+    <circle cx="665" cy="150" r="3" fill="#3498db"/>
+    <circle cx="675" cy="150" r="3" fill="#3498db"/>
+
+    <text x="640" y="210" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#2c3e50">
+      Millions+
+    </text>
+  </g>
+
+  <!-- Bottom text -->
+  <text x="400" y="250" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#2c3e50">
+    Matter can be divided into smaller and smaller pieces
+  </text>
+  <text x="400" y="275" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#7f8c8d" font-style="italic">
+    The smallest pieces are atoms!
+  </text>
+
+  <!-- Arrow definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#e74c3c"/>
+    </marker>
+  </defs>
+</svg>
