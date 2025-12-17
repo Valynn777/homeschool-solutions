@@ -19,8 +19,13 @@
             color: #1f2937;
         }
 
-        /* Show only first two categories for portfolio sample */
-        .tool-category:nth-of-type(n+3) {
+        /* Show only first two tools for portfolio sample */
+        .tool-category:nth-of-type(n+2) {
+            display: none;
+        }
+
+        /* Hide 3rd and 4th tools in first category */
+        .tool-category:first-of-type .manipulative-btn:nth-of-type(n+3) {
             display: none;
         }
 
