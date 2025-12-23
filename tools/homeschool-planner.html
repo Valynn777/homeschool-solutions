@@ -670,7 +670,6 @@
                 <li class="nav-item" data-view="gradebook">Gradebook</li>
                 <li class="nav-item" data-view="planner">Lesson Planner</li>
                 <li class="nav-item" data-view="transcript">Transcripts</li>
-                <li class="nav-item" data-view="portfolio">Portfolio & Files</li>
                 <li class="nav-item" data-view="alt-credits">Alt Credits</li>
                 <li class="nav-item" data-view="reports">Reports</li>
                 <li class="nav-item" data-view="settings">Settings</li>
@@ -784,15 +783,7 @@
                 <div id="transcript-content"></div>
             </div>
 
-            <!-- Portfolio & Files View -->
-            <div id="view-portfolio" class="view-content hidden">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Student Portfolio & Work Samples</h2>
-                    </div>
-                    <div id="portfolio-content"></div>
-                </div>
-            </div>
+            <!-- Portfolio view removed per admin request -->
 
             <!-- Alt Credits View -->
             <div id="view-alt-credits" class="view-content hidden">
@@ -1111,7 +1102,6 @@
                 case 'gradebook': renderGradebook(); break;
                 case 'planner': renderPlanner(); break;
                 case 'transcript': renderTranscriptControls(); break;
-                case 'portfolio': renderPortfolio(); break;
                 case 'alt-credits': renderAltCredits(); break;
                 case 'reports': renderReports(); break;
                 case 'settings': renderSettings(); break;

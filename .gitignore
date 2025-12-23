@@ -58,3 +58,6 @@ $RECYCLE.BIN/
 # Private folders - not tracked in GitHub
 PWA Learning Hub/
 Summary and client doc generator/
+
+# Backup folder created when archiving curriculum/portfolio
+backup_removed_curriculum_and_portfolio_2025-12-22/
